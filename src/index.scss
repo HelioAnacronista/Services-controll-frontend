@@ -1,0 +1,96 @@
+:root {
+  --cor-brown-100: #A68875;
+  --cor-brown-500: #594D48;
+  --cor-brown-300: #766153;
+  --cor-brown-200: #A78976;
+  --cor-brown-700: #262626;
+}
+
+/* reset body e css */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Segoe 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+img,
+a,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* Remover list styles padrão */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remover estilos de links padrão */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remover estilos de botões padrão */
+button {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Remover estilos de imagens padrão */
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+.btn-action-style {
+  font-size: 40px;
+}
+
+
+
+table {
+  width: 100%;
+  background-color: white;
+  padding: 1.8rem;
+  border-radius: 2rem;
+  margin-top: 1.3rem;
+  box-shadow: 0rem 2rem 10rem rgb(112 115 146 / 34%);
+  transition: all 10ms ease;
+}
+
+table {
+  td {
+    border-bottom: 1px solid #848BC82E;
+    vertical-align: middle;
+    width: auto;
+  }
+
+}

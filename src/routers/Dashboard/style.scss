@@ -1,0 +1,87 @@
+.container {
+   display: flex;
+}
+
+.container-dash {
+   display: flex;
+}
+
+.cards-analises {
+   margin-right: 20px;
+   margin-left: 20px;
+   width: 500px;
+}
+
+/* card report */
+.card-sales {
+   background-color: white;
+   padding: 1.8rem;
+   border-radius: 2rem;
+   margin-top: 1.3rem;
+   box-shadow: 0 2rem 3rem #70739257;
+   transition: all 300ms ease;
+}
+
+.icons-sharp {
+   background-color: #7380EC;
+   padding: 0.5rem;
+   border-radius: 50%;
+   color: white;
+   font-size: 2rem;
+}
+
+.card-infos {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   .card-datas {
+      h3 {
+         margin: 1rem 0 0.6rem;
+         font-size: 1rem;
+      }
+
+      h1 {
+         font-weight: 800;
+         font-size: 1.8rem;
+      }
+   }
+}
+
+.value {
+   color: green;
+}
+
+
+.times {
+   margin-top: 1.3rem;
+   display: block;
+   color: #7D8DA1;
+}
+
+.container-list {
+   margin: 20px;
+
+   h1 {
+      font-weight: 700;
+      font-size: 30px;
+   }
+   .line-vertical {
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.131); 
+   }
+   .list-title {
+      padding-top: 15px;
+   }
+}
+
+.card-att-msg {
+   background-color: white;
+   width: 14%;
+   border-radius: 1rem;
+   margin-top: 1.3rem;
+   margin-left: 10px;
+   box-shadow: 0 2rem 3rem rgb(112 115 146 / 34%);
+   transition: all 300ms ease;
+}
