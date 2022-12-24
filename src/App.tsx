@@ -8,25 +8,31 @@ import Home from './routers/Home';
 import Login from './routers/Login';
 import Work from './routers/Works';
 
+import { useState } from 'react';
+import { ContextSearch } from './utils/context-search';
 
 function App() {
 
+  const [contextSearch, setContextSearch] = useState<any>();
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/login' element={<Login></Login>}> </Route>
-          <Route path='' element={<Home></Home>} >
-            <Route index element={<Dashboard />} />
-            <Route path='category' element={<Category />} />
-            <Route path='client' element={<Client />} />
-            <Route path='work' element={<Work />} />
-          </Route>
+      <ContextSearch.Provider value={{ contextSearch, setContextSearch }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/login' element={<Login></Login>}> </Route>
+            <Route path='' element={<Home></Home>} >
+              <Route index element={<Dashboard />} />
+              <Route path='category' element={<Category />} />
+              <Route path='client' element={<Client params={contextSearch} />} />
+              <Route path='work' element={<Work />} />
+            </Route>
 
 
 
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </ContextSearch.Provider>
     </>
   )
 }

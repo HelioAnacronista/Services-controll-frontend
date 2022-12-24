@@ -1,5 +1,5 @@
 import { dashboardCardDTO } from '../../models/dashboard-cardDTO';
-
+import ApexChart from '../ApexChart';
 
 type Props = {
    dateCard: dashboardCardDTO;
@@ -16,12 +16,7 @@ function CardLayoutDashboard({ dateCard }: Props) {
                   <h1>R${dateCard.value.toFixed(2)}</h1>
                </div>
                <div className="progress">
-                  {/* Colocar uma barra de progressão dinamica */}
-
-
-                  <div className="value">
-                     <p>{dateCard.percentage}%</p>
-                  </div>
+               
                </div>
             </div>
             <small className="times">Ultimas {dateCard.date}</small>

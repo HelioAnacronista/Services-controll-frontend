@@ -1,9 +1,9 @@
+import CardLayoutDashboard from '../../components/CardLayoutDashboard'
+import CardRecentUpdates from '../../components/CardRecentUpdates'
+import { dashboardCardDTO } from '../../models/dashboard-cardDTO'
+import { objattDTO } from '../../models/objattDTO'
 import './style.scss'
-import { dashboardCardDTO } from '../../models/dashboard-cardDTO';
-import CardRecentUpdates from '../../components/CardRecentUpdates';
-import TableWorks from '../../components/TableWorks';
-import { objattDTO } from '../../models/objattDTO';
-import CardLayoutDashboard from '../../components/CardLayoutDashboard';
+
 
 let objVendas: dashboardCardDTO = {
    icon: "https://drscdn.500px.org/photo/1058330716/m%3D900/v2?sig=f211a5fef5b34e0bae5ab0d8d5a10ee64e495b826ae0a73c5b02bb0d9b17286f",
@@ -57,8 +57,8 @@ function Dashboard() {
          <div className='container'>
             <div className=''>
 
-               <div className='container-dash'>
-                  <div className='cards-analises'>  <CardLayoutDashboard dateCard={objVendas}></CardLayoutDashboard> </div>
+            <div className='container-dash'>
+            <div className='cards-analises'>  <CardLayoutDashboard dateCard={objVendas}></CardLayoutDashboard> </div>
                   <div className='cards-analises'>  <CardLayoutDashboard dateCard={objGastos}></CardLayoutDashboard> </div>
                   <div className='cards-analises'>  <CardLayoutDashboard dateCard={objTotal}></CardLayoutDashboard>  </div>
                </div>
@@ -69,7 +69,6 @@ function Dashboard() {
                      <div className='line-vertical'>
                      </div>
                      <div>
-                        <TableWorks></TableWorks>
                      </div>
                   </div>
                </div>

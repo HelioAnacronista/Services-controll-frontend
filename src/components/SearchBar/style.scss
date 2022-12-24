@@ -5,7 +5,7 @@
 
 
 /* From uiverse.io by @alexruix */
-.input {
+.input-search {
    margin-left: 20px;
    width: 200px;
    line-height: 28px;
@@ -18,18 +18,18 @@
    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   
-  .input:focus, input:hover {
+  .input-search:focus, input:hover {
    outline: none;
    padding: .2rem 1rem;
    border-radius: 1rem;
    border-color: #7a9cc6;
   }
   
-  .input::placeholder {
+  .input-search::placeholder {
    color: #777;
   }
   
-  .input:focus::placeholder {
+  .input-search:focus::placeholder {
    opacity: 0;
    transition: opacity .3s;
   }

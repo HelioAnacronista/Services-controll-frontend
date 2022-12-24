@@ -1,27 +1,31 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ContextSearch } from "../../utils/context-search";
 import './style.scss'
 
-type Props = {
-   onSearch: Function;
-}
 
-function SearchBar({ onSearch }: Props) {
 
-   const [text, setText] = useState("")
+function SearchBar() {
+
+
+   const {setContextSearch} = useContext(ContextSearch);
+
+   function handleChange(event: any) {
+      setContextSearch(event.target.value)
+      console.log(event.target.value)
+   }
 
    function handleSubmit(event: any) {
       event.preventDefault();
-      onSearch(text);
-   }
-
-   function handleChange(event: any) {
-      setText(event.target.value)
    }
 
    return (
       <form onSubmit={handleSubmit} className="from-search-bar">
 
-         <input className="input" type="text" value={text} onChange={handleChange} placeholder="Buscar por nome" /> 
+         <input 
+         onChange={handleChange} 
+         name="onSearch"
+         className="input-search"
+         placeholder="Buscar por nome" type="text" /> 
          <button type="submit" className="from-search-bar-btn">🔎︎</button>
       
       </form>

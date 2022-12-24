@@ -1,23 +1,22 @@
 import './style.scss';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as React from 'react';
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 
 import ButtonLayout from '../../components/ButtonLayout';
-import SearchBar from '../../components/SearchBar';
 import { ClientDTO } from '../../models/client';
 import * as clientServices from '../../services/client-services';
+import { ContextSearch } from '../../utils/context-search';
 import TableRowClient from './TableRowClient';
 
-
-type QueryParams = {
-   page: number;
-   name: string;
+type PropsParent = {
+   params : string
 }
 
+function Client({params}: PropsParent) {
 
-function Client() {
+   const {contextSearch} = useContext(ContextSearch);
 
    const [clientList, setClientList] = useState<ClientDTO[]>([]);
 
@@ -28,6 +27,14 @@ function Client() {
       name: ""
    });
 
+   function findName(name: String): ClientDTO[] {
+      return clientList.filter((x) => x.name === name );
+   }
+
+   
+   
+   
+
 
    //Fazer a requisição com os params passados
    useEffect(() => {
@@ -37,17 +44,21 @@ function Client() {
          setisListPage(response.data.last)
       })
    }, [queryParams]);
+
    //Pesquisa  
    function handleSearch(searchText: string) {
       setClientList([]);
       setQueryParams({ ...queryParams, page: 0, name: searchText })
    }
+
+   
    //Proxima pagina
    function handleNextPageClick() {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })
    }
 
    return (
+      <>
       <main>
          <div className="">
             <div className="header-list-work">
@@ -69,7 +80,9 @@ function Client() {
                   </thead>
 
                   <tbody>
-                     {
+                     {  (params) ?
+                        clientList.filter(x => x.name === params).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>) 
+                        :
                         clientList.map(obj => <TableRowClient key={obj.id} client={obj}></TableRowClient>)
                      }
                   </tbody>
@@ -81,11 +94,11 @@ function Client() {
                </table>
                <div className="container-right">
                   <ButtonLayout name="CRIAR" ></ButtonLayout>
-                  <SearchBar onSearch={handleSearch} ></SearchBar>
                </div>
             </div>
          </div>
       </main>
+      </>
    );
 };
 

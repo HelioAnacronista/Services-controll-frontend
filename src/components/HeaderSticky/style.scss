@@ -1,0 +1,17 @@
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.header-sticky-nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 1rem;
+
+  box-shadow: 0rem 2rem 10rem rgb(112 115 146 / 34%);
+  transition: all 10ms ease;
+}

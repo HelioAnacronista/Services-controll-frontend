@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { BASE_URL } from '../utils/system';
 
-export function findPageRequest(page: number, name : string, size = 10 ,sort = "name") {
+export function findPageRequest(page: number, name : string, size = 50 ,sort = "id") {
    const config : AxiosRequestConfig = {
        method : "GET",
        baseURL: BASE_URL,
