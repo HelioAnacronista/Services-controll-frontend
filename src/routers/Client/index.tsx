@@ -22,7 +22,7 @@ function Client({params}: PropsParent) {
 
    const [isListPage, setisListPage] = useState(false);
 
-   const [queryParams, setQueryParams] = useState<QueryParams>({
+   const [queryParams, setQueryParams] = useState<any>({
       page: 0,
       name: ""
    });
