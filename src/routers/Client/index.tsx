@@ -7,7 +7,6 @@ import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 import ButtonLayout from '../../components/ButtonLayout';
 import { ClientDTO } from '../../models/client';
 import * as clientServices from '../../services/client-services';
-import { ContextSearch } from '../../utils/context-search';
 import TableRowClient from './TableRowClient';
 
 type PropsParent = {
@@ -16,7 +15,6 @@ type PropsParent = {
 
 function Client({params}: PropsParent) {
 
-   const {contextSearch} = useContext(ContextSearch);
 
    const [clientList, setClientList] = useState<ClientDTO[]>([]);
 
@@ -28,9 +26,7 @@ function Client({params}: PropsParent) {
    });
 
    
-   function findName(name: String): ClientDTO[] {
-      return clientList.filter((x) => x.name === name );
-   }
+  
 
    
    //Fazer a requisição com os params passados

@@ -1,13 +1,16 @@
-import * as React from "react";
-import './style.scss'
-import { WorkDTO } from "../../models/work";
-import TableRowWorks from "./TableRowWorks";
-import ButtonLayout from "../../components/ButtonLayout";
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
-import * as workServices from '../../services/work-services'
-import SearchBar from "../../components/SearchBar";
+import './style.scss';
 
+import * as React from 'react';
+import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 
+import ButtonLayout from '../../components/ButtonLayout';
+import { WorkDTO } from '../../models/work';
+import * as workServices from '../../services/work-services';
+import TableRowWorks from './TableRowWorks';
+
+type PropsParent = {
+   params: string
+}
 
 type QueryParams = {
    page: number;
@@ -15,7 +18,8 @@ type QueryParams = {
 }
 
 
-function Work() {
+
+function Work({ params }: PropsParent) {
 
 
    const [worksList, setWorksList] = React.useState<WorkDTO[]>([]);
@@ -52,7 +56,7 @@ function Work() {
          <div className="">
             <div className="header-list-work">
                <div className="container-work">
-               
+
                </div>
             </div>
             <div style={{ display: 'flex' }} className="container-work" >
@@ -69,7 +73,9 @@ function Work() {
                   </thead>
 
                   <tbody>
-                     {
+                     {(params) ?
+                        worksList.filter((x) => x.name.includes(params)).map(x => <TableRowWorks key={x.id} work={x}></TableRowWorks>)
+                        :
                         worksList.map(obj => <TableRowWorks key={obj.id} work={obj}></TableRowWorks>)
                      }
                   </tbody>

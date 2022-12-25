@@ -14,10 +14,13 @@ type QueryParams = {
    name: string;
 }
 
+type PropsParent = {
+   params : string
+}
 
-function Category() {
+function Category({params}: PropsParent) {
 
-  
+
    const [categoryList, setCategoryList] = useState<categoryDTO[]>([]);
 
    const [isListPage, setisListPage] = useState(false);
@@ -40,14 +43,14 @@ function Category() {
    function handleNextPageClick() {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })
    }
-     
+
 
    return (
       <main>
          <div className="container">
             <div className="header-list-work">
                <div className="container-work">
-               
+
                </div>
             </div>
             <div style={{ display: 'flex' }} className="container-work" >
@@ -63,7 +66,9 @@ function Category() {
                   </thead>
 
                   <tbody>
-                     {
+                     {(params) ?
+                        categoryList.filter((x) => x.name.includes(params)).map(x => <TableRowCategory key={x.id} category={x}></TableRowCategory>)
+                        :
                         categoryList.map(obj => <TableRowCategory key={obj.id} category={obj}></TableRowCategory>)
                      }
                   </tbody>

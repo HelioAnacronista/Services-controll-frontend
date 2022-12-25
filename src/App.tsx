@@ -23,9 +23,9 @@ function App() {
             <Route path='/login' element={<Login></Login>}> </Route>
             <Route path='' element={<Home></Home>} >
               <Route index element={<Dashboard />} />
-              <Route path='category' element={<Category />} />
+              <Route path='category' element={<Category params={contextSearch} />} />
               <Route path='client' element={<Client params={contextSearch} />} />
-              <Route path='work' element={<Work />} />
+              <Route path='work' element={<Work params={contextSearch} />} />
             </Route>
 
 
