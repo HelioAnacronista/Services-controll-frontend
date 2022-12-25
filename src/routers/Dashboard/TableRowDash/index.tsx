@@ -1,5 +1,3 @@
-import ButtonDelete from '../../../components/ButtonDelete';
-import ButtonEdit from '../../../components/ButtonEdit';
 import { WorkDTO } from '../../../models/work';
 
 
@@ -39,7 +37,7 @@ function TableRowDash({work}: Props) {
 
    return (
       <>
-         <tr className="table-work">
+         <tr>
             <td>{work.id}</td>
             <td>{work.name}</td>
             <td>R${work.valor?.toFixed(2)}</td>

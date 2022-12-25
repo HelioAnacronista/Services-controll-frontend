@@ -77,6 +77,7 @@ img {
 
 
 table {
+  text-align: center;
   width: 100%;
   background-color: white;
   padding: 1.8rem;
@@ -98,4 +99,11 @@ table {
 .container {
   max-width: 1800px; /* Define o tamanho máximo do container como 1200 pixels */
   margin: 0 auto; /* Adiciona um espaçamento automático nas margens esquerda e direita */
+}
+
+header {
+  background-color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  box-shadow: 0rem 2rem 10rem rgb(112 115 146 / 34%);
+  transition: all 10ms ease;
 }

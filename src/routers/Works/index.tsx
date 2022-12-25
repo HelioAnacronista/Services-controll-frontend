@@ -47,8 +47,6 @@ function Work() {
    }
 
 
-
-
    return (
       <main>
          <div className="">
@@ -83,7 +81,6 @@ function Work() {
                </table>
                <div className="container-right">
                   <ButtonLayout name="CRIAR" ></ButtonLayout>
-                  <SearchBar onSearch={handleSearch} ></SearchBar>
                </div>
             </div>
          </div>

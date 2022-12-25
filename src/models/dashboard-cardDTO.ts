@@ -1,6 +1,6 @@
 export interface dashboardCardDTO {
    icon : string,
-   sector : number,
+   sector : string,
    operation: string,
    value : number,
    percentage : number,

@@ -50,50 +50,33 @@ type dataDTO = {
 function Dashboard() {
 
 
-   //VENDAS
-   const[vendasData, setVendasData] = useState<dataDTO>({
-      icon: "",
-      sector: 0,
-      operation: "",
-      value: 1,
-      percentage: 0,
-      date: ""
-   });
-   useEffect(() => {
-      dashServices.getRequstVendas().then(res => {
-         setVendasData(res.data);
-      })
-   }, []);
-
-   //GASTOS
-   const[gastosData, setGastosData] = useState<dataDTO>({
-      icon: "",
-      sector: 0,
-      operation: "",
-      value: 1,
-      percentage: 0,
-      date: ""
-   });
-   useEffect(() => {
-      dashServices.getRequstGastos().then(res => {
-         setGastosData(res.data);
-      })
-   }, []);
-
-   //TOTAL
-   const[totalData, setTotalData] = useState<dataDTO>({
-      icon: "",
-      sector: 0,
-      operation: "",
-      value: 1,
-      percentage: 0,
-      date: ""
-   });
-   useEffect(() => {
-      dashServices.getTotal().then(res => {
-         setTotalData(res.data);
-      })
-   }, []);
+   const getData = (nameRequest: any) => {
+      const [data, setData] = useState<dataDTO>({
+         icon: "",
+         sector: 0,
+         operation: "",
+         value: 1,
+         percentage: 0,
+         date: ""
+      });
+   
+      useEffect(() => {
+         dashServices.getAccounting(nameRequest).then(res => {
+            setData(res.data);
+         });
+      }, []);
+   
+      return data;
+   };
+   
+   // VENDAS
+   const vendasData = getData("/work/totalvalue");
+   
+   // GASTOS
+   const gastosData = getData("/expense/totalvalue");
+   
+   // TOTAL
+   const totalData = getData("/accounting/total");
 
 
    //Lista dos 8 ultimos serviços
@@ -123,7 +106,7 @@ function Dashboard() {
                      <div className='line-vertical'></div>
                      <div>
 
-                        <table className="table-work table-striped">
+                        <table className="table-striped">
                            <thead>
                               <tr>
                                  <th>id</th>

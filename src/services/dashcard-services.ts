@@ -6,14 +6,18 @@ export function getRequstVendas() {
    return axios.get(`${BASE_URL}/work/totalvalue`);
 }
 
-export function getRequstGastos() {
+export function getRequstGastos(nameRequest : string) {
    return axios.get(`${BASE_URL}/expense/totalvalue`);
 }
 
-export function getTotal(){
+export function getTotal(nameRequest : string){
    return axios.get(`${BASE_URL}/accounting/total`)
 }
 
+
+export function getAccounting(nameRequest : string) {
+   return axios.get(`${BASE_URL}${nameRequest}`)
+}
 /*
 export function getVendasData() {
    let gastos: number;
