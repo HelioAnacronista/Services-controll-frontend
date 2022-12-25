@@ -19,6 +19,10 @@ export function findPageRequest(page: number, name : string, size = 10 ,sort = "
     return axios(config);
 }
 
+export function getLast() {
+    return axios.get(`${BASE_URL}/work/lasts`)
+}
+
 export function findById(id: number) {
     return axios.get(`${BASE_URL}/work/${id}`);
 }

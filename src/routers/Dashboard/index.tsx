@@ -1,43 +1,21 @@
-import CardLayoutDashboard from '../../components/CardLayoutDashboard'
-import CardRecentUpdates from '../../components/CardRecentUpdates'
-import { dashboardCardDTO } from '../../models/dashboard-cardDTO'
-import { objattDTO } from '../../models/objattDTO'
-import './style.scss'
+import './style.scss';
+
+import { useEffect, useState } from 'react';
+import CardLayoutDashboard from '../../components/CardLayoutDashboard';
+import CardRecentUpdates from '../../components/CardRecentUpdates';
+import { objattDTO } from '../../models/objattDTO';
+import { WorkDTO } from '../../models/work';
+import * as workServices from '../../services/work-services';
+import TableRowDash from './TableRowDash';
+import * as dashServices from '../../services/dashcard-services'
 
 
-let objVendas: dashboardCardDTO = {
-   icon: "https://drscdn.500px.org/photo/1058330716/m%3D900/v2?sig=f211a5fef5b34e0bae5ab0d8d5a10ee64e495b826ae0a73c5b02bb0d9b17286f",
-   sector: '',
-   operation: 'Total de Vendas',
-   value: 25000,
-   percentage: 86,
-   date: '24'
-}
-
-let objGastos: dashboardCardDTO = {
-   icon: "https://drscdn.500px.org/photo/1058330718/m%3D900/v2?sig=08711b9ac2b71c6444e48e3b6f336e31ad92c813ad7f0be654000fa4170f696c",
-   sector: '',
-   operation: 'Total de Gastos',
-   value: 12185,
-   percentage: 67,
-   date: '24'
-}
-
-let objTotal: dashboardCardDTO = {
-   icon: "https://drscdn.500px.org/photo/1058330717/m%3D900/v2?sig=a143ee3ab301aebc502b96e641bfcb0b8b5866441a08c9c98daa7931cb948b41",
-   sector: '',
-   operation: 'Receita Total',
-   value: 10845,
-   percentage: 44,
-   date: '24'
-}
-
-let objAttRecents : objattDTO = {
+let objAttRecents: objattDTO = {
    name: "Maria Alves",
    work: "Conserto de barra"
 }
 
-let objAttRecents2 : objattDTO = {
+let objAttRecents2: objattDTO = {
    name: "João Silva",
    work: "Conserto de carro"
 }
@@ -48,34 +26,128 @@ arrayobjattDTO.push(objAttRecents);
 arrayobjattDTO.push(objAttRecents2);
 
 
+/* CORES 
+VERDE #41f1b6
+AZUL  #7380EC
+VERMELHO #FF7782
+AMARELO #FFBB55
+PRETO #363949
 
-//apexcharts depe para fazer os graficos
+    --cor-branco: #FFF;
+    --cor-info-dark: #7D8DA1;
+    --cor-info-light: #DCE1EB;
+*/
+
+type dataDTO = {
+   icon: string,
+   sector: number,
+   operation: string,
+   value: number,
+   percentage: number,
+   date: string
+ }
 
 function Dashboard() {
+
+
+   //VENDAS
+   const[vendasData, setVendasData] = useState<dataDTO>({
+      icon: "",
+      sector: 0,
+      operation: "",
+      value: 1,
+      percentage: 0,
+      date: ""
+   });
+   useEffect(() => {
+      dashServices.getRequstVendas().then(res => {
+         setVendasData(res.data);
+      })
+   }, []);
+
+   //GASTOS
+   const[gastosData, setGastosData] = useState<dataDTO>({
+      icon: "",
+      sector: 0,
+      operation: "",
+      value: 1,
+      percentage: 0,
+      date: ""
+   });
+   useEffect(() => {
+      dashServices.getRequstGastos().then(res => {
+         setGastosData(res.data);
+      })
+   }, []);
+
+   //TOTAL
+   const[totalData, setTotalData] = useState<dataDTO>({
+      icon: "",
+      sector: 0,
+      operation: "",
+      value: 1,
+      percentage: 0,
+      date: ""
+   });
+   useEffect(() => {
+      dashServices.getTotal().then(res => {
+         setTotalData(res.data);
+      })
+   }, []);
+
+
+   //Lista dos 8 ultimos serviços
+   const [worklast, setWorklast] = useState<WorkDTO[]>([]);
+   useEffect(() => {
+      workServices.getLast().then(res => {
+         setWorklast(res.data)
+      }).catch(err => {
+         console.log(err)
+      })
+   }, []);
+
    return (
       <>
          <div className='container'>
             <div className=''>
 
-            <div className='container-dash'>
-            <div className='cards-analises'>  <CardLayoutDashboard dateCard={objVendas}></CardLayoutDashboard> </div>
-                  <div className='cards-analises'>  <CardLayoutDashboard dateCard={objGastos}></CardLayoutDashboard> </div>
-                  <div className='cards-analises'>  <CardLayoutDashboard dateCard={objTotal}></CardLayoutDashboard>  </div>
+               <div className='container-dash'>
+                  <div className='cards-analises'>  <CardLayoutDashboard dateCard={vendasData}></CardLayoutDashboard> </div>
+                  <div className='cards-analises'>  <CardLayoutDashboard dateCard={gastosData}></CardLayoutDashboard> </div>
+                  <div className='cards-analises'>  <CardLayoutDashboard dateCard={totalData}></CardLayoutDashboard>  </div>
                </div>
 
                <div className='container-list'>
                   <div className='list-title'>
                      <h1>Serviços recentes</h1>
-                     <div className='line-vertical'>
-                     </div>
+                     <div className='line-vertical'></div>
                      <div>
+
+                        <table className="table-work table-striped">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>Serviço</th>
+                                 <th>Valor</th>
+                                 <th>Status</th>
+                                 <th>Nome do Cliente</th>
+                                 <th>Contato</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {
+                                 worklast.map(obj => <TableRowDash key={obj.id} work={obj}></TableRowDash>)
+                              }
+                           </tbody>
+                        </table>
+
                      </div>
                   </div>
                </div>
             </div>
             <div className='container-direito card-att-msg'>
                {
-                  arrayobjattDTO.map(obj => <CardRecentUpdates objattDTO={obj}/>)
+                  arrayobjattDTO.map(obj => <CardRecentUpdates objattDTO={obj} />)
                }
             </div>
          </div>

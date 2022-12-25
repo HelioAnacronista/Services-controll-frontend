@@ -1,11 +1,11 @@
 import ButtonDelete from '../../../components/ButtonDelete';
 import ButtonEdit from '../../../components/ButtonEdit';
-import { workMinDTO } from '../../../models/workmindto';
+import { WorkDTO } from '../../../models/work';
 
 
 
 type Props = {
-   work: workMinDTO;
+   work: WorkDTO;
 }
 
 const statusColors = {
@@ -23,7 +23,7 @@ const statusColors = {
    }
 }
 
-function TableRowWork({ work}: Props) {
+function TableRowDash({work}: Props) {
 
    function retornaStatus(status: any) {
       if (status == 'ABERTO') {
@@ -35,6 +35,7 @@ function TableRowWork({ work}: Props) {
       }
    }
 
+   
 
    return (
       <>
@@ -43,11 +44,11 @@ function TableRowWork({ work}: Props) {
             <td>{work.name}</td>
             <td>R${work.valor?.toFixed(2)}</td>
             <td style={{ color: retornaStatus(work.status).color }}>{retornaStatus(work.status).name} </td>
-            <td> <ButtonDelete></ButtonDelete>   </td>
-            <td> <ButtonEdit></ButtonEdit>       </td>
+            <td>  {work.client.name} </td>
+            <td>  {work.client.phone}       </td>
          </tr>
       </>
    );
 }
 
-export default TableRowWork;
+export default TableRowDash;

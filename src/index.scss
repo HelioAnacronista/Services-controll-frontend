@@ -94,3 +94,8 @@ table {
   }
 
 }
+
+.container {
+  max-width: 1800px; /* Define o tamanho máximo do container como 1200 pixels */
+  margin: 0 auto; /* Adiciona um espaçamento automático nas margens esquerda e direita */
+}

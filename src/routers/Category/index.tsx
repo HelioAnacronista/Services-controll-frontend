@@ -44,7 +44,7 @@ function Category() {
 
    return (
       <main>
-         <div className="">
+         <div className="container">
             <div className="header-list-work">
                <div className="container-work">
                

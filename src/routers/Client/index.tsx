@@ -27,15 +27,12 @@ function Client({params}: PropsParent) {
       name: ""
    });
 
+   
    function findName(name: String): ClientDTO[] {
       return clientList.filter((x) => x.name === name );
    }
 
    
-   
-   
-
-
    //Fazer a requisição com os params passados
    useEffect(() => {
       clientServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
@@ -45,13 +42,7 @@ function Client({params}: PropsParent) {
       })
    }, [queryParams]);
 
-   //Pesquisa  
-   function handleSearch(searchText: string) {
-      setClientList([]);
-      setQueryParams({ ...queryParams, page: 0, name: searchText })
-   }
 
-   
    //Proxima pagina
    function handleNextPageClick() {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })
@@ -71,9 +62,9 @@ function Client({params}: PropsParent) {
                   <thead>
                      <tr>
                         <th>id</th>
-                        <th>Serviço</th>
-                        <th>Valor</th>
-                        <th>Status</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>
                         <th>Editar</th>
                         <th>Deletar</th>
                      </tr>
@@ -81,7 +72,7 @@ function Client({params}: PropsParent) {
 
                   <tbody>
                      {  (params) ?
-                        clientList.filter(x => x.name === params).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>) 
+                        clientList.filter((x) => x.name.includes(params) ).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>) 
                         :
                         clientList.map(obj => <TableRowClient key={obj.id} client={obj}></TableRowClient>)
                      }

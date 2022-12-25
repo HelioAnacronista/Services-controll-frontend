@@ -15,15 +15,12 @@ type Props = {
 
 function HeaderSticky() {
    const { toggleSidebar } = useProSidebar();
-   
+
    useEffect(() => {
       const onScroll = () => {
          const header = document.querySelector('header');
-         if (window.scrollY > 0) {
-            header?.classList.add('sticky');
-         } else {
-            header?.classList.remove('sticky');
-         }
+         header?.classList.add('sticky');
+         header?.classList.remove('sticky');
       };
       window.addEventListener('scroll', onScroll);
       return () => {
@@ -32,9 +29,9 @@ function HeaderSticky() {
    }, []);
 
    //Pesquisa  
-   const {setContextSearch} = useContext(ContextSearch)
-   
-   
+   const { setContextSearch } = useContext(ContextSearch)
+
+
 
    return (
       <header className="sticky">
