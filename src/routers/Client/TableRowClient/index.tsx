@@ -15,8 +15,8 @@ function TableRowClient({ client }: Props) {
             <td>{client.name}</td>
             <td>{client.address}</td>
             <td>{client.phone}</td>
-            <td> <ButtonDelete></ButtonDelete>  </td>
-            <td> <ButtonEdit></ButtonEdit>      </td>
+            <td><ButtonEdit></ButtonEdit></td>
+            <td><ButtonDelete></ButtonDelete></td>
          </tr>
 
       </>

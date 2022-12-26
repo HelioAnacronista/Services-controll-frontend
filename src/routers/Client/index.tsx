@@ -10,10 +10,10 @@ import * as clientServices from '../../services/client-services';
 import TableRowClient from './TableRowClient';
 
 type PropsParent = {
-   params : string
+   params: string
 }
 
-function Client({params}: PropsParent) {
+function Client({ params }: PropsParent) {
 
 
    const [clientList, setClientList] = useState<ClientDTO[]>([]);
@@ -25,10 +25,10 @@ function Client({params}: PropsParent) {
       name: ""
    });
 
-   
-  
 
-   
+
+
+
    //Fazer a requisição com os params passados
    useEffect(() => {
       clientServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
@@ -46,45 +46,42 @@ function Client({params}: PropsParent) {
 
    return (
       <>
-      <main>
-         <div className="">
-            <div className="header-list-work">
-               <div className="container-work">
-               
+         <main>
+            <div>
+
+               <div className='btn-test table-bottom btn-icon-test'>
+                  <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+               </div>
+
+               <div style={{ display: 'flex' }} className="container-work" >
+                  <table className="table-work table-striped">
+                     <thead>
+                        <tr>
+                           <th>id</th>
+                           <th>Nome</th>
+                           <th>Endereço</th>
+                           <th>Telefone</th>
+                           <th>Editar</th>
+                           <th>Deletar</th>
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        {(params) ?
+                           clientList.filter((x) => x.name.includes(params)).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>)
+                           :
+                           clientList.map(obj => <TableRowClient key={obj.id} client={obj}></TableRowClient>)
+                        }
+                     </tbody>
+
+                     <div className="table-bottom" onClick={handleNextPageClick}>
+                        <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+                     </div>
+
+                  </table>
                </div>
             </div>
-            <div style={{ display: 'flex' }} className="container-work" >
-               <table className="table-work table-striped">
-                  <thead>
-                     <tr>
-                        <th>id</th>
-                        <th>Nome</th>
-                        <th>Endereço</th>
-                        <th>Telefone</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
-                     </tr>
-                  </thead>
-
-                  <tbody>
-                     {  (params) ?
-                        clientList.filter((x) => x.name.includes(params) ).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>) 
-                        :
-                        clientList.map(obj => <TableRowClient key={obj.id} client={obj}></TableRowClient>)
-                     }
-                  </tbody>
-
-                  <div className="table-bottom" onClick={handleNextPageClick}>
-                     <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-                  </div>
-
-               </table>
-               <div className="container-right">
-                  <ButtonLayout name="CRIAR" ></ButtonLayout>
-               </div>
-            </div>
-         </div>
-      </main>
+         </main>
       </>
    );
 };

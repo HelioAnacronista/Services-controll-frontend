@@ -1,4 +1,5 @@
 import ButtonDelete from '../../../components/ButtonDelete';
+import ButtonDetails from '../../../components/ButtonDetails';
 import ButtonEdit from '../../../components/ButtonEdit';
 import { workMinDTO } from '../../../models/workmindto';
 
@@ -43,8 +44,9 @@ function TableRowWork({ work}: Props) {
             <td>{work.name}</td>
             <td>R${work.valor?.toFixed(2)}</td>
             <td style={{ color: retornaStatus(work.status).color }}>{retornaStatus(work.status).name} </td>
-            <td> <ButtonDelete></ButtonDelete>   </td>
-            <td> <ButtonEdit></ButtonEdit>       </td>
+            <td><ButtonEdit></ButtonEdit></td>
+            <td><ButtonDelete></ButtonDelete></td>
+            <td><ButtonDetails></ButtonDetails></td>
          </tr>
       </>
    );

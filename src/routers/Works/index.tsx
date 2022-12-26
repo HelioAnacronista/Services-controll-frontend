@@ -40,7 +40,7 @@ function Work({ params }: PropsParent) {
          setisListPage(response.data.last)
       })
    }, [queryParams]);
-   
+
    //Proxima pagina
    function handleNextPageClick() {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })
@@ -50,11 +50,11 @@ function Work({ params }: PropsParent) {
    return (
       <main>
          <div className="">
-            <div className="header-list-work">
-               <div className="container-work">
 
-               </div>
+            <div className='btn-test table-bottom btn-icon-test'>
+               <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
             </div>
+
             <div style={{ display: 'flex' }} className="container-work" >
                <table className="table-work table-striped">
                   <thead>
@@ -65,6 +65,7 @@ function Work({ params }: PropsParent) {
                         <th>Status</th>
                         <th>Editar</th>
                         <th>Deletar</th>
+                        <th>Detalhes</th>
                      </tr>
                   </thead>
 
@@ -81,9 +82,6 @@ function Work({ params }: PropsParent) {
                   </div>
 
                </table>
-               <div className="container-right">
-                  <ButtonLayout name="CRIAR" ></ButtonLayout>
-               </div>
             </div>
          </div>
       </main>

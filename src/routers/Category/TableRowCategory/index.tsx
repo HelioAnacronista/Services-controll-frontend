@@ -13,8 +13,8 @@ function TableRowCategory({ category }: Props) {
             <td>{category.id}</td>
             <td>{category.name}</td>
             <td>{category.description}</td>
-            <td> <ButtonDelete></ButtonDelete>   </td>
-            <td> <ButtonEdit></ButtonEdit>       </td>
+            <td><ButtonEdit></ButtonEdit></td>
+            <td><ButtonDelete></ButtonDelete></td>
          </tr>
 
       </>

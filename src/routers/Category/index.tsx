@@ -47,7 +47,7 @@ function Category({ params }: PropsParent) {
 
    return (
       <main>
-         <div className="container">
+         <div>
 
             <div className='btn-test table-bottom btn-icon-test'>
             <ButtonLayout  name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
