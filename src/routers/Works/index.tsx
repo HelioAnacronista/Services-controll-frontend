@@ -34,17 +34,13 @@ function Work({ params }: PropsParent) {
 
    //Fazer a requisição com os params passados
    React.useEffect(() => {
-      workServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
+      workServices.findPageRequest(queryParams.page).then(response => {
          const nextPage = response.data.content;
          setWorksList(worksList.concat(nextPage));
          setisListPage(response.data.last)
       })
    }, [queryParams]);
-   //Pesquisa  
-   function handleSearch(searchText: string) {
-      setWorksList([]);
-      setQueryParams({ ...queryParams, page: 0, name: searchText })
-   }
+   
    //Proxima pagina
    function handleNextPageClick() {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })

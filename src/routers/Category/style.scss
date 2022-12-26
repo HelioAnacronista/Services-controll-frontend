@@ -1,3 +1,15 @@
 .text-center {
    font-size: 30px;
 }
+
+.btn-test {
+   position: relative;
+   top: 49px;
+   left: 50px;
+   width: 10px;
+   height: 10px;
+   .btn-icon-test{
+      margin-left: 1.9rem;
+   }
+}
+

@@ -10,7 +10,7 @@ function ButtonLayout({ name, img }: Props) {
 
       <button className="btn-layout">
          {name}
-         <div className='btn-layout-icon'>
+         <div className='btn-layout-icon btn-icon-test'>
             {img}
          </div>
       </button>

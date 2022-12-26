@@ -15,10 +15,10 @@ type QueryParams = {
 }
 
 type PropsParent = {
-   params : string
+   params: string
 }
 
-function Category({params}: PropsParent) {
+function Category({ params }: PropsParent) {
 
 
    const [categoryList, setCategoryList] = useState<categoryDTO[]>([]);
@@ -48,12 +48,14 @@ function Category({params}: PropsParent) {
    return (
       <main>
          <div className="container">
-            <div className="header-list-work">
-               <div className="container-work">
 
-               </div>
+            <div className='btn-test table-bottom btn-icon-test'>
+            <ButtonLayout  name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
             </div>
+
+
             <div style={{ display: 'flex' }} className="container-work" >
+
                <table className="table-work table-striped">
                   <thead>
                      <tr>
@@ -78,9 +80,6 @@ function Category({params}: PropsParent) {
                   </div>
 
                </table>
-               <div className="container-right">
-                  <ButtonLayout name="CRIAR" ></ButtonLayout>
-               </div>
             </div>
          </div>
       </main>

@@ -24,9 +24,9 @@ const statusColors = {
 function TableRowDash({work}: Props) {
 
    function retornaStatus(status: any) {
-      if (status == 'ABERTO') {
+      if (status == '1') {
          return statusColors.ABERTO;
-      } else if (status == 'AGUARDANDO_PAGAMENTO') {
+      } else if (status == '2') {
          return statusColors.AGUARDANDO_PAGAMENTO
       } else {
          return statusColors.PAGO
