@@ -1,15 +1,13 @@
-.sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
+header {
+  background-color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  box-shadow: 15px 15px 30px #bebebe,
+  -15px -15px 30px #ffffff;
+  transition: all 10ms ease;
 }
-
 
 .header-sticky-nav {
   width: 100%;
   display: flex;
   justify-content: space-between;
-
 }

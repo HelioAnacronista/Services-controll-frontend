@@ -5,7 +5,8 @@ type Props = {
    img?: any
 }
 
-function ButtonLayout({ name, img }: Props) {
+
+function ButtonLayout({ name, img }: Props): JSX.Element {
    return (
 
       <button className="btn-layout">

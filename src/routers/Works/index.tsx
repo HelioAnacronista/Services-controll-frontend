@@ -1,12 +1,14 @@
 import './style.scss';
 
-import * as React from 'react';
+
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 
 import ButtonLayout from '../../components/ButtonLayout';
 import { WorkDTO } from '../../models/work';
 import * as workServices from '../../services/work-services';
 import TableRowWorks from './TableRowWorks';
+import LoadingPage from '../../components/LoadingPage/loading';
+import { useEffect, useState } from 'react';
 
 type PropsParent = {
    params: string
@@ -21,19 +23,25 @@ type QueryParams = {
 
 function Work({ params }: PropsParent) {
 
+   const [loading, setLoading] = useState(false);
+   useEffect(() => {
+      setLoading(true);
+      setTimeout(() => {
+         setLoading(false);
+      }, 1000);
+   }, []);
 
-   const [worksList, setWorksList] = React.useState<WorkDTO[]>([]);
+   const [worksList, setWorksList] = useState<WorkDTO[]>([]);
 
-   const [isListPage, setisListPage] = React.useState(false);
+   const [isListPage, setisListPage] = useState(false);
 
-   const [queryParams, setQueryParams] = React.useState<QueryParams>({
+   const [queryParams, setQueryParams] = useState<QueryParams>({
       page: 0,
       name: ""
    });
 
-
    //Fazer a requisição com os params passados
-   React.useEffect(() => {
+   useEffect(() => {
       workServices.findPageRequest(queryParams.page).then(response => {
          const nextPage = response.data.content;
          setWorksList(worksList.concat(nextPage));
@@ -49,9 +57,15 @@ function Work({ params }: PropsParent) {
 
    return (
       <main>
-         <div className="">
+     
 
-            <div className='btn-test table-bottom btn-icon-test'>
+            {loading ? 
+            (
+               <LoadingPage></LoadingPage>
+            ) :
+            (
+               <>
+               <div className='btn-test table-bottom btn-icon-test'>
                <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
             </div>
 
@@ -71,9 +85,9 @@ function Work({ params }: PropsParent) {
 
                   <tbody>
                      {(params) ?
-                        worksList.filter((x) => x.name.includes(params)).map(x => <TableRowWorks key={x.id} work={x}></TableRowWorks>)
+                        worksList.filter((x) => x.name.includes(params)).map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
                         :
-                        worksList.map(obj => <TableRowWorks key={obj.id} work={obj}></TableRowWorks>)
+                        worksList.map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
                      }
                   </tbody>
 
@@ -83,7 +97,11 @@ function Work({ params }: PropsParent) {
 
                </table>
             </div>
-         </div>
+            </>
+
+            )}
+            
+         
       </main>
    );
 };

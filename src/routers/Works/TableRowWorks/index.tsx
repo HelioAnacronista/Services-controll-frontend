@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ButtonDelete from '../../../components/ButtonDelete';
 import ButtonDetails from '../../../components/ButtonDetails';
 import ButtonEdit from '../../../components/ButtonEdit';
@@ -24,7 +25,7 @@ const statusColors = {
    }
 }
 
-function TableRowWork({ work}: Props) {
+function TableRowWork({ work }: Props) {
 
    function retornaStatus(status: any) {
       if (status == '1') {
@@ -44,9 +45,14 @@ function TableRowWork({ work}: Props) {
             <td>{work.name}</td>
             <td>R${work.valor?.toFixed(2)}</td>
             <td style={{ color: retornaStatus(work.status).color }}>{retornaStatus(work.status).name} </td>
+
             <td><ButtonEdit></ButtonEdit></td>
+            
             <td><ButtonDelete></ButtonDelete></td>
+
+            <Link to={`/work-details/${work.id}`}>
             <td><ButtonDetails></ButtonDetails></td>
+            </Link>
          </tr>
       </>
    );

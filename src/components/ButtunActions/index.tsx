@@ -2,13 +2,16 @@ import './style.css'
 
 type Props = {
    text: String
+   bg : String
 }
 
-function ButtonActions({ text }: { text: string }): JSX.Element {
+function ButtonActions({text, bg}:  Props): JSX.Element {
+
+
+
    return (
       <>
-         <button className="">
-            
+         <button style={{color: `${bg}`}}>
             <span>{text}</span>
          </button>
       </>

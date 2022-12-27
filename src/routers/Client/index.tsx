@@ -8,6 +8,7 @@ import ButtonLayout from '../../components/ButtonLayout';
 import { ClientDTO } from '../../models/client';
 import * as clientServices from '../../services/client-services';
 import TableRowClient from './TableRowClient';
+import LoadingPage from '../../components/LoadingPage/loading';
 
 type PropsParent = {
    params: string
@@ -15,6 +16,13 @@ type PropsParent = {
 
 function Client({ params }: PropsParent) {
 
+   const [loading, setLoading] = useState(false);
+   useEffect(() => {
+      setLoading(true);
+      setTimeout(() => {
+         setLoading(false);
+      }, 300);
+   }, []);
 
    const [clientList, setClientList] = useState<ClientDTO[]>([]);
 
@@ -47,40 +55,52 @@ function Client({ params }: PropsParent) {
    return (
       <>
          <main>
-            <div>
+            {
+               loading ?
+                  (
+                     <LoadingPage></LoadingPage>
+                  )
+                  :
+                  (
+                     <>
+                        <div>
 
-               <div className='btn-test table-bottom btn-icon-test'>
-                  <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-               </div>
+                           <div className='btn-test table-bottom btn-icon-test'>
+                              <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+                           </div>
 
-               <div style={{ display: 'flex' }} className="container-work" >
-                  <table className="table-work table-striped">
-                     <thead>
-                        <tr>
-                           <th>id</th>
-                           <th>Nome</th>
-                           <th>Endereço</th>
-                           <th>Telefone</th>
-                           <th>Editar</th>
-                           <th>Deletar</th>
-                        </tr>
-                     </thead>
+                           <div style={{ display: 'flex' }} className="container-work" >
+                              <table className="table-work table-striped">
+                                 <thead>
+                                    <tr>
+                                       <th>id</th>
+                                       <th>Nome</th>
+                                       <th>Endereço</th>
+                                       <th>Telefone</th>
+                                       <th>Editar</th>
+                                       <th>Deletar</th>
+                                    </tr>
+                                 </thead>
 
-                     <tbody>
-                        {(params) ?
-                           clientList.filter((x) => x.name.includes(params)).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>)
-                           :
-                           clientList.map(obj => <TableRowClient key={obj.id} client={obj}></TableRowClient>)
-                        }
-                     </tbody>
+                                 <tbody>
+                                    {(params) ?
+                                       clientList.filter((x) => x.name.includes(params)).map(x => <TableRowClient key={x.id} client={x}></TableRowClient>)
+                                       :
+                                       clientList.map(obj => <TableRowClient key={obj.id} client={obj}></TableRowClient>)
+                                    }
+                                 </tbody>
 
-                     <div className="table-bottom" onClick={handleNextPageClick}>
-                        <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-                     </div>
+                                 <div className="table-bottom" onClick={handleNextPageClick}>
+                                    <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+                                 </div>
 
-                  </table>
-               </div>
-            </div>
+                              </table>
+                           </div>
+                        </div>
+                     </>
+                  )
+            }
+
          </main>
       </>
    );

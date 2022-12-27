@@ -16,23 +16,6 @@ type Props = {
 function HeaderSticky() {
    const { toggleSidebar } = useProSidebar();
 
-   useEffect(() => {
-      const onScroll = () => {
-         const header = document.querySelector('header');
-         header?.classList.add('sticky');
-         header?.classList.remove('sticky');
-      };
-      window.addEventListener('scroll', onScroll);
-      return () => {
-         window.removeEventListener('scroll', onScroll);
-      };
-   }, []);
-
-   //Pesquisa  
-   const { setContextSearch } = useContext(ContextSearch)
-
-
-
    return (
       <header className="sticky">
       <div className='container'>
