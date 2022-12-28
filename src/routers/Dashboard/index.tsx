@@ -10,6 +10,7 @@ import { WorkDTO } from '../../models/work';
 import * as dashServices from '../../services/dashcard-services';
 import * as workServices from '../../services/work-services';
 import TableRowDash from './TableRowDash';
+import { dataDTO } from '../../models/data';
 
 
 let objAttRecents: objattDTO = {
@@ -20,14 +21,7 @@ let objAttRecents: objattDTO = {
 let arrayobjattDTO: objattDTO[] = [];
 arrayobjattDTO.push(objAttRecents);
 
-type dataDTO = {
-   icon: string,
-   sector: number,
-   operation: string,
-   value: number,
-   percentage: number,
-   date: string
-}
+
 
 function Dashboard() {
 

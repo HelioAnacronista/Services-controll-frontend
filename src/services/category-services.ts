@@ -22,13 +22,13 @@ export function findPageRequest(page: number, name : string, size = 10 ,sort = "
 }
 
 export function findById(id: number) {
-   return axios.get(`${BASE_URL}/category/${id}`);
+   return axios.get(`${BASE_URL}category/${id}`);
 }
 
 export function deleteById(id: number) {
    const config : AxiosRequestConfig = {
       method: "DELETE",
-      url: `/category/${id}`,
+      url: `category/${id}`,
    }
 
    return requestBackend(config);
@@ -38,7 +38,7 @@ export function updateRequest(obj : CategoryDTO) {
    const config : AxiosRequestConfig = {
       method: "PUT",
       baseURL : BASE_URL,
-      url: `/category/${obj.id}`,
+      url: `category/${obj.id}`,
       data: obj
    }
 
@@ -49,7 +49,7 @@ export function insertRequest(obj : CategoryDTO) {
    const config : AxiosRequestConfig = {
       method: "POST",
       baseURL : BASE_URL,
-      url: `/category`,
+      url: `category`,
       data: obj
    }
    return requestBackend(config);

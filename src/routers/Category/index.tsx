@@ -1,15 +1,14 @@
 import './style.scss';
 
 import { useEffect, useState } from 'react';
+import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 import ButtonLayout from '../../components/ButtonLayout';
-import SearchBar from '../../components/SearchBar';
-import { categoryDTO } from '../../models/category';
-import TableRowCategory from './TableRowCategory';
-import * as categoryServices from '../../services/category-services'
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import LoadingPage from '../../components/LoadingPage/loading';
-import { Link, useNavigate } from 'react-router-dom';
+import * as categoryServices from '../../services/category-services';
+import TableRowCategory from './TableRowCategory';
+import { CategoryDTO } from '../../models/category';
 
 type QueryParams = {
    page: number;
@@ -32,7 +31,7 @@ function Category({ params }: PropsParent) {
       }, 300);
    }, []);
 
-   const [categoryList, setCategoryList] = useState<categoryDTO[]>([]);
+   const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
 
    const [isListPage, setisListPage] = useState(false);
 

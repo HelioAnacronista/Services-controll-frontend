@@ -64,3 +64,8 @@ export function getListRequest() {
 
    return requestBackend(config);
 }
+
+
+export function findPageRequestDirect() {
+   return axios.get("https://f09f-129-148-31-83.sa.ngrok.io/client")
+}
