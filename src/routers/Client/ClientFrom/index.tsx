@@ -1,13 +1,14 @@
-import './style.scss'
-import { Link, useNavigate, useParams } from "react-router-dom";
-import ButtonLayout from "../../../components/ButtonLayout";
-import { useEffect, useState } from "react";
-import FromInput from "../../../components/FromInput";
-import * as froms from '../../../utils/from'
-import * as categoryServices from '../../../services/category-services'
-import FromTextArea from "../../../components/FromTextArea";
+import './style.scss';
 
-function CategoryFrom() {
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+
+import ButtonLayout from '../../../components/ButtonLayout';
+import FromInput from '../../../components/FromInput';
+import * as cleintServices from '../../../services/client-services';
+import * as froms from '../../../utils/from';
+
+function ClientFrom() {
 
    const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ function CategoryFrom() {
 
    const params = useParams();
 
-   const isEditing = params.categoryId !== "create";
+   const isEditing = params.clientId !== "create";
 
    const [formData, setFormData] = useState<any>({
       name: {
@@ -26,25 +27,28 @@ function CategoryFrom() {
          id: "name",
          name: "name",
          type: "text",
-         placeholder: "Escreva o nome da categoria",
-
-
+         placeholder: "Nome",
       },
-      description: {
+      phone: {
          value: "",
-         id: "description",
-         name: "description",
+         id: "phone",
+         name: "phone",
          type: "text",
-         placeholder: "Escreva uma descrição simples",
-
-
+         placeholder: "Numero de telefone",
+      },
+      address: {
+         value: "",
+         id: "address",
+         name: "address",
+         type: "text",
+         placeholder: "Endereço",
       }
    })
 
    //Atualizar os valores do fromData usando a função fromsUpdate
    useEffect(() => {
       if (isEditing) {
-         categoryServices.findById(Number(params.categoryId))
+         cleintServices.findById(Number(params.clientId))
             .then(res => {
                setFormData(froms.updateAll(formData, res.data))
             })
@@ -62,21 +66,21 @@ function CategoryFrom() {
 
       const requstBody = froms.toValues(formData);
       if (isEditing) {
-         requstBody.id = params.categoryId;
+         requstBody.id = params.clientId;
       }
 
       const request = isEditing ?
-         categoryServices.updateRequest(requstBody) : categoryServices.insertRequest(requstBody);
+         cleintServices.updateRequest(requstBody) : cleintServices.insertRequest(requstBody);
 
       request.then(() => {
-         navigate("/category")
+         navigate("/client")
       })
    }
 
    return (
       <>
          <div className='mt-30 title-details'>
-            <h1> <span>Workspace de categoria</span> </h1>
+            <h1> <span>Workspace Cliente</span> </h1>
          </div>
          <div className='container div-c'>
 
@@ -96,22 +100,35 @@ function CategoryFrom() {
                   </div>
                   <div className='text-top-category txt-area-dsc'>
                      <div>
-                        <h1>Descrição:</h1>
+                        <h1>Telefone:</h1>
                      </div>
-                     <FromTextArea
-                        {...formData.description}
-                        className="input-c-c-txa"
+                     <FromInput
+                        {...formData.phone}
+                        className="input-c-c"
                         onChange={handleInputChange}
                      />
+                     <div className="divide-text"></div>
                   </div>
-                  <ButtonLayout {...buttonPropsSave}>SALVAR</ButtonLayout>
+                  <div className='text-top-category txt-area-dsc'>
+                     <div>
+                        <h1>Endereço:</h1>
+                     </div>
+                     <FromInput
+                        {...formData.address}
+                        className="input-c-c"
+                        onChange={handleInputChange}
+                     />
+                     <div className="divide-text"></div>
+                  </div>
+                  <div className='btn-save'>
+                     <ButtonLayout {...buttonPropsSave}> <p>SALVAR</p> </ButtonLayout>
+                  </div>
                </form>
 
             </div>
-
          </div>
          <div className="container mt-20 div-c">
-            <Link to={"/category"}>
+            <Link to={"/client"}>
                <ButtonLayout name="CANCELAR"></ButtonLayout>
             </Link>
          </div>
@@ -119,4 +136,4 @@ function CategoryFrom() {
    );
 }
 
-export default CategoryFrom;
+export default ClientFrom;

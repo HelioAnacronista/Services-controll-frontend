@@ -31,3 +31,20 @@ export type WorkDTO = {
    numberOfElements: number;
 };
 
+export type WorkDTOInset = {
+   id: number;
+   name: string;
+   status: number;
+   category: {
+      id: number;
+      name: string;
+      description: string;
+   };
+   client: {
+      id: number;
+      name: string;
+      phone: string;
+      address: string;
+   };
+   valor: number
+}

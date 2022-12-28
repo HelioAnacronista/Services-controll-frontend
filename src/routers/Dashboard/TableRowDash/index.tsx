@@ -1,11 +1,6 @@
 import { WorkDTO } from '../../../models/work';
 
 
-
-type Props = {
-   work: WorkDTO;
-}
-
 const statusColors = {
    ABERTO: {
       name: 'ABERTO',
@@ -21,6 +16,9 @@ const statusColors = {
    }
 }
 
+type Props = {
+   work: WorkDTO;
+}
 function TableRowDash({work}: Props) {
 
    function retornaStatus(status: any) {
@@ -32,8 +30,6 @@ function TableRowDash({work}: Props) {
          return statusColors.PAGO
       }
    }
-
-   
 
    return (
       <>

@@ -1,43 +1,24 @@
 import './style.scss';
 
 import { useEffect, useState } from 'react';
+
 import CardLayoutDashboard from '../../components/CardLayoutDashboard';
 import CardRecentUpdates from '../../components/CardRecentUpdates';
+import LoadingPage from '../../components/LoadingPage/loading';
 import { objattDTO } from '../../models/objattDTO';
 import { WorkDTO } from '../../models/work';
+import * as dashServices from '../../services/dashcard-services';
 import * as workServices from '../../services/work-services';
 import TableRowDash from './TableRowDash';
-import * as dashServices from '../../services/dashcard-services'
-import LoadingPage from '../../components/LoadingPage/loading';
 
 
 let objAttRecents: objattDTO = {
-   name: "Maria Alves",
-   work: "Conserto de barra"
+   name: "Aviso",
+   work: "Essa aplicação é apenas para teste e demonstração. Ela foi criada para demonstrar algumas funcionalidades ou para ser usada em testes de sistema. Por motivos de performance, os sistemas de validação estão desligados nesta aplicação. Portanto, ela não deve ser utilizada em ambientes reais ou para realizar tarefas importantes. Por favor, não confie nela para realizar tarefas importantes ou tomar decisões importantes. Ela é apenas uma ferramenta de teste e demonstração."
 }
-
-let objAttRecents2: objattDTO = {
-   name: "João Silva",
-   work: "Conserto de carro"
-}
-
 
 let arrayobjattDTO: objattDTO[] = [];
 arrayobjattDTO.push(objAttRecents);
-arrayobjattDTO.push(objAttRecents2);
-
-
-/* CORES 
-VERDE #41f1b6
-AZUL  #7380EC
-VERMELHO #FF7782
-AMARELO #FFBB55
-PRETO #363949
-
-    --cor-branco: #FFF;
-    --cor-info-dark: #7D8DA1;
-    --cor-info-light: #DCE1EB;
-*/
 
 type dataDTO = {
    icon: string,
@@ -50,14 +31,8 @@ type dataDTO = {
 
 function Dashboard() {
 
-   const [loading, setLoading] = useState(false);
-   useEffect(() => {
-      setLoading(true);
-      setTimeout(() => {
-         setLoading(false);
-      }, 1000);
-   }, []);
-
+   const [loading, setLoading] = useState(true);
+   
 
    const getData = (nameRequest: any) => {
       const [data, setData] = useState<dataDTO>({
@@ -93,8 +68,8 @@ function Dashboard() {
    useEffect(() => {
       workServices.getLast().then(res => {
          setWorklast(res.data)
+         setLoading(false);
       }).catch(err => {
-         console.log(err)
       })
    }, []);
 
@@ -153,7 +128,6 @@ function Dashboard() {
                      </div>
                   </>
                )}
-
       </>
    );
 }

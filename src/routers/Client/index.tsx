@@ -9,12 +9,20 @@ import { ClientDTO } from '../../models/client';
 import * as clientServices from '../../services/client-services';
 import TableRowClient from './TableRowClient';
 import LoadingPage from '../../components/LoadingPage/loading';
+import { useNavigate } from 'react-router-dom';
 
 type PropsParent = {
    params: string
 }
 
 function Client({ params }: PropsParent) {
+
+   const navigate = useNavigate();
+
+   const buttonPropsSave = {
+      name: 'Salvar',
+      img: ''
+   };
 
    const [loading, setLoading] = useState(false);
    useEffect(() => {
@@ -33,10 +41,6 @@ function Client({ params }: PropsParent) {
       name: ""
    });
 
-
-
-
-
    //Fazer a requisição com os params passados
    useEffect(() => {
       clientServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
@@ -52,6 +56,9 @@ function Client({ params }: PropsParent) {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })
    }
 
+   function handleNewClick() {
+      navigate("/client/create");
+   }
    return (
       <>
          <main>
@@ -65,7 +72,7 @@ function Client({ params }: PropsParent) {
                      <>
                         <div>
 
-                           <div className='btn-test table-bottom btn-icon-test'>
+                           <div className='btn-test table-bottom btn-icon-test' onClick={handleNewClick}>
                               <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
                            </div>
 

@@ -4,10 +4,10 @@ import * as categoryServices from '../../../services/category-services'
 import ButtonDelete from '../../../components/ButtonDelete';
 import ButtonEdit from '../../../components/ButtonEdit';
 import DialogBoxConfirmation from '../../../components/DialogBoxConfirmation';
-import { categoryDTO } from '../../../models/category';
+import { CategoryDTO } from '../../../models/category';
 
 type Props = {
-   category: categoryDTO;
+   category: CategoryDTO;
 }
 
 function TableRowCategory({ category }: Props) {

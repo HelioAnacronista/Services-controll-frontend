@@ -9,8 +9,8 @@ type Props = {
 function ButtonLayout({ name, img }: Props): JSX.Element {
    return (
 
-      <button className="btn-layout">
-         {name}
+      <button className="btn-layout btn-save">
+         <h1>{name}</h1>
          <div className='btn-layout-icon btn-icon-test'>
             {img}
          </div>

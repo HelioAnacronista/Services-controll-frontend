@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 import { BASE_URL } from '../utils/system';
-import { categoryDTO } from '../models/category';
+import { CategoryDTO } from '../models/category';
 import { requestBackend } from '../utils/requests';
 
 export function findPageRequest(page: number, name : string, size = 10 ,sort = "id") {
@@ -34,7 +34,7 @@ export function deleteById(id: number) {
    return requestBackend(config);
 }
 
-export function updateRequest(obj : categoryDTO) {
+export function updateRequest(obj : CategoryDTO) {
    const config : AxiosRequestConfig = {
       method: "PUT",
       baseURL : BASE_URL,
@@ -45,12 +45,22 @@ export function updateRequest(obj : categoryDTO) {
    return requestBackend(config);
 }
 
-export function insertRequest(obj : categoryDTO) {
+export function insertRequest(obj : CategoryDTO) {
    const config : AxiosRequestConfig = {
       method: "POST",
       baseURL : BASE_URL,
       url: `/category`,
       data: obj
    }
+   return requestBackend(config);
+}
+
+export function getListRequest() {
+   const config : AxiosRequestConfig = {
+       method : "GET",
+       baseURL: BASE_URL,
+       url: "category/list",
+   }
+
    return requestBackend(config);
 }

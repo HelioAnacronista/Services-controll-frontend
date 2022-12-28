@@ -9,6 +9,7 @@ import * as workServices from '../../services/work-services';
 import TableRowWorks from './TableRowWorks';
 import LoadingPage from '../../components/LoadingPage/loading';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type PropsParent = {
    params: string
@@ -23,13 +24,9 @@ type QueryParams = {
 
 function Work({ params }: PropsParent) {
 
-   const [loading, setLoading] = useState(false);
-   useEffect(() => {
-      setLoading(true);
-      setTimeout(() => {
-         setLoading(false);
-      }, 1000);
-   }, []);
+   const navigate = useNavigate();
+
+   const [loading, setLoading] = useState(true);
 
    const [worksList, setWorksList] = useState<WorkDTO[]>([]);
 
@@ -42,10 +39,11 @@ function Work({ params }: PropsParent) {
 
    //Fazer a requisição com os params passados
    useEffect(() => {
-      workServices.findPageRequest(queryParams.page).then(response => {
+      workServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
          const nextPage = response.data.content;
          setWorksList(worksList.concat(nextPage));
          setisListPage(response.data.last)
+         setLoading(false);
       })
    }, [queryParams]);
 
@@ -54,54 +52,57 @@ function Work({ params }: PropsParent) {
       setQueryParams({ ...queryParams, page: queryParams.page + 1 })
    }
 
+   function handleNewClick() {
+      navigate("/work/create");
+   }
 
    return (
       <main>
-     
 
-            {loading ? 
+
+         {loading ?
             (
                <LoadingPage></LoadingPage>
             ) :
             (
                <>
-               <div className='btn-test table-bottom btn-icon-test'>
-               <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-            </div>
-
-            <div style={{ display: 'flex' }} className="container-work" >
-               <table className="table-work table-striped">
-                  <thead>
-                     <tr>
-                        <th>id</th>
-                        <th>Serviço</th>
-                        <th>Valor</th>
-                        <th>Status</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
-                        <th>Detalhes</th>
-                     </tr>
-                  </thead>
-
-                  <tbody>
-                     {(params) ?
-                        worksList.filter((x) => x.name.includes(params)).map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
-                        :
-                        worksList.map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
-                     }
-                  </tbody>
-
-                  <div className="table-bottom" onClick={handleNextPageClick}>
-                     <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+                  <div className='btn-test table-bottom btn-icon-test' onClick={handleNewClick}>
+                     <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
                   </div>
 
-               </table>
-            </div>
-            </>
+                  <div style={{ display: 'flex' }} className="container-work" >
+                     <table className="table-work table-striped">
+                        <thead>
+                           <tr>
+                              <th>id</th>
+                              <th>Serviço</th>
+                              <th>Valor</th>
+                              <th>Status</th>
+                              <th>Editar</th>
+                              <th>Deletar</th>
+                              <th>Detalhes</th>
+                           </tr>
+                        </thead>
+
+                        <tbody>
+                           {(params) ?
+                              worksList.filter((x) => x.name.includes(params)).map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
+                              :
+                              worksList.map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
+                           }
+                        </tbody>
+
+                        <div className="table-bottom" onClick={handleNextPageClick}>
+                           <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+                        </div>
+
+                     </table>
+                  </div>
+               </>
 
             )}
-            
-         
+
+
       </main>
    );
 };

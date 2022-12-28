@@ -3,7 +3,9 @@ import ButtonDelete from '../../../components/ButtonDelete';
 import ButtonDetails from '../../../components/ButtonDetails';
 import ButtonEdit from '../../../components/ButtonEdit';
 import { workMinDTO } from '../../../models/workmindto';
-
+import { useState } from 'react';
+import * as workServices from '../../../services/work-services';
+import DialogBoxConfirmation from '../../../components/DialogBoxConfirmation';
 
 
 type Props = {
@@ -27,6 +29,44 @@ const statusColors = {
 
 function TableRowWork({ work }: Props) {
 
+   const [dialogInfoData, setDialogInfoData] = useState({
+      visible: false,
+      msg: "Operação feita com sucesso!"
+   })
+
+   const [dialogBoxConfirmation, setDialogBoxConfirmation] = useState({
+      id: 0,
+      visible: false,
+      msg: "Tem certeza?"
+   })
+
+   function handleInfoClose() {
+      setDialogInfoData({ ...dialogInfoData, visible: false });
+   }
+
+   function handleDeleteClick(workId: any) {
+      setDialogBoxConfirmation({ ...dialogBoxConfirmation, id: workId, visible: true })
+
+   }
+
+   function atualizarPagina() {
+      window.location.reload();
+    }
+    
+
+   function handleDialogBoxConfirmationAnswer(answer: boolean, workId: number) {
+      if (answer === true) {
+         workServices.deleteById(workId).then(() => {
+
+
+            atualizarPagina()
+         })
+      }
+
+      setDialogBoxConfirmation({ ...dialogBoxConfirmation, visible: false })
+   }
+
+
    function retornaStatus(status: any) {
       if (status == '1') {
          return statusColors.ABERTO;
@@ -46,14 +86,24 @@ function TableRowWork({ work }: Props) {
             <td>R${work.valor?.toFixed(2)}</td>
             <td style={{ color: retornaStatus(work.status).color }}>{retornaStatus(work.status).name} </td>
 
-            <td><ButtonEdit></ButtonEdit></td>
-            
-            <td><ButtonDelete></ButtonDelete></td>
+            <Link to={`/work/${work.id}`}>
+               <td><ButtonEdit></ButtonEdit></td>
+            </Link>
+
+            <td><ButtonDelete onClick={() => handleDeleteClick(work.id)}></ButtonDelete></td>
 
             <Link to={`/work-details/${work.id}`}>
             <td><ButtonDetails></ButtonDetails></td>
             </Link>
          </tr>
+         {
+            dialogBoxConfirmation.visible &&
+            <DialogBoxConfirmation
+               id={dialogBoxConfirmation.id}
+               msg={dialogBoxConfirmation.msg}
+               onDialogAnswer={handleDialogBoxConfirmationAnswer}
+            />
+         }
       </>
    );
 }
