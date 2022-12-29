@@ -27,7 +27,6 @@ export function findById(id: number) {
 
 export function deleteById(id: number) {
    const config : AxiosRequestConfig = {
-      
       method: "DELETE",
       url: `category/${id}`,
    }
