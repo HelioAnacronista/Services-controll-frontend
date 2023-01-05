@@ -3,17 +3,18 @@ import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import Category from './routers/Category';
+import CategoryFrom from './routers/Category/CategoryFrom';
 import Client from './routers/Client';
+import ClientFrom from './routers/Client/ClientFrom';
 import Dashboard from './routers/Dashboard';
 import Home from './routers/Home';
 import Login from './routers/Login';
 import Work from './routers/Works';
 import WorkDetails from './routers/Works/WorkDetails';
-import { ContextSearch } from './utils/context-search';
-import CategoryFrom from './routers/Category/CategoryFrom';
-import ClientFrom from './routers/Client/ClientFrom';
 import WorkFrom from './routers/Works/WorkFrom';
+import { ContextSearch } from './utils/context-search';
 
+import { Container } from "./styles/global";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+    <Container />
       <ContextSearch.Provider value={{ contextSearch, setContextSearch }}>
         <BrowserRouter>
           <Routes>

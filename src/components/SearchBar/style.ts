@@ -1,13 +1,24 @@
-.from-search-bar {
-   display: flex;
-   align-items: center;
+import styled from "styled-components";
+
+const media = {
+   desktop: `@media(max-width: 1280px)`,
+   mobile: `@media(max-width: 375px)`
 }
 
+export const Container = styled.div`
 
-/* From uiverse.io by @alexruix */
-.input-search {
-   margin-left: 20px;
-   width: 200px;
+
+
+
+
+
+
+`
+
+
+export const ContentInputSearch = styled.div`
+
+   input {
    line-height: 28px;
    border: 2px solid transparent;
    border-bottom-color: #777;
@@ -16,14 +27,16 @@
    background-color: transparent;
    color: #0d0c22;
    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
+   }
 
-
-.input-search::placeholder {
+   
+input::placeholder {
    color: #777;
 }
 
-.input-search:focus::placeholder {
+input:focus::placeholder {
    opacity: 0;
    transition: opacity .3s;
 }
+
+`

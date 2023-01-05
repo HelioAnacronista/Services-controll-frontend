@@ -43,14 +43,14 @@ function CardLayoutDashboard({ dateCard }: Props) {
 
    return (
       <>
-         <div className="card-sales">
+         <div className="card-style">
             <img className='icons-sharp' style={{ backgroundColor: getColors() }} src={dateCard.icon} alt="" />
             <div className="card-infos">
                <div className="card-datas">
                   <h3>{dateCard.operation}</h3>
                   <h1>R${dateCard.value.toFixed(2)}</h1>
                </div>
-               <div className="progress">
+               <div>
 
                   <div id="chart">
                      <Chart options={config} series={getPorcetege()} type="radialBar" height={200} />

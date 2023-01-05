@@ -1,9 +1,10 @@
+import { createGlobalStyle } from 'styled-components'
+
+export const Container = createGlobalStyle`
+
+
 :root {
-  --cor-brown-100: #A68875;
-  --cor-brown-500: #594D48;
-  --cor-brown-300: #766153;
-  --cor-brown-200: #A78976;
-  --cor-brown-700: #262626;
+
 }
 
 /* reset body e css */
@@ -12,32 +13,16 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: Segoe 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
-html,
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-li,
-img,
-a,
-input,
-button {
+* {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Remover list styles padrão */
@@ -71,7 +56,6 @@ img {
 }
 
 .btn-action-style {
-
   font-size: 40px;
 }
 
@@ -80,38 +64,13 @@ img {
   font-size: 40px;
 }
 
-table {
-  text-align: center;
-  width: 100%;
-  background-color: white;
-  padding: 1.8rem;
-  border-radius: 2rem;
-  margin-top: 1.3rem;
-  box-shadow: 0rem 2rem 10rem rgb(112 115 146 / 34%);
-  transition: all 10ms ease;
-}
-
-table {
-  td {
-    border-bottom: 1px solid #848BC82E;
-    vertical-align: middle;
-    width: auto;
-  }
-
-}
-
-.table-bottom {
-  width: 180px;
-  margin-top: 1rem;
-}
-
 
 .container {
-  max-width: 1800px;
-  /* Define o tamanho máximo do container como 1200 pixels */
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  /* Adiciona um espaçamento automático nas margens esquerda e direita */
 }
+
 
 .css-dip3t8 {
   background-color: #FFF;
@@ -193,6 +152,10 @@ table {
   margin-top: 20px;
 }
 
+.my-10 {
+  margin: 10px 0;
+}
+
 .mt-30 {
   margin-top: 90px;
   margin-bottom: 20px;
@@ -250,3 +213,5 @@ table {
   justify-content: center;
   align-items: center;
 }
+
+`

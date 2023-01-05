@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
 import { ContextSearch } from "../../utils/context-search";
-import './style.scss'
 
+import { Container, ContentInputSearch } from "./style";
 
 
 function SearchBar() {
 
 
-   const {setContextSearch} = useContext(ContextSearch);
+   const { setContextSearch } = useContext(ContextSearch);
 
    function handleChange(event: any) {
       setContextSearch(event.target.value)
@@ -19,16 +19,20 @@ function SearchBar() {
    }
 
    return (
-      <form onSubmit={handleSubmit} className="from-search-bar">
+      <Container>
+         <form onSubmit={handleSubmit} className="from-search-bar">
 
-         <input 
-         onChange={handleChange} 
-         name="onSearch"
-         className="input-search"
-         placeholder="Buscar por nome" type="text" /> 
-         <button type="submit" className="from-search-bar-btn">🔎︎</button>
-      
-      </form>
+
+            <ContentInputSearch>
+               <input
+                  onChange={handleChange}
+                  name="onSearch"
+                  placeholder="Buscar por nome" type="text" />
+               <button type="submit" className="from-search-bar-btn">🔎︎</button>
+            </ContentInputSearch>
+
+         </form>
+      </Container>
    );
 }
 
