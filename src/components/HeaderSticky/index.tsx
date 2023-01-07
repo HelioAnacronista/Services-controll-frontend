@@ -8,10 +8,11 @@ import SearchBar from '../SearchBar'
 import { Header, Nav } from './style'
 
 function HeaderSticky() {
+  
   const { toggleSidebar } = useProSidebar()
 
   return (
-    <Header className="sticky">
+    <Header>
       <Nav>
 
         <button className='btn-menu-style my-10'

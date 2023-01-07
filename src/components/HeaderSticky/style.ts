@@ -12,6 +12,7 @@ export const Header = styled.div`
   transition: all 10ms ease;
 
   ${media.mobile} {
+    width: 100%;
   }
 `
 

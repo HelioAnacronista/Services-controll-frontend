@@ -1,67 +1,72 @@
-import { ApexOptions } from 'apexcharts';
-import React, { useEffect, useState } from 'react';
-import Chart from 'react-apexcharts';
-import { dataDTO } from '../../models/data';
+import { ApexOptions } from "apexcharts";
+import React, { useEffect, useState } from "react";
+import Chart from "react-apexcharts";
+import { dataDTO } from "../../models/data";
 
 type Props = {
-   dateCard: dataDTO;
-}
-
-
+  dateCard: dataDTO;
+};
 
 function CardLayoutDashboard({ dateCard }: Props) {
+  function getColors(): string {
+    return String(dateCard.sector);
+  }
 
-
-   function getColors(): string {
-      return String(dateCard.sector);
-   }
-
-   //ReactApexs
-   const config: ApexOptions = {
-      colors: [getColors()],
-      chart: {
-        height: 350,
-        type: 'radialBar',
-      },
-      plotOptions: {
-        radialBar: {
-          hollow: {
-            size: '50%',
-          },
+  //ReactApexs
+  const config: ApexOptions = {
+    colors: [getColors()],
+    chart: {
+      height: 350,
+      type: "radialBar",
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "50%",
         },
       },
-      labels: [''],
-    };
+    },
+    labels: [""],
+  };
 
+  //Definite a porcetagem
+  function getPorcetege(): number[] {
+    return [Number(dateCard.percentage.toFixed(1))];
+  }
 
+  return (
+    <>
+      <div className="card-style">
+        <img
+          className="icons-sharp"
+          style={{ backgroundColor: getColors() }}
+          src={dateCard.icon}
+          alt=""
+        />
 
-   //Definite a porcetagem
-   function getPorcetege(): number[] {
-      return [Number(dateCard.percentage.toFixed(1))];
-   }
+        <div className="card-center">
+          <div className="card-datas">
+            <div>{dateCard.operation}</div>
 
-
-   return (
-      <>
-         <div className="card-style">
-            <img className='icons-sharp' style={{ backgroundColor: getColors() }} src={dateCard.icon} alt="" />
-            <div className="card-infos">
-               <div className="card-datas">
-                  <h3>{dateCard.operation}</h3>
-                  <h1>R${dateCard.value.toFixed(2)}</h1>
-               </div>
-               <div>
-
-                  <div id="chart">
-                     <Chart options={config} series={getPorcetege()} type="radialBar" height={200} />
-                  </div>
-
-               </div>
+            <div>
+              <h1>R${dateCard.value.toFixed(2)}</h1>
             </div>
-            <small className="times">Ultima consulta {dateCard.date}</small>
-         </div>
-      </>
-   );
+          </div>
+
+          <div id="chart">
+            <Chart
+              options={config}
+              series={getPorcetege()}
+              type="radialBar"
+              height={200}
+            />
+          </div>
+        </div>
+
+        <small className="times">Ultima consulta {dateCard.date}</small>
+      </div>
+    </>
+  );
 }
 
 export default CardLayoutDashboard;
