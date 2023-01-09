@@ -23,8 +23,14 @@ export const Container = styled.div`
 
 export const ContentList = styled.div`
 
-overflow: auto;
+  overflow: auto;
   ${media.mobile} {
+    overflow: auto;
+  }
+  ${media.tablet} {
+    overflow: auto;
+  }
+  ${media.desktop} {
     overflow: auto;
   }
 `;

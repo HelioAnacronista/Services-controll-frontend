@@ -1,4 +1,4 @@
-import './style.css'
+
 
 import { MdDesignServices, MdPeopleAlt, MdCategory, MdHome } from 'react-icons/md'
 

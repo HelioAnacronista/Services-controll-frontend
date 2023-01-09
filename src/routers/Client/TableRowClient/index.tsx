@@ -55,7 +55,6 @@ function TableRowClient({ client }: Props) {
    return (
       <>
          <tr>
-            <td>{client.id}</td>
             <td>{client.name}</td>
             <td>{client.address}</td>
             <td>{client.phone}</td>

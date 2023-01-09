@@ -1,4 +1,5 @@
-import './style.scss'
+import { ButtonStyleLayout } from "./style";
+
 
 type Props = {
    name: string;
@@ -9,12 +10,12 @@ type Props = {
 function ButtonLayout({ name, img }: Props): JSX.Element {
    return (
 
-      <button className="btn-layout btn-save">
+      <ButtonStyleLayout>
          <h1>{name}</h1>
-         <div className='btn-layout-icon btn-icon-test'>
+         <div>
             {img}
          </div>
-      </button>
+      </ButtonStyleLayout>
    );
 }
 

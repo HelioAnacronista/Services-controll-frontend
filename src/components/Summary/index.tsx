@@ -41,13 +41,13 @@ function Summary() {
     <>
       <Container>
         <div className="mx-20">
-          <CardLayoutDashboard dateCard={vendasData}></CardLayoutDashboard>{" "}
+          <CardLayoutDashboard dateCard={vendasData}></CardLayoutDashboard>
         </div>
         <div className="mx-20">
-          <CardLayoutDashboard dateCard={gastosData}></CardLayoutDashboard>{" "}
+          <CardLayoutDashboard dateCard={gastosData}></CardLayoutDashboard>
         </div>
         <div className="mx-20">
-          <CardLayoutDashboard dateCard={totalData}></CardLayoutDashboard>{" "}
+          <CardLayoutDashboard dateCard={totalData}></CardLayoutDashboard>
         </div>
       </Container>
     </>

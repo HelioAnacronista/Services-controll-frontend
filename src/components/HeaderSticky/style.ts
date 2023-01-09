@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 const media = {
-  desktop: `@media(max-width: 1280px)`,
-  mobile: `@media(max-width: 375px)`,
-}
+  mobile: `@media(min-width: 300px) and (max-width:764px)`,
+  tablet: `@media(min-width: 768px) and (max-width: 1024px)`,
+  desktop: `@media(min-width: 1280px)`,
+};
 
 export const Header = styled.div`
   background-color: rgb(255, 255, 255);

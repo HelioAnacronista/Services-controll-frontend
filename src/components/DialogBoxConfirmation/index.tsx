@@ -1,4 +1,4 @@
-import ButtonActions from '../ButtunActions';
+
 import './style.scss'
 
 type Props = {
@@ -14,10 +14,10 @@ function DialogBoxConfirmation({ id, msg, onDialogAnswer }: Props) {
             <h2>{msg}</h2>
             <div className="dialog-card ">
                <div className='mx-20' onClick={() => onDialogAnswer(false, id)}>
-                  <ButtonActions  bg={"rgb(255, 119, 130)"} text="Não"></ButtonActions>
+                  <button  bg={"rgb(255, 119, 130)"} text="Não"></button>
                </div>
                <div className='mx-20 box-btn-y' onClick={() => onDialogAnswer(true, id)}>
-                  <ButtonActions bg={"#7380EC"} text="Sim"></ButtonActions>
+                  <button bg={"#7380EC"} text="Sim"></button>
                </div>
             </div>
          </div>

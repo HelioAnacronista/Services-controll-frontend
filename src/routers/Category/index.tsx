@@ -1,15 +1,13 @@
-import { ContainerList } from "./style";
-
 import { useEffect, useState } from "react";
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 import ButtonLayout from "../../components/ButtonLayout";
 import LoadingPage from "../../components/LoadingPage/loading";
-import * as categoryServices from "../../services/category-services";
-import TableRowCategory from "./TableRowCategory";
 import { CategoryDTO } from "../../models/category";
-import TableRowCategoryMobile from "./TableCategory";
+import * as categoryServices from "../../services/category-services";
+import { ContainerList } from "./style";
+import TableRowCategory from "./TableRowCategory";
 
 type QueryParams = {
   page: number;
@@ -18,12 +16,6 @@ type QueryParams = {
 
 type PropsParent = {
   params: string;
-};
-
-const media = {
-  mobile: `@media(max-width: 375px)`,
-  tablet: `@media(max-width: 768px)`,
-  desktop: `@media(max-width: 1280px)`,
 };
 
 function Category({ params }: PropsParent) {
@@ -65,7 +57,6 @@ function Category({ params }: PropsParent) {
     navigate("/category/create");
   }
 
-  console.log(window.matchMedia(media.mobile).matches);
   return (
     <main>
       {loading ? (
@@ -73,10 +64,7 @@ function Category({ params }: PropsParent) {
       ) : (
         <>
           <div>
-            <div
-              className="btn-test table-bottom btn-icon-test"
-              onClick={handleNewClick}
-            >
+            <div className="btn-center" onClick={handleNewClick}>
               <ButtonLayout
                 name="CRIAR"
                 img={<BsFillArrowRightSquareFill />}
@@ -95,9 +83,9 @@ function Category({ params }: PropsParent) {
                 </thead>
 
                 <tbody>
-                  {
-                    categoryList.map(obj => <TableRowCategory category={obj} key={obj.id}/>)
-                  }
+                  {categoryList.map((obj) => (
+                    <TableRowCategory category={obj} key={obj.id} />
+                  ))}
                 </tbody>
 
                 <div onClick={handleNextPageClick}>
@@ -108,7 +96,6 @@ function Category({ params }: PropsParent) {
                 </div>
               </table>
             </ContainerList>
-
           </div>
         </>
       )}

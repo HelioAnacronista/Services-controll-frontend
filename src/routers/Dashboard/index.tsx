@@ -40,11 +40,10 @@ function Dashboard() {
                     <table>
                       <thead>
                         <tr>
-                          <th>id</th>
                           <th>Serviço</th>
                           <th>Valor</th>
                           <th>Status</th>
-                          <th>Nome do Cliente</th>
+                          <th>Cliente</th>
                           <th>Contato</th>
                         </tr>
                       </thead>

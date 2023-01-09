@@ -10,7 +10,11 @@ export const Container = createGlobalStyle`
 
 
 :root {
-
+  --green:#5bf1bf;
+  --red:#ff7782;
+  --blue:#8691ed;
+  -yellow:#ffbb5a;
+  --white:#FFF;
 }
 
 /* reset body e css */
@@ -61,14 +65,7 @@ img {
   border: 0;
 }
 
-.btn-action-style {
-  font-size: 40px;
-}
 
-.btn-action-style::hover {
-  color: rgb(255, 153, 0);
-  font-size: 40px;
-}
 
 
 .container {
@@ -77,48 +74,15 @@ img {
   margin: 0 auto;
 }
 
-
-.css-dip3t8 {
-  background-color: #FFF;
-}
-
-.btn-test {
-  width: 160px;
-  box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
-  position: relative;
-  top: 15px;
-  left: 99px;
-
-  .btn-icon-test {
-    margin-left: 1.9rem;
-  }
-}
-
-.btn-layout {
-  padding: 10px 25px;
-  margin: 0px 10px 10px 0px;
-  border-radius: 3px;
-  font-size: 20px;
-  color: #FFF;
-  text-decoration: none;
-  background-color: #2ecc71;
-  border: none;
-  border-bottom: 5px solid #27ae60;
-  text-shadow: 0px -2px #27ae60;
-  -webkit-transition: all 0.1s;
-  transition: all 0.1s;
+.btn-center {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.btn-save {
-  width: 100%;
 
-  h1 {
-    width: 100%;
-    text-align: center;
-  }
-}
+
+
 
 .loader-container {
   width: 100%;

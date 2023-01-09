@@ -33,7 +33,6 @@ function TableRowDash({work}: Props) {
    return (
       <>
          <tr>
-            <td>{work.id}</td>
             <td>{work.name}</td>
             <td>R${work.valor?.toFixed(2)}</td>
             <td style={{ color: retornaStatus(work.status).color }}>{retornaStatus(work.status).name} </td>
