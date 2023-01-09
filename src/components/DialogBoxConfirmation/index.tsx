@@ -14,10 +14,10 @@ function DialogBoxConfirmation({ id, msg, onDialogAnswer }: Props) {
             <h2>{msg}</h2>
             <div className="dialog-card ">
                <div className='mx-20' onClick={() => onDialogAnswer(false, id)}>
-                  <button  bg={"rgb(255, 119, 130)"} text="Não"></button>
+                  <button  >Não</button>
                </div>
                <div className='mx-20 box-btn-y' onClick={() => onDialogAnswer(true, id)}>
-                  <button bg={"#7380EC"} text="Sim"></button>
+                  <button >Sim</button>
                </div>
             </div>
          </div>
