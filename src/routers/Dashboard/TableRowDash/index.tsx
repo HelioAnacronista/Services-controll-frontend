@@ -1,6 +1,5 @@
 import { WorkDTO } from '../../../models/work';
 
-
 const statusColors = {
    ABERTO: {
       name: 'ABERTO',

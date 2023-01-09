@@ -10,7 +10,7 @@ type Props = {
    category: CategoryDTO;
 }
 
-function TableRowCategory({ category }: Props) {
+function TableRowCategoryMobile({ category }: Props) {
 
 
    const [dialogInfoData, setDialogInfoData] = useState({
@@ -54,7 +54,6 @@ function TableRowCategory({ category }: Props) {
       <>
          <tr>
             <td>{category.name}</td>
-            <td>{category.description}</td>
             <Link to={`/category/${category.id}`}>
                <td><ButtonEdit></ButtonEdit></td>
             </Link>
@@ -72,4 +71,4 @@ function TableRowCategory({ category }: Props) {
    );
 }
 
-export default TableRowCategory;
+export default TableRowCategoryMobile;

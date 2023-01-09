@@ -1,59 +1,26 @@
-import { Container, ContentList, ContentTop } from './style'
+import { useEffect, useState } from "react";
 
-import { useEffect, useState } from 'react'
-
-import CardLayoutDashboard from '../../components/CardLayoutDashboard'
-import CardRecentUpdates from '../../components/CardRecentUpdates'
-import LoadingPage from '../../components/LoadingPage/loading'
-import { objattDTO } from '../../models/objattDTO'
-import { WorkDTO } from '../../models/work'
-import * as dashServices from '../../services/dashcard-services'
-import * as workServices from '../../services/work-services'
-import TableRowDash from './TableRowDash'
-import { dataDTO } from '../../models/data'
+import LoadingPage from "../../components/LoadingPage/loading";
+import Summary from "../../components/Summary";
+import { WorkDTO } from "../../models/work";
+import * as workServices from "../../services/work-services";
+import { Container, ContentList } from "./style";
+import TableRowDash from "./TableRowDash";
 
 function Dashboard() {
-  const [loading, setLoading] = useState(true)
-
-  const getData = (nameRequest: any) => {
-    const [data, setData] = useState<dataDTO>({
-      icon: '',
-      sector: 0,
-      operation: '',
-      value: 1,
-      percentage: 0,
-      date: '',
-    })
-
-    useEffect(() => {
-      dashServices.getAccounting(nameRequest).then((res) => {
-        setData(res.data)
-      })
-    }, [])
-
-    return data
-  }
-
-  // VENDAS
-  const vendasData = getData('/work/totalvalue')
-
-  // GASTOS
-  const gastosData = getData('/expense/totalvalue')
-
-  // TOTAL
-  const totalData = getData('/accounting/total')
+  const [loading, setLoading] = useState(true);
 
   //Lista dos 8 ultimos serviços
-  const [worklast, setWorklast] = useState<WorkDTO[]>([])
+  const [worklast, setWorklast] = useState<WorkDTO[]>([]);
   useEffect(() => {
     workServices
       .getLast()
       .then((res) => {
-        setWorklast(res.data)
-        setLoading(false)
+        setWorklast(res.data);
+        setLoading(false);
       })
-      .catch((err) => {})
-  }, [])
+      .catch((err) => {});
+  }, []);
 
   return (
     <>
@@ -62,28 +29,9 @@ function Dashboard() {
       ) : (
         <>
           <Container className="container">
-            <div className="">
-               
-              <ContentTop>
-                <div className="mx-20">
-                  {' '}
-                  <CardLayoutDashboard
-                    dateCard={vendasData}
-                  ></CardLayoutDashboard>{' '}
-                </div>
-                <div className="mx-20">
-                  {' '}
-                  <CardLayoutDashboard
-                    dateCard={gastosData}
-                  ></CardLayoutDashboard>{' '}
-                </div>
-                <div className="mx-20">
-                  {' '}
-                  <CardLayoutDashboard
-                    dateCard={totalData}
-                  ></CardLayoutDashboard>{' '}
-                </div>
-              </ContentTop>
+            <div>
+
+              <Summary></Summary>
 
               <ContentList>
                 <div>
@@ -109,13 +57,12 @@ function Dashboard() {
                   </div>
                 </div>
               </ContentList>
-
             </div>
           </Container>
         </>
       )}
     </>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

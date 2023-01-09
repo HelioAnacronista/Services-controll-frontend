@@ -2,12 +2,13 @@ import { ApexOptions } from "apexcharts";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { dataDTO } from "../../models/data";
+import { Container } from "./style";
 
 type Props = {
   dateCard: dataDTO;
 };
 
-function CardLayoutDashboard({ dateCard }: Props) {
+function CardSummaryDashboard({ dateCard }: Props) {
   function getColors(): string {
     return String(dateCard.sector);
   }
@@ -36,7 +37,7 @@ function CardLayoutDashboard({ dateCard }: Props) {
 
   return (
     <>
-      <div className="card-style">
+      <Container className="card-style">
         <img
           className="icons-sharp"
           style={{ backgroundColor: getColors() }}
@@ -64,9 +65,9 @@ function CardLayoutDashboard({ dateCard }: Props) {
         </div>
 
         <small className="times">Ultima consulta {dateCard.date}</small>
-      </div>
+      </Container>
     </>
   );
 }
 
-export default CardLayoutDashboard;
+export default CardSummaryDashboard;

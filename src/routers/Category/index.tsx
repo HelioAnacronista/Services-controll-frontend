@@ -1,113 +1,119 @@
-import './style.scss';
+import { ContainerList } from "./style";
 
-import { useEffect, useState } from 'react';
-import { BsFillArrowRightSquareFill } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-import ButtonLayout from '../../components/ButtonLayout';
-import LoadingPage from '../../components/LoadingPage/loading';
-import * as categoryServices from '../../services/category-services';
-import TableRowCategory from './TableRowCategory';
-import { CategoryDTO } from '../../models/category';
+import ButtonLayout from "../../components/ButtonLayout";
+import LoadingPage from "../../components/LoadingPage/loading";
+import * as categoryServices from "../../services/category-services";
+import TableRowCategory from "./TableRowCategory";
+import { CategoryDTO } from "../../models/category";
+import TableRowCategoryMobile from "./TableCategory";
 
 type QueryParams = {
-   page: number;
-   name: string;
-}
+  page: number;
+  name: string;
+};
 
 type PropsParent = {
-   params: string
-}
+  params: string;
+};
+
+const media = {
+  mobile: `@media(max-width: 375px)`,
+  tablet: `@media(max-width: 768px)`,
+  desktop: `@media(max-width: 1280px)`,
+};
 
 function Category({ params }: PropsParent) {
+  const navigate = useNavigate();
 
-   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, []);
 
-   const [loading, setLoading] = useState(false);
-   useEffect(() => {
-      setLoading(true);
-      setTimeout(() => {
-         setLoading(false);
-      }, 300);
-   }, []);
+  const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
 
-   const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
+  const [isListPage, setisListPage] = useState(false);
 
-   const [isListPage, setisListPage] = useState(false);
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: "",
+  });
 
-   const [queryParams, setQueryParams] = useState<QueryParams>({
-      page: 0,
-      name: ""
-   });
+  //Fazer a requisição com os params passados
+  useEffect(() => {
+    categoryServices
+      .findPageRequest(queryParams.page, queryParams.name)
+      .then((response) => {
+        const nextPage = response.data.content;
+        setCategoryList(categoryList.concat(nextPage));
+        setisListPage(response.data.last);
+      });
+  }, [queryParams]);
+  //Proxima pagina
+  function handleNextPageClick() {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+  }
 
+  function handleNewClick() {
+    navigate("/category/create");
+  }
 
-   //Fazer a requisição com os params passados
-   useEffect(() => {
-      categoryServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
-         const nextPage = response.data.content;
-         setCategoryList(categoryList.concat(nextPage));
-         setisListPage(response.data.last)
-      })
-   }, [queryParams]);
-   //Proxima pagina
-   function handleNextPageClick() {
-      setQueryParams({ ...queryParams, page: queryParams.page + 1 })
-   }
+  console.log(window.matchMedia(media.mobile).matches);
+  return (
+    <main>
+      {loading ? (
+        <LoadingPage></LoadingPage>
+      ) : (
+        <>
+          <div>
+            <div
+              className="btn-test table-bottom btn-icon-test"
+              onClick={handleNewClick}
+            >
+              <ButtonLayout
+                name="CRIAR"
+                img={<BsFillArrowRightSquareFill />}
+              ></ButtonLayout>
+            </div>
 
-   function handleNewClick() {
-      navigate("/category/create");
-   }
+            <ContainerList>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                  </tr>
+                </thead>
 
-   return (
-      <main>
-         {loading ?
-            (
-               <LoadingPage></LoadingPage>
-            )
-            :
-            (
-               <>
-                  <div>
+                <tbody>
+                  {
+                    categoryList.map(obj => <TableRowCategory category={obj} key={obj.id}/>)
+                  }
+                </tbody>
 
-                     <div className='btn-test table-bottom btn-icon-test' onClick={handleNewClick}>           
-                        <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-                     </div>
+                <div onClick={handleNextPageClick}>
+                  <ButtonLayout
+                    name="PROXIMA"
+                    img={<BsFillArrowRightSquareFill />}
+                  ></ButtonLayout>
+                </div>
+              </table>
+            </ContainerList>
 
-
-                     <div style={{ display: 'flex' }} className="container-work" >
-
-                        <table className="table-work table-striped">
-                           <thead>
-                              <tr>
-                                 <th>id</th>
-                                 <th>Serviço</th>
-                                 <th>Descrição</th>
-                                 <th>Editar</th>
-                                 <th>Deletar</th>
-                              </tr>
-                           </thead>
-
-                           <tbody>
-                              {(params) ?
-                                 categoryList.filter((x) => x.name.includes(params)).map(x => <TableRowCategory key={x.id} category={x}></TableRowCategory>)
-                                 :
-                                 categoryList.map(obj => <TableRowCategory key={obj.id} category={obj}></TableRowCategory>)
-                              }
-                           </tbody>
-
-                           <div className="table-bottom" onClick={handleNextPageClick}>
-                              <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-                           </div>
-
-                        </table>
-                     </div>
-                  </div>
-               </>
-            )
-         }
-
-      </main>
-   );
-};
+          </div>
+        </>
+      )}
+    </main>
+  );
+}
 
 export default Category;
