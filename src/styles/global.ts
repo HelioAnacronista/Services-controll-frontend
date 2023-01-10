@@ -13,7 +13,7 @@ export const Container = createGlobalStyle`
   --green:#5bf1bf;
   --red:#ff7782;
   --blue:#8691ed;
-  -yellow:#ffbb5a;
+  --yellow:#ffbb5a;
   --white:#FFF;
 }
 
