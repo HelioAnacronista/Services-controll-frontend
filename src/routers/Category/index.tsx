@@ -83,10 +83,22 @@ function Category({ params }: PropsParent) {
                 </thead>
 
                 <tbody>
-                  {categoryList.map((obj) => (
-                    <TableRowCategory category={obj} key={obj.id} />
-                  ))}
-                </tbody>
+                    {params
+                      ? categoryList
+                          .filter((x) => x.name.includes(params))
+                          .map((x) => (
+                            <TableRowCategory
+                              key={x.id}
+                              category={x}
+                            ></TableRowCategory>
+                          ))
+                      : categoryList.map((obj) => (
+                          <TableRowCategory
+                            key={obj.id}
+                            category={obj}
+                          ></TableRowCategory>
+                        ))}
+                  </tbody>
 
                 <div onClick={handleNextPageClick}>
                   <ButtonLayout
