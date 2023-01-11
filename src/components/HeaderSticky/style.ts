@@ -9,7 +9,7 @@ const media = {
 export const Header = styled.div`
   background-color: rgb(255, 255, 255);
   padding: 0.5rem;
-  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  box-shadow: 0px 10px 6rem #bebebe, -15px -15px 30px #ffffff;
   transition: all 10ms ease;
 
   ${media.mobile} {

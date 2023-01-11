@@ -1,115 +1,120 @@
-import { ContainerList } from "./style";
- 
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Container, ContentList } from "./style";
 
-import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import LoadingPage from '../../components/LoadingPage/loading'
-import ButtonLayout from '../../components/ButtonLayout';
-import TableRowWorks from './TableRowWorks';
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
-import { WorkDTO } from '../../models/work';
-import * as workServices from '../../services/work-services';
+import LoadingPage from "../../components/LoadingPage/loading";
+import ButtonLayout from "../../components/ButtonLayout";
+import TableRowWorks from "./TableRowWorks";
 
-;
-
+import { WorkDTO } from "../../models/work";
+import * as workServices from "../../services/work-services";
 
 type PropsParent = {
-   params: string
-}
+  params: string;
+};
 
 type QueryParams = {
-   page: number;
-   name: string;
-}
-
-
+  page: number;
+  name: string;
+};
 
 function Work({ params }: PropsParent) {
+  const navigate = useNavigate();
 
-   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
-   const [loading, setLoading] = useState(true);
+  const [worksList, setWorksList] = useState<WorkDTO[]>([]);
 
-   const [worksList, setWorksList] = useState<WorkDTO[]>([]);
+  const [isListPage, setisListPage] = useState(false);
 
-   const [isListPage, setisListPage] = useState(false);
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: "",
+  });
 
-   const [queryParams, setQueryParams] = useState<QueryParams>({
-      page: 0,
-      name: ""
-   });
+  //Fazer a requisição com os params passados
+  useEffect(() => {
+    workServices
+      .findPageRequest(queryParams.page, queryParams.name)
+      .then((response) => {
+        const nextPage = response.data.content;
+        setWorksList(worksList.concat(nextPage));
+        setisListPage(response.data.last);
+        setLoading(false);
+      });
+  }, [queryParams]);
 
-   //Fazer a requisição com os params passados
-   useEffect(() => {
-      workServices.findPageRequest(queryParams.page, queryParams.name).then(response => {
-         const nextPage = response.data.content;
-         setWorksList(worksList.concat(nextPage));
-         setisListPage(response.data.last)
-         setLoading(false);
-      })
-   }, [queryParams]);
+  //Proxima pagina
+  function handleNextPageClick() {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+  }
 
-   //Proxima pagina
-   function handleNextPageClick() {
-      setQueryParams({ ...queryParams, page: queryParams.page + 1 })
-   }
+  function handleNewClick() {
+    navigate("/work/create");
+  }
 
-   function handleNewClick() {
-      navigate("/work/create");
-   }
+  return (
+    <main>
+      {loading ? (
+        <LoadingPage></LoadingPage>
+      ) : (
+        <>
+          <Container className="container">
+            <div className="btn-create mt-b-40" onClick={handleNewClick}>
+              <ButtonLayout
+                name="CRIAR"
+                img={<BsFillArrowRightSquareFill />}
+              ></ButtonLayout>
+            </div>
 
-   return (
-      <main>
+            <ContentList>
+              <table>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Serviço</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                    <th>Detalhes</th>
+                  </tr>
+                </thead>
 
-
-         {loading ?
-            (
-               <LoadingPage></LoadingPage>
-            ) :
-            (
-               <>
-                  <div className='btn-test table-bottom btn-icon-test' onClick={handleNewClick}>
-                     <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-                  </div>
-
-                  <ContainerList className="container">
-                     <table>
-                        <thead>
-                           <tr>
-                              <th>id</th>
-                              <th>Serviço</th>
-                              <th>Valor</th>
-                              <th>Status</th>
-                              <th>Editar</th>
-                              <th>Deletar</th>
-                              <th>Detalhes</th>
-                           </tr>
-                        </thead>
-
-                        <tbody>
-                           {(params) ?
-                              worksList.filter((x) => x.name.includes(params)).map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
-                              :
-                              worksList.map(work => <TableRowWorks key={work.id} work={work}></TableRowWorks>)
-                           }
-                        </tbody>
-
-                        <div className="table-bottom" onClick={handleNextPageClick}>
-                           <ButtonLayout name="MAIS" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
-                        </div>
-
-                     </table>
-                  </ContainerList>
-               </>
-
-            )}
-
-
-      </main>
-   );
-};
+                <tbody>
+                  {params
+                    ? worksList
+                        .filter((x) => x.name.includes(params))
+                        .map((work) => (
+                          <TableRowWorks
+                            key={work.id}
+                            work={work}
+                          ></TableRowWorks>
+                        ))
+                    : worksList.map((work) => (
+                        <TableRowWorks
+                          key={work.id}
+                          work={work}
+                        ></TableRowWorks>
+                      ))}
+                </tbody>
+              </table>
+              <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
+                <ButtonLayout
+                  name="MAIS"
+                  img={<BsFillArrowRightSquareFill />}
+                ></ButtonLayout>
+              </div>
+            </ContentList>
+          </Container>
+        </>
+      )}
+    </main>
+  );
+}
 
 export default Work;
 

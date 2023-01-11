@@ -122,6 +122,7 @@ img {
   margin-top: 20px;
 }
 
+
 .my-10 {
   margin: 10px 0;
 }
@@ -129,6 +130,11 @@ img {
 .mt-30 {
   margin-top: 90px;
   margin-bottom: 20px;
+}
+
+.mt-b-40 {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .details-container {

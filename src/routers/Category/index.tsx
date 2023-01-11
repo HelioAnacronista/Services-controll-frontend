@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { Container, ContentList } from "./style";
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import { MdDashboardCustomize } from "react-icons/md";
+
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ButtonLayout from "../../components/ButtonLayout";
 import LoadingPage from "../../components/LoadingPage/loading";
+import TableRowCategory from "./TableRowCategory";
+
 import { CategoryDTO } from "../../models/category";
 import * as categoryServices from "../../services/category-services";
-import { ContainerList } from "./style";
-import TableRowCategory from "./TableRowCategory";
 
 type QueryParams = {
   page: number;
@@ -64,15 +66,15 @@ function Category({ params }: PropsParent) {
         <LoadingPage></LoadingPage>
       ) : (
         <>
-          <div>
-            <div className="btn-center" onClick={handleNewClick}>
+          <Container className="container">
+            <div className="btn-create mt-b-40" onClick={handleNewClick}>
               <ButtonLayout
                 name="CRIAR"
                 img={<BsFillArrowRightSquareFill />}
               ></ButtonLayout>
             </div>
 
-            <ContainerList className="container">
+            <ContentList className="container">
               <table>
                 <thead>
                   <tr>
@@ -84,32 +86,31 @@ function Category({ params }: PropsParent) {
                 </thead>
 
                 <tbody>
-                    {params
-                      ? categoryList
-                          .filter((x) => x.name.includes(params))
-                          .map((x) => (
-                            <TableRowCategory
-                              key={x.id}
-                              category={x}
-                            ></TableRowCategory>
-                          ))
-                      : categoryList.map((obj) => (
+                  {params
+                    ? categoryList
+                        .filter((x) => x.name.includes(params))
+                        .map((x) => (
                           <TableRowCategory
-                            key={obj.id}
-                            category={obj}
+                            key={x.id}
+                            category={x}
                           ></TableRowCategory>
-                        ))}
-                  </tbody>
-
-                <div onClick={handleNextPageClick}>
-                  <ButtonLayout
-                    name="MAIS"
-                    img={<MdDashboardCustomize />}
-                  ></ButtonLayout>
-                </div>
+                        ))
+                    : categoryList.map((obj) => (
+                        <TableRowCategory
+                          key={obj.id}
+                          category={obj}
+                        ></TableRowCategory>
+                      ))}
+                </tbody>
               </table>
-            </ContainerList>
-          </div>
+              <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
+                <ButtonLayout
+                  name="MAIS"
+                  img={<BsFillArrowRightSquareFill />}
+                ></ButtonLayout>
+              </div>
+            </ContentList>
+          </Container>
         </>
       )}
     </main>

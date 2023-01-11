@@ -1,11 +1,10 @@
-import { ContainerList } from "./style";
+import { Container, ContentList } from "./style";
 
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 import { useContext, useEffect, useState } from "react";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-
 
 import { ClientDTO } from "../../models/client";
 
@@ -71,15 +70,15 @@ function Client({ params }: PropsParent) {
           <LoadingPage></LoadingPage>
         ) : (
           <>
-            <div>
-              <div className="btn-center" onClick={handleNewClick}>
+            <Container className="container">
+              <div className="btn-create mt-b-40" onClick={handleNewClick}>
                 <ButtonLayout
                   name="CRIAR"
                   img={<BsFillArrowRightSquareFill />}
                 ></ButtonLayout>
               </div>
 
-              <ContainerList className="container">
+              <ContentList>
                 <table>
                   <thead>
                     <tr>
@@ -108,16 +107,18 @@ function Client({ params }: PropsParent) {
                           ></TableRowClient>
                         ))}
                   </tbody>
-
-                  <div className="table-bottom" onClick={handleNextPageClick}>
-                    <ButtonLayout
-                      name="PROXIMA"
-                      img={<BsFillArrowRightSquareFill />}
-                    ></ButtonLayout>
-                  </div>
                 </table>
-              </ContainerList>
-            </div>
+                <div
+                  className="btn-center mt-b-40"
+                  onClick={handleNextPageClick}
+                >
+                  <ButtonLayout
+                    name="MAIS"
+                    img={<BsFillArrowRightSquareFill />}
+                  ></ButtonLayout>
+                </div>
+              </ContentList>
+            </Container>
           </>
         )}
       </main>

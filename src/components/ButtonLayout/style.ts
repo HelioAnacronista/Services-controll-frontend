@@ -13,7 +13,6 @@ export const ButtonStyleLayout = styled.button`
   text-align: center;
   width: 200px;
   padding: 1px;
-  margin: 40px 0;
 
   align-items: center;
   font-family: inherit;

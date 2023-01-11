@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
 .btn-create {
    margin-left: 20px;
    button {
