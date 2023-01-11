@@ -1,15 +1,20 @@
-import "./style.scss";
+import { ContainerList } from "./style";
+
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 import { useContext, useEffect, useState } from "react";
 import * as React from "react";
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+
+
+import { ClientDTO } from "../../models/client";
 
 import ButtonLayout from "../../components/ButtonLayout";
-import { ClientDTO } from "../../models/client";
-import * as clientServices from "../../services/client-services";
-import TableRowClient from "./TableRowClient";
 import LoadingPage from "../../components/LoadingPage/loading";
-import { useNavigate } from "react-router-dom";
+
+import TableRowClient from "./TableRowClient";
+
+import * as clientServices from "../../services/client-services";
 
 type PropsParent = {
   params: string;
@@ -74,8 +79,8 @@ function Client({ params }: PropsParent) {
                 ></ButtonLayout>
               </div>
 
-              <div style={{ display: "flex" }} className="container-work">
-                <table className="table-work table-striped">
+              <ContainerList className="container">
+                <table>
                   <thead>
                     <tr>
                       <th>Nome</th>
@@ -111,7 +116,7 @@ function Client({ params }: PropsParent) {
                     ></ButtonLayout>
                   </div>
                 </table>
-              </div>
+              </ContainerList>
             </div>
           </>
         )}

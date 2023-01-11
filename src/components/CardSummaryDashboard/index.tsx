@@ -64,7 +64,9 @@ function CardSummaryDashboard({ dateCard }: Props) {
           </div>
         </div>
 
-        <small className="times">Ultima consulta {dateCard.date}</small>
+        <p className="times">
+          Consulta
+        </p>
       </Container>
     </>
   );

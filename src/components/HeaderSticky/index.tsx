@@ -13,7 +13,7 @@ function HeaderSticky() {
 
   return (
     <Header>
-      <Nav>
+      <Nav className='container'>
 
         <button className='btn-menu-style my-10'
           onClick={() => toggleSidebar()}

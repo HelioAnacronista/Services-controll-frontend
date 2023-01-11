@@ -184,34 +184,18 @@ img {
   align-items: center;
 }
 
-table {
+  table {
     width: 100%;
     text-align: center;
-    background-color: white;
-    padding: 1rem;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    box-shadow: 0rem 2rem 10rem rgb(112 115 146 / 34%);
-    transition: all 10ms ease;
   }
 
   td {
     border-bottom: 1px solid #848bc82e;
-    vertical-align: middle;
-    width: auto;
   }
 
   ${media.mobile} {
     table {
       text-align: center;
-      background-color: white;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      margin-top: 1rem;
-      box-shadow: 0rem 2rem 10rem rgb(112 115 146 / 34%);
-      transition: all 10ms ease;
-
-      width: 90%;
     }
 
     tbody {

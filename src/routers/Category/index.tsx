@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
+import { MdDashboardCustomize } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 import ButtonLayout from "../../components/ButtonLayout";
@@ -71,7 +72,7 @@ function Category({ params }: PropsParent) {
               ></ButtonLayout>
             </div>
 
-            <ContainerList>
+            <ContainerList className="container">
               <table>
                 <thead>
                   <tr>
@@ -102,8 +103,8 @@ function Category({ params }: PropsParent) {
 
                 <div onClick={handleNextPageClick}>
                   <ButtonLayout
-                    name="PROXIMA"
-                    img={<BsFillArrowRightSquareFill />}
+                    name="MAIS"
+                    img={<MdDashboardCustomize />}
                   ></ButtonLayout>
                 </div>
               </table>

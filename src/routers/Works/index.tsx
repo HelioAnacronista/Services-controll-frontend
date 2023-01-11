@@ -1,15 +1,19 @@
-import './style.scss';
-
+import { ContainerList } from "./style";
+ 
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 
+import LoadingPage from '../../components/LoadingPage/loading'
 import ButtonLayout from '../../components/ButtonLayout';
+import TableRowWorks from './TableRowWorks';
+
 import { WorkDTO } from '../../models/work';
 import * as workServices from '../../services/work-services';
-import TableRowWorks from './TableRowWorks';
-import LoadingPage from '../../components/LoadingPage/loading';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+;
+
 
 type PropsParent = {
    params: string
@@ -70,8 +74,8 @@ function Work({ params }: PropsParent) {
                      <ButtonLayout name="CRIAR" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
                   </div>
 
-                  <div style={{ display: 'flex' }} className="container-work" >
-                     <table className="table-work table-striped">
+                  <ContainerList className="container">
+                     <table>
                         <thead>
                            <tr>
                               <th>id</th>
@@ -93,11 +97,11 @@ function Work({ params }: PropsParent) {
                         </tbody>
 
                         <div className="table-bottom" onClick={handleNextPageClick}>
-                           <ButtonLayout name="PROXIMA" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
+                           <ButtonLayout name="MAIS" img={<BsFillArrowRightSquareFill />}  ></ButtonLayout>
                         </div>
 
                      </table>
-                  </div>
+                  </ContainerList>
                </>
 
             )}
