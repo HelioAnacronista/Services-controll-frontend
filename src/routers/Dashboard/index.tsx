@@ -30,31 +30,28 @@ function Dashboard() {
         <>
           <Container className="container">
             <div>
-
               <Summary></Summary>
 
+              <div>
+                <h1 className="list-title">Serviços recentes</h1>
+              </div>
               <ContentList>
-                <div>
-                  <h1 className="list-title">Serviços recentes</h1>
-                  <div>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Serviço</th>
-                          <th>Valor</th>
-                          <th>Status</th>
-                          <th>Cliente</th>
-                          <th>Contato</th>
-                        </tr>
-                      </thead>
-                      <tbody className="">
-                        {worklast.map((obj) => (
-                          <TableRowDash key={obj.id} work={obj}></TableRowDash>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                  <table className="table-border">
+                    <thead>
+                      <tr>
+                        <th>Serviço</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Cliente</th>
+                        <th>Contato</th>
+                      </tr>
+                    </thead>
+                    <tbody className="">
+                      {worklast.map((obj) => (
+                        <TableRowDash key={obj.id} work={obj}></TableRowDash>
+                      ))}
+                    </tbody>
+                  </table>
               </ContentList>
             </div>
           </Container>

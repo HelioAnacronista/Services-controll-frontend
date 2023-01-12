@@ -63,10 +63,6 @@ function CardSummaryDashboard({ dateCard }: Props) {
             />
           </div>
         </div>
-
-        <p className="times">
-          Consulta
-        </p>
       </Container>
     </>
   );

@@ -39,7 +39,7 @@ function Summary() {
 
   return (
     <>
-      <Container>
+      <Container className=''>
         <div className="mx-20">
           <CardLayoutDashboard dateCard={vendasData}></CardLayoutDashboard>
         </div>

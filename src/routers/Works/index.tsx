@@ -71,44 +71,46 @@ function Work({ params }: PropsParent) {
             </div>
 
             <ContentList>
-              <table>
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>Serviço</th>
-                    <th>Valor</th>
-                    <th>Status</th>
-                    <th>Editar</th>
-                    <th>Deletar</th>
-                    <th>Detalhes</th>
-                  </tr>
-                </thead>
+              <div className="table-border">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>Serviço</th>
+                      <th>Valor</th>
+                      <th>Status</th>
+                      <th>Editar</th>
+                      <th>Deletar</th>
+                      <th>Detalhes</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {params
-                    ? worksList
-                        .filter((x) => x.name.includes(params))
-                        .map((work) => (
+                  <tbody>
+                    {params
+                      ? worksList
+                          .filter((x) => x.name.includes(params))
+                          .map((work) => (
+                            <TableRowWorks
+                              key={work.id}
+                              work={work}
+                            ></TableRowWorks>
+                          ))
+                      : worksList.map((work) => (
                           <TableRowWorks
                             key={work.id}
                             work={work}
                           ></TableRowWorks>
-                        ))
-                    : worksList.map((work) => (
-                        <TableRowWorks
-                          key={work.id}
-                          work={work}
-                        ></TableRowWorks>
-                      ))}
-                </tbody>
-              </table>
-              <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
-                <ButtonLayout
-                  name="MAIS"
-                  img={<BsFillArrowRightSquareFill />}
-                ></ButtonLayout>
+                        ))}
+                  </tbody>
+                </table>
               </div>
             </ContentList>
+            <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
+              <ButtonLayout
+                name="MAIS"
+                img={<BsFillArrowRightSquareFill />}
+              ></ButtonLayout>
+            </div>
           </Container>
         </>
       )}

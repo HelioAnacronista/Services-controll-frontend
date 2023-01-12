@@ -75,7 +75,7 @@ function Category({ params }: PropsParent) {
             </div>
 
             <ContentList className="container">
-              <table>
+              <table className="table-border">
                 <thead>
                   <tr>
                     <th>Nome</th>
@@ -103,13 +103,14 @@ function Category({ params }: PropsParent) {
                       ))}
                 </tbody>
               </table>
-              <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
+             
+            </ContentList>
+            <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
                 <ButtonLayout
                   name="MAIS"
                   img={<BsFillArrowRightSquareFill />}
                 ></ButtonLayout>
               </div>
-            </ContentList>
           </Container>
         </>
       )}

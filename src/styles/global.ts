@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 const media = {
-  mobile: `@media(max-width: 375px)`,
-  tablet: `@media(max-width: 768px)`,
-  desktop: `@media(max-width: 1280px)`,
+  mobile: `@media(min-width: 300px) and (max-width:764px)`,
+  tablet: `@media(min-width: 768px) and (max-width: 1024px)`,
+  desktop: `@media(min-width: 1280px)`,
 };
 
 export const Container = createGlobalStyle`
@@ -190,13 +190,30 @@ img {
   align-items: center;
 }
 
+  //tables
+
+  .table-border {
+    border-radius: 0.25rem;
+    border: 1px solid #848bc82e;
+    padding: 1rem;
+  }
+
+
   table {
     width: 100%;
     text-align: center;
   }
 
+  th {
+      padding: 0 0.5rem;
+  }
+
   td {
-    border-bottom: 1px solid #848bc82e;
+    padding: 0.25rem;
+  }
+
+  tr:hover {
+    background: #E3E3E3;
   }
 
   ${media.mobile} {
@@ -204,8 +221,19 @@ img {
       text-align: center;
     }
 
+    th {
+      padding: 0 0.5rem;
+    }
+
+    td {
+    border-bottom: none;
+    padding: 0 0.5rem;
+    }
+
+
     tbody {
       overflow-x: auto;
     }
   }
+  
 `;

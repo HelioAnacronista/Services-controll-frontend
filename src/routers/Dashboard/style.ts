@@ -16,12 +16,15 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
+    margin: 3rem 0;
   }
 
 `;
 
 export const ContentList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   overflow: auto;
   ${media.mobile} {

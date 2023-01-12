@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 const media = {
   mobile: `@media(min-width: 300px) and (max-width:764px)`,
-  tablet: `@media(min-width: 768px) and (max-width: 1024px)`,
+  tablet: `@media(min-width: 760px) and (max-width: 1024px)`,
   desktop: `@media(min-width: 1280px)`,
 };
 
 export const Container = styled.div`
+  
   background-color: white;
+  width: 360px;
   padding: 10px;
   border-radius: 2rem;
   margin-top: 1.3rem;
@@ -60,10 +62,11 @@ export const Container = styled.div`
   //(Tablet)
   ${media.tablet} {
     display: block;
+    width: 200px;
 
     .card-style {
       background-color: white;
-      width: 180px;
+
       padding: 1rem;
       border-radius: 2rem;
       margin-top: 1.3rem;
@@ -87,10 +90,10 @@ export const Container = styled.div`
   //(MOBILE)
   ${media.mobile} {
     display: block;
-
+    width: 320px;
     .card-style {
       background-color: white;
-      width: auto;
+
       padding: 1rem;
       border-radius: 2rem;
       margin-top: 1.3rem;

@@ -79,7 +79,7 @@ function Client({ params }: PropsParent) {
               </div>
 
               <ContentList>
-                <table>
+                <table className="table-border">
                   <thead>
                     <tr>
                       <th>Nome</th>
@@ -108,7 +108,8 @@ function Client({ params }: PropsParent) {
                         ))}
                   </tbody>
                 </table>
-                <div
+              </ContentList>
+              <div
                   className="btn-center mt-b-40"
                   onClick={handleNextPageClick}
                 >
@@ -117,7 +118,6 @@ function Client({ params }: PropsParent) {
                     img={<BsFillArrowRightSquareFill />}
                   ></ButtonLayout>
                 </div>
-              </ContentList>
             </Container>
           </>
         )}
