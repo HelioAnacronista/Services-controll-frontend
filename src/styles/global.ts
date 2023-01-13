@@ -19,19 +19,11 @@ export const Container = createGlobalStyle`
 
 /* reset body e css */
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 
 * {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font-family: 'Poppins', sans-serif;
 }
 
