@@ -1,4 +1,4 @@
-import { ActionsBtn } from "./style";
+import { ActionsBtn, Container, ContentFrom } from "./style";
 
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -7,7 +7,6 @@ import ButtonLayout from "../../../components/ButtonLayout";
 import FromInput from "../../../components/FromInput";
 import * as cleintServices from "../../../services/client-services";
 import * as froms from "../../../utils/from";
-
 
 function ClientFrom() {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ function ClientFrom() {
       id: "name",
       name: "name",
       type: "text",
-      placeholder: "Nome",
+      placeholder: "Nome do cliente",
     },
     phone: {
       value: "",
@@ -77,65 +76,63 @@ function ClientFrom() {
 
   return (
     <>
-      <div className="mt-30 title-details">
-        <h1>
-          {" "}
-          <span>Workspace Cliente</span>{" "}
-        </h1>
-      </div>
-      <div className="container div-c">
-        <div className="details-card-category style-card-details">
-          <form onSubmit={handleSubmit}>
-            <div className="text-top-category">
-              <div>
-                <h1>Nome: </h1>
+      <Container>
+        <div className="title">
+          <h1>Workspace Cliente</h1>
+        </div>
+        <ContentFrom>
+          <div className="card-from">
+            <form onSubmit={handleSubmit}>
+              <div className="text-top-category">
+                <div>
+                  <h1>Nome: </h1>
+                </div>
+                <FromInput
+                  {...formData.name}
+                  className="input-c-c"
+                  onChange={handleInputChange}
+                />
+                <div className="divide-text"></div>
               </div>
-              <FromInput
-                {...formData.name}
-                className="input-c-c"
-                onChange={handleInputChange}
-              />
-              <div className="divide-text"></div>
-            </div>
-            <div className="text-top-category txt-area-dsc">
-              <div>
-                <h1>Telefone:</h1>
+              <div className="text-top-category txt-area-dsc">
+                <div>
+                  <h1>Telefone:</h1>
+                </div>
+                <FromInput
+                  {...formData.phone}
+                  className="input-c-c"
+                  onChange={handleInputChange}
+                />
+                <div className="divide-text"></div>
               </div>
-              <FromInput
-                {...formData.phone}
-                className="input-c-c"
-                onChange={handleInputChange}
-              />
-              <div className="divide-text"></div>
-            </div>
-            <div className="text-top-category txt-area-dsc">
-              <div>
-                <h1>Endereço:</h1>
+              <div className="text-top-category txt-area-dsc">
+                <div>
+                  <h1>Endereço:</h1>
+                </div>
+                <FromInput
+                  {...formData.address}
+                  className="input-c-c"
+                  onChange={handleInputChange}
+                />
+                <div className="divide-text"></div>
               </div>
-              <FromInput
-                {...formData.address}
-                className="input-c-c"
-                onChange={handleInputChange}
-              />
-              <div className="divide-text"></div>
-            </div>
 
-            <ActionsBtn>
-              <div className="btn-save">
+              <ActionsBtn>
+              <div className="save">
                 <ButtonLayout {...buttonPropsSave}>
-                  {" "}
-                  <p>SALVAR</p>{" "}
+                  <p>SALVAR</p>
                 </ButtonLayout>
               </div>
-              <div className="container mt-20 div-c">
-                <Link to={"/client"}>
+              <div className="cancel">
+                <Link to={"/work"}>
                   <ButtonLayout name="CANCELAR"></ButtonLayout>
                 </Link>
               </div>
             </ActionsBtn>
-          </form>
-        </div>
-      </div>
+            </form>
+          </div>
+        </ContentFrom>
+      </Container>
     </>
   );
 }

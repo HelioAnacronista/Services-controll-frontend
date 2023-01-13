@@ -1,44 +1,40 @@
-import './style.scss'
-
 import { Link, useNavigate, useParams } from "react-router-dom";
-import * as workServices from '../../../services/work-services'
+import * as workServices from "../../../services/work-services";
 import WorkDetailsCard from "../WorkDetailsCard";
 import { WorkDTO } from "../../../models/work";
 import { useState, useEffect } from "react";
 import ButtonLayout from "../../../components/ButtonLayout";
+import { ActionsBtn } from "./style";
 
 function WorkDetails() {
+  const params = useParams();
 
-   const params = useParams();
+  const navigate = useNavigate();
 
-   const navigate = useNavigate();
+  const [work, setWork] = useState<WorkDTO>();
 
-
-   const [work, setWork] = useState<WorkDTO>();
-
-   useEffect(() => {
-      workServices.findById(Number(params.workId)).then(reponse => {
-         console.log(reponse)
-         setWork(reponse.data)
+  useEffect(() => {
+    workServices
+      .findById(Number(params.workId))
+      .then((reponse) => {
+        console.log(reponse);
+        setWork(reponse.data);
       })
-      .catch( () => {
-         
-      });
-   }, []);
+      .catch(() => {});
+  }, []);
 
-   return (
-      <>
-      {
-         work &&
-         <WorkDetailsCard work={work} />
-      }
-      <div className="container work-details-btn">
-         <Link to={'/work'}>
-         <ButtonLayout name="Voltar"></ButtonLayout>
-         </Link>
-      </div>
-      </>
-   );
+  return (
+    <>
+      {work && <WorkDetailsCard work={work} />}
+      <ActionsBtn>
+        <div className="btn-back">
+          <Link to={"/work"}>
+            <ButtonLayout name="Voltar"></ButtonLayout>
+          </Link>
+        </div>
+      </ActionsBtn>
+    </>
+  );
 }
 
 export default WorkDetails;

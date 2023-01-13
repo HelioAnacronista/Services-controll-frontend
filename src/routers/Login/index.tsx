@@ -50,29 +50,8 @@ function Login() {
         <CardFrom>
           <span className="title">BEM VINDO AO CONTROLE DE SERVIÇO</span>
           <div className="icon-login">
-            <div className="semicircle">
-              <div>
-                <div>
-                  <div>
-                    <div>
-                      <div>
-                        <div>
-                          <div>
-                            <div>
-                              <div>
-                                <div>
-                                  <div></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+            
           </div>
           <form onSubmit={handleSubmit}>
             <div className="group">

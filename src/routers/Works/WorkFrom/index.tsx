@@ -1,4 +1,4 @@
-import { ActionsBtn } from "./style";
+import { ActionsBtn, ContentFrom, Container } from "./style";
 
 import React from "react";
 import { useEffect, useState } from "react";
@@ -66,7 +66,7 @@ function WorkFrom() {
       id: "name",
       name: "name",
       type: "text",
-      placeholder: "Nome",
+      placeholder: "Digite o nome do serviço...",
     },
     status: {
       value: findStatus(),
@@ -87,7 +87,7 @@ function WorkFrom() {
       id: "valor",
       name: "valor",
       type: "number",
-      placeholder: "Valor do serviço",
+      placeholder: "Digite o valor do serviço...",
     },
     category: {
       value: [],
@@ -99,7 +99,7 @@ function WorkFrom() {
       value: [],
       id: "client",
       name: "client",
-      placeholder: "Cliente",
+      placeholder: "Selecione o cliente",
     },
   });
 
@@ -165,18 +165,17 @@ function WorkFrom() {
 
   return (
     <>
-      <div className="mt-30 card-create title-details">
+    <Container>
+      <div className="title">
         <h1>
-          {" "}
-          <span>Workspace de Serviços</span>{" "}
+          <span>Workspace de Serviços</span>
         </h1>
       </div>
-      <div className="container div-c"></div>
 
-      <div className="details-container">
-        <div className="details-card-work style-card-details">
+      <ContentFrom>
+        <div className="card-from">
           <form onSubmit={handleSubmit}>
-            <div className="text-top-category">
+            <div className="input-from">
               <div>
                 <h2>Nome: </h2>
               </div>
@@ -185,12 +184,22 @@ function WorkFrom() {
                 className="input-c-c"
                 onChange={handleInputChange}
               />
-              <div className="divide-text"></div>
             </div>
 
-            <div className="text-top-category">
+            <div className="input-from">
               <div>
-                <h2>status: </h2>
+                <h2>Valor: </h2>
+              </div>
+              <FromInput
+                {...formData.valor}
+                className="input-c-c"
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="input-from">
+              <div>
+                <h2>Status: </h2>
               </div>
               <Select
                 options={optionsStatus}
@@ -211,23 +220,11 @@ function WorkFrom() {
                 className="basic-single"
                 classNamePrefix="Selecione um Status"
                 name="color"
+                placeholder='Selecione o status do serviço'
               />
-              <div className="divide-text"></div>
             </div>
 
-            <div className="text-top-category">
-              <div>
-                <h2>Valor: </h2>
-              </div>
-              <FromInput
-                {...formData.valor}
-                className="input-c-c"
-                onChange={handleInputChange}
-              />
-              <div className="divide-text"></div>
-            </div>
-
-            <div className="my-20">
+            <div className="input-from">
               <FromSelect
                 options={category}
                 {...formData.category}
@@ -244,7 +241,7 @@ function WorkFrom() {
                 getOptionValue={(obj: any) => String(obj.id)}
               />
             </div>
-            <div>
+            <div className="input-from">
               <FromSelect
                 options={client}
                 {...formData.client}
@@ -275,7 +272,8 @@ function WorkFrom() {
             </ActionsBtn>
           </form>
         </div>
-      </div>
+      </ContentFrom>
+      </Container>
     </>
   );
 }

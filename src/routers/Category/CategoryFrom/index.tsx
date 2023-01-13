@@ -1,4 +1,4 @@
-import { ActionsBtn } from "./style";
+import { ActionsBtn, Container, ContentFrom } from "./style";
 
 
 import { useEffect, useState } from "react";
@@ -74,16 +74,18 @@ function CategoryFrom() {
 
   return (
     <>
-      <div className="mt-30 title-details">
+    <Container>
+      <div className="title">
         <h1>
-          {" "}
-          <span>Workspace de categoria</span>{" "}
+          <span>Workspace de categoria</span>
         </h1>
       </div>
-      <div className="container div-c">
-        <div className="details-card-category style-card-details">
+
+
+      <ContentFrom>
+        <div className="card-from">
           <form onSubmit={handleSubmit}>
-            <div className="text-top-category">
+            <div>
               <div>
                 <h1>Nome: </h1>
               </div>
@@ -92,9 +94,8 @@ function CategoryFrom() {
                 className="input-c-c"
                 onChange={handleInputChange}
               />
-              <div className="divide-text"></div>
             </div>
-            <div className="text-top-category txt-area-dsc">
+            <div>
               <div>
                 <h1>Descrição:</h1>
               </div>
@@ -118,7 +119,8 @@ function CategoryFrom() {
             </ActionsBtn>
           </form>
         </div>
-      </div>
+      </ContentFrom>
+      </Container>
     </>
   );
 }

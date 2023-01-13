@@ -1,5 +1,4 @@
-import { BsTypeH1 } from 'react-icons/bs';
-import './style.scss'
+import { ActionsBtn, Container, ContentFrom } from './style'
 import { WorkDTO } from '../../../models/work';
 
 type Props = {
@@ -35,57 +34,58 @@ function WorkDetailsCard({ work }: Props) {
 
    return (
       <>
-         <div className='mt-30 title-details'>
+      <Container>
+         <div className='title'>
             <h1> <span>Detalhes do serviço:</span> {work.name}</h1>
          </div>
-         <div className='container'>
-            <div className='details-container'>
+         <ContentFrom>
+            <div className='card-from'>
                <div className='details-card-work style-card-details'>
                   <div>
                      <h1> <span>Nome do serviço:</span> {work.name}</h1>
 
-                     <div className="divide-text"></div>
                   </div>
                   <div>
                      <h1 style={{ color: retornaStatus(work.status).color }}> 
                      <span>Status: </span> {retornaStatus(Number(work.status)).name}</h1>
 
-                     <div className="divide-text"></div>
+                     
                   </div>
                   <div>
                      <h1> <span>Valor: </span> R${work.valor?.toFixed(2)}</h1>
 
-                     <div className="divide-text"></div>
+                     
                   </div>
                </div>
 
                <div className='details-card-cliet style-card-details'>
                   <div>
                      <h1> <span>Nome do cliente: </span> {work.client.name}</h1>
-                     <div className="divide-text"></div>
+                     
                   </div>
                   <div>
                      <h1><span>Telefone: </span> {work.client.phone}</h1>
-                     <div className="divide-text"></div>
+                     
                   </div>
                   <div>
                      <h1> <span>Endereço: </span> {work.client.address}</h1>
-                     <div className="divide-text"></div>
+                     
                   </div>
                </div>
 
                <div className='details-card-category style-card-details'>
                   <div>
                      <h1> <span>Nome da categoria</span> {work.category.name}</h1>
-                     <div className="divide-text"></div>
+                     
                   </div>
                   <div>
                      <h1> <span>descriçao da categoria: </span> {work.category.description}</h1>
-                     <div className="divide-text"></div>
+                     
                   </div>
                </div>
             </div>
-         </div>
+         </ContentFrom>
+         </Container>
       </>
    );
 }

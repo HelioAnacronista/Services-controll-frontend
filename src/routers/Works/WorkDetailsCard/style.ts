@@ -11,13 +11,6 @@ export const Container = styled.div`
     padding: 0.25rem;
   }
 
-  textarea {
-    padding: 0.25rem;
-    opacity: 0.8;
-    font-size: 18px;
-    width: 100%;
-  }
-
   .title {
     display: flex;
     align-items: center;
@@ -41,6 +34,19 @@ export const ContentFrom = styled.div`
     padding: 1rem;
     margin: 0 20px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  h1 {
+   font-weight 400;
+   margin: 0.50rem 0;
+   background-color: #f7f7f7;
+   border-radius: 0.25rem;
+   padding: 0.1rem;
+   span {
+      
+      font-weight: 900;
+      color: ##141414;
+   }
   }
 `;
 

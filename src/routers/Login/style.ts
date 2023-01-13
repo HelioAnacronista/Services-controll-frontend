@@ -42,6 +42,8 @@ export const CardFrom = styled.div`
 `;
 
 export const Container = styled.div`
+  background-color: #333;
+
   .container-login {
     padding: 50px;
   }
@@ -150,7 +152,7 @@ export const Container = styled.div`
     padding: 10px 10px 10px 5px;
     display: block;
     border: none;
-    border-bottom: 1px solid var(--yellow);
+    border-bottom: 1px solid var(--blue);
     background: transparent;
     width: 100%;
   }
@@ -176,7 +178,7 @@ export const Container = styled.div`
   .input:valid ~ label {
     top: -20px;
     font-size: 14px;
-    color: var(--yellow);
+    color: var(--blue);
   }
 
   .bar {
@@ -192,7 +194,7 @@ export const Container = styled.div`
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: var(--yellow);
+    background: var(--blue);
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
