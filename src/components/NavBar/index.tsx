@@ -2,22 +2,68 @@
 
 import { MdDesignServices, MdPeopleAlt, MdCategory, MdHome } from 'react-icons/md'
 
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, useProSidebar, MenuItemStyles, menuClasses } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import HeaderSticky from '../HeaderSticky';
 
 
+const themes = {
+  light: {
+    sidebar: {
+      backgroundColor: '#fff',
+      color: '#607489',
+    },
+    menu: {
+      menuContent: '#fbfcfd',
+      icon: '#7380ec',
+      hover: {
+        backgroundColor: '#e6f2fd',
+        color: '#333333',
+      },
+      active: {
+        backgroundColor: '#13395e',
+        color: '#b6c8d9',
+      },
+      disabled: {
+        color: '#3e5e7e',
+      },
+    },
+  },
+};
 
+const menuItemStyles: MenuItemStyles = {
+   root: {
+     fontSize: '20px',
+     fontWeight: 400,
+   },
+   icon: {
+     color: themes.light.menu.icon
+   },
+   SubMenuExpandIcon: {
+     color:  themes.light.menu.icon
+   },
+   label: ({ open }) => ({
+     fontWeight: open ? 600 : undefined,
+   }),
+ };
 
 function NavBar() {
    const { toggleSidebar } = useProSidebar();
 
+
+   
    return (
       <>
          <div className='header-main'>
-            <Sidebar breakPoint="always" className='side-bar-menu '>
-               <Menu>
-                  <Link to={'/'}><MenuItem icon={<MdHome></MdHome>}>Inicio
+            <Sidebar 
+
+            backgroundColor='#fff'
+            color='#333'
+            breakPoint="always">
+               <Menu menuItemStyles={menuItemStyles}>
+                  <Link to={'/'}><MenuItem 
+                  
+                  icon={<MdHome></MdHome>}>Inicio
                   </MenuItem></Link>
                   <Link to={'/category'}><MenuItem icon={<MdCategory></MdCategory>}>Categoria
                   </MenuItem></Link>
