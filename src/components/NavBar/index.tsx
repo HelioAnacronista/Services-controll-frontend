@@ -59,7 +59,9 @@ function NavBar() {
 
             backgroundColor='#fff'
             color='#333'
+
             breakPoint="always">
+
                <Menu menuItemStyles={menuItemStyles}>
                   <Link to={'/'}><MenuItem 
                   
