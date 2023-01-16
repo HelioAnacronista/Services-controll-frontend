@@ -16,12 +16,12 @@ import { ContextSearch } from "./utils/context-search";
 
 import { Container } from "./styles/global";
 
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { history } from './utils/history';
-import { PrivateRoute } from './components/PrivateRoute';
-import { AccessTokenPayloadDTO } from './models/auth';
-import { ContextToken } from './utils/context-token';
-import * as authService from './services/auth-services'
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { history } from "./utils/history";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { AccessTokenPayloadDTO } from "./models/auth";
+import { ContextToken } from "./utils/context-token";
+import * as authService from "./services/auth-services";
 
 function App() {
   const [contextSearch, setContextSearch] = useState<any>();
@@ -42,25 +42,30 @@ function App() {
               <Route path="" element={<Home></Home>}>
                 <Route index element={<Dashboard />} />
 
-                <Route
-                  path="category"
-                  element={<Category params={contextSearch} />}
-                />
-                <Route path="category/:categoryId" element={<CategoryFrom />} />
+                <Route path="category" element={<Category params={contextSearch} />} />
 
-                <Route
-                  path="client"
-                  element={<Client params={contextSearch} />}
-                />
-                <Route path="client/:clientId" element={<ClientFrom />} />
+                <Route path="client" element={<Client params={contextSearch} />} />
 
-                <Route path="work" element={
-                  <PrivateRoute roles={['ROLE_ADMIN']} >
-                      <Work params={contextSearch} />
-                  </PrivateRoute>
-                } />
-                <Route path="work/:workId" element={<WorkFrom />} />
+                <Route path="work" element={<Work params={contextSearch} />} />
                 <Route path="work-details/:workId" element={<WorkDetails />} />
+                
+                <Route path="client/:clientId" element={
+                      <PrivateRoute roles={['ROLE_ADMIN']} >
+                <ClientFrom />
+                </PrivateRoute>
+                } />
+
+                <Route path="category/:categoryId" element={
+                  <PrivateRoute roles={['ROLE_ADMIN']} >
+                <CategoryFrom />
+                </PrivateRoute>
+                } />
+                <Route path="work/:workId" element={
+                  <PrivateRoute roles={['ROLE_ADMIN']} >
+                <WorkFrom />
+                </PrivateRoute>
+                } />
+
               </Route>
             </Routes>
           </HistoryRouter>

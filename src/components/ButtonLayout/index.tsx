@@ -11,7 +11,7 @@ function ButtonLayout({ name, img }: Props): JSX.Element {
    return (
 
       <ButtonStyleLayout>
-         <h1>{name}</h1>
+         <h4>{name}</h4>
          <div>
             {img}
          </div>
