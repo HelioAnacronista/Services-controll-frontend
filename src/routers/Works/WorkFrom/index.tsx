@@ -167,9 +167,9 @@ function WorkFrom() {
     <>
     <Container>
       <div className="title">
-        <h1>
+        <h3>
           <span>Workspace de Serviços</span>
-        </h1>
+        </h3>
       </div>
 
       <ContentFrom>
@@ -177,7 +177,7 @@ function WorkFrom() {
           <form onSubmit={handleSubmit}>
             <div className="input-from">
               <div>
-                <h2>Nome: </h2>
+                <h3>Nome: </h3>
               </div>
               <FromInput
                 {...formData.name}
@@ -188,7 +188,7 @@ function WorkFrom() {
 
             <div className="input-from">
               <div>
-                <h2>Valor: </h2>
+                <h3>Valor: </h3>
               </div>
               <FromInput
                 {...formData.valor}
@@ -199,7 +199,7 @@ function WorkFrom() {
 
             <div className="input-from">
               <div>
-                <h2>Status: </h2>
+                <h3>Status: </h3>
               </div>
               <Select
                 options={optionsStatus}

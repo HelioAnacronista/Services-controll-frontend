@@ -76,9 +76,9 @@ function CategoryFrom() {
     <>
     <Container>
       <div className="title">
-        <h1>
-          <span>Workspace de categoria</span>
-        </h1>
+        <h3>
+        Workspace de categoria
+        </h3>
       </div>
 
 
@@ -87,7 +87,7 @@ function CategoryFrom() {
           <form onSubmit={handleSubmit}>
             <div>
               <div>
-                <h1>Nome: </h1>
+                <h3>Nome: </h3>
               </div>
               <FromInput
                 {...formData.name}
@@ -97,7 +97,7 @@ function CategoryFrom() {
             </div>
             <div>
               <div>
-                <h1>Descrição:</h1>
+                <h3>Descrição:</h3>
               </div>
               <FromTextArea
                 {...formData.description}

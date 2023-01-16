@@ -78,14 +78,14 @@ function ClientFrom() {
     <>
       <Container>
         <div className="title">
-          <h1>Workspace Cliente</h1>
+          <h3>Workspace Cliente</h3>
         </div>
         <ContentFrom>
           <div className="card-from">
             <form onSubmit={handleSubmit}>
               <div className="text-top-category">
                 <div>
-                  <h1>Nome: </h1>
+                  <h3>Nome: </h3>
                 </div>
                 <FromInput
                   {...formData.name}
@@ -96,7 +96,7 @@ function ClientFrom() {
               </div>
               <div className="text-top-category txt-area-dsc">
                 <div>
-                  <h1>Telefone:</h1>
+                  <h3>Telefone:</h3>
                 </div>
                 <FromInput
                   {...formData.phone}
@@ -107,7 +107,7 @@ function ClientFrom() {
               </div>
               <div className="text-top-category txt-area-dsc">
                 <div>
-                  <h1>Endereço:</h1>
+                  <h3>Endereço:</h3>
                 </div>
                 <FromInput
                   {...formData.address}

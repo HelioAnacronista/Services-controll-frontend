@@ -50,7 +50,7 @@ function CardSummaryDashboard({ dateCard }: Props) {
             <div>{dateCard.operation}</div>
 
             <div>
-              <h1>R${dateCard.value.toFixed(2)}</h1>
+              <h4>R${dateCard.value.toFixed(2)}</h4>
             </div>
           </div>
 

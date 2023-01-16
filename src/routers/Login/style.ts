@@ -24,7 +24,6 @@ width: auto;
 `;
 
 export const ContainerLogin = styled.div`
-  
   width: 40%;
 
 
