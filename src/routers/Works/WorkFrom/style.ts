@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  input::placeholder {
+    padding: 0.25rem;
+    opacity: 0.8;
+    font-size: 18px;
+  }
 
- input::placeholder {
-   padding: 0.25rem;
-   opacity: 0.8;
-   font-size: 18px;
- }
+  input {
+    padding: 0.25rem;
+    background: #f8f8f8;
+  }
 
- input {
-   padding: 0.25rem;
- }
-
-.title {
+  .title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,18 +20,14 @@ export const Container = styled.div`
   }
 
   .input-from {
-   margin: 20px 0;
+    margin: 20px 0;
   }
-
-
 `;
 
 export const ContentFrom = styled.div`
-
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-
 
   .card-from {
     border: 1px solid #848bc82e;

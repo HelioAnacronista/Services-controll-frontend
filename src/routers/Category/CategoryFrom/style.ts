@@ -8,10 +8,12 @@ export const Container = styled.div`
   }
 
   input {
+    background: #f8f8f8;
     padding: 0.25rem;
   }
 
   textarea {
+    background: #f8f8f8;
     padding: 0.25rem;
     opacity: 0.8;
     font-size: 18px;
