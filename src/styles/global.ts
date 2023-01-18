@@ -145,8 +145,6 @@ img {
 
   tr:hover {
     background: #f8f8f8;
-    
-    font-weight: 600;
   }
 
   ${media.mobile} {
