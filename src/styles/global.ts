@@ -50,6 +50,14 @@ button {
   cursor: pointer;
   outline: inherit;
 }
+.btn-delete {
+    color: var(--red);
+  }
+
+  .btn-edit {
+    color: var(--yellow);
+  }
+
 
 /* Remover estilos de imagens padrão */
 img {

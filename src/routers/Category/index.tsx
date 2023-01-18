@@ -1,6 +1,5 @@
-import { Container, ContentList } from "./style";
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
-import { MdDashboardCustomize } from "react-icons/md";
+import { Container, ContentList } from "./style";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +10,7 @@ import TableRowCategory from "./TableRowCategory";
 
 import { CategoryDTO } from "../../models/category";
 import * as categoryServices from "../../services/category-services";
+import TableRowCategoryMobile from "./TableRowCategoryMobile";
 
 type QueryParams = {
   page: number;
@@ -60,6 +60,16 @@ function Category({ params }: PropsParent) {
     navigate("/category/create");
   }
 
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <main>
       {loading ? (
@@ -80,8 +90,14 @@ function Category({ params }: PropsParent) {
                   <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
-                    <th>Editar</th>
-                    <th>Deletar</th>
+                    {screenWidth > 1000 ? (
+                      <>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </tr>
                 </thead>
 
@@ -90,27 +106,24 @@ function Category({ params }: PropsParent) {
                     ? categoryList
                         .filter((x) => x.name.includes(params))
                         .map((x) => (
-                          <TableRowCategory
-                            key={x.id}
-                            category={x}
-                          ></TableRowCategory>
+                          <TableRowCategory key={x.id} category={x} />
                         ))
-                    : categoryList.map((obj) => (
-                        <TableRowCategory
-                          key={obj.id}
-                          category={obj}
-                        ></TableRowCategory>
-                      ))}
+                    : categoryList.map((obj) =>
+                        screenWidth > 1000 ? (
+                          <TableRowCategory key={obj.id} category={obj} />
+                        ) : (
+                          <TableRowCategoryMobile key={obj.id} category={obj} />
+                        )
+                      )}
                 </tbody>
               </table>
-             
             </ContentList>
             <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
-                <ButtonLayout
-                  name="MAIS"
-                  img={<BsFillArrowRightSquareFill />}
-                ></ButtonLayout>
-              </div>
+              <ButtonLayout
+                name="MAIS"
+                img={<BsFillArrowRightSquareFill />}
+              ></ButtonLayout>
+            </div>
           </Container>
         </>
       )}
