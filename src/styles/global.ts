@@ -15,6 +15,7 @@ export const Container = createGlobalStyle`
   --blue:#8691ed;
   --yellow:#ffbb5a;
   --white:#FFF;
+  --subcolor: #f8f8f8;
 }
 
 /* reset body e css */
@@ -143,6 +144,9 @@ img {
     padding: 0.25rem;
   }
 
+  tr {
+    transition: 0.3s;
+  }
   tr:hover {
     background: #f8f8f8;
   }
