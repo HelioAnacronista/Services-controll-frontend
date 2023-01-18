@@ -22,7 +22,7 @@ export function findPageRequest(page: number, name : string, size = 10 ,sort = "
 }
 
 export function findById(id: number) {
-   return axios.get(`${BASE_URL}category/${id}`);
+   return axios.get(`${BASE_URL}/category/${id}`);
 }
 
 export function deleteById(id: number) {
