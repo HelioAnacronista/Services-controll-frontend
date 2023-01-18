@@ -5,6 +5,7 @@ import { MdDesignServices, MdPeopleAlt, MdCategory, MdHome } from 'react-icons/m
 import { Sidebar, Menu, MenuItem, useProSidebar, MenuItemStyles, menuClasses } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import HeaderSticky from '../HeaderSticky';
+import { Container } from './style';
 
 
 const themes = {
@@ -54,6 +55,7 @@ function NavBar() {
    
    return (
       <>
+      <Container>
          <div className='header-main'>
             <Sidebar 
 
@@ -79,6 +81,7 @@ function NavBar() {
                <HeaderSticky></HeaderSticky>
             </main>
          </div>
+         </Container>
       </>
    );
 }

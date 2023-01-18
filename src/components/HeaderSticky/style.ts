@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const media = {
   mobile: `@media(min-width: 300px) and (max-width:764px)`,
@@ -7,15 +7,10 @@ const media = {
 };
 
 export const Header = styled.div`
-  background-color: rgb(255, 255, 255);
-  padding: 0.5rem;
-  box-shadow: 0px 10px 6rem #bebebe, -15px -15px 30px #ffffff;
-  transition: all 10ms ease;
-
   ${media.mobile} {
     width: 100%;
   }
-`
+`;
 
 export const Nav = styled.nav`
   width: 100%;
@@ -50,15 +45,12 @@ export const Nav = styled.nav`
   }
 
   ${media.mobile} {
-    text-align: center;
+
     display: block;
-    margin: 0 auto;
-    width: 55%;
+    margin-left: 7.5rem;
 
     .btn-menu-style {
-      text-align: center;
-      width: 100%;
-      padding: 10px;
+      width: 230px;
     }
   }
-`
+`;
