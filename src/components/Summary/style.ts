@@ -8,9 +8,10 @@ const media = {
 
 export const Container = styled.div`
   display: flex;
-
+  .mx-20 {
+    margin: 0 20px;
+  }
   ${media.mobile} {
     display: block;
   }
 `;
-
