@@ -5,12 +5,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import ButtonLayout from "../../../components/ButtonLayout";
 import FromInput from "../../../components/FromInput";
-import FromTextArea from "../../../components/FromTextArea";
 
-import * as categoryServices from "../../../services/category-services";
+import * as expenseServices from "../../../services/expense-services";
 import * as froms from "../../../utils/from";
 
-function CategoryFrom() {
+function ExpenseFrom() {
   const navigate = useNavigate();
 
   const buttonPropsSave = {
@@ -20,7 +19,8 @@ function CategoryFrom() {
 
   const params = useParams();
 
-  const isEditing = params.categoryId !== "create";
+  const isEditing = params.expenseId !== "create";
+  console.log(expenseServices.findById(1));
 
   const [formData, setFormData] = useState<any>({
     name: {
@@ -28,21 +28,22 @@ function CategoryFrom() {
       id: "name",
       name: "name",
       type: "text",
-      placeholder: "Escreva o nome da categoria",
+      placeholder: "Escreva o nome da dispesa",
     },
-    description: {
+    valor: {
       value: "",
-      id: "description",
-      name: "description",
-      type: "text",
-      placeholder: "Escreva uma descrição simples",
+      id: "valor",
+      name: "valor",
+      type: "number",
+      placeholder: "Digite o valor do serviço...",
     },
   });
 
   //Atualizar os valores do fromData usando a função fromsUpdate
   useEffect(() => {
     if (isEditing) {
-      categoryServices.findById(Number(params.categoryId)).then((res) => {
+      expenseServices.findById(Number(params.expenseId)).then((res) => {
+        console.log(res);
         setFormData(froms.updateAll(formData, res.data));
       });
     }
@@ -57,15 +58,15 @@ function CategoryFrom() {
 
     const requstBody = froms.toValues(formData);
     if (isEditing) {
-      requstBody.id = params.categoryId;
+      requstBody.id = params.expenseId;
     }
 
     const request = isEditing
-      ? categoryServices.updateRequest(requstBody)
-      : categoryServices.insertRequest(requstBody);
+      ? expenseServices.updateRequest(requstBody)
+      : expenseServices.insertRequest(requstBody);
 
     request.then(() => {
-      navigate("/category");
+      navigate("/expense");
     });
   }
 
@@ -73,7 +74,7 @@ function CategoryFrom() {
     <>
       <Container>
         <div className="title">
-          <h3>Workspace de categoria</h3>
+          <h3>Workspace de dispesa</h3>
         </div>
 
         <ContentFrom>
@@ -89,16 +90,18 @@ function CategoryFrom() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div>
+
+              <div className="input-from">
                 <div>
-                  <h3>Descrição:</h3>
+                  <h3>Valor: </h3>
                 </div>
-                <FromTextArea
-                  {...formData.description}
-                  className="input-c-c-txa"
+                <FromInput
+                  {...formData.valor}
+                  className="input-c-c"
                   onChange={handleInputChange}
                 />
               </div>
+
               <ActionsBtn>
                 <div className="save">
                   <ButtonLayout {...buttonPropsSave}>
@@ -106,7 +109,7 @@ function CategoryFrom() {
                   </ButtonLayout>
                 </div>
                 <div className="cancel">
-                  <Link to={"/category"}>
+                  <Link to={"/expense"}>
                     <ButtonLayout name="CANCELAR"></ButtonLayout>
                   </Link>
                 </div>
@@ -119,4 +122,4 @@ function CategoryFrom() {
   );
 }
 
-export default CategoryFrom;
+export default ExpenseFrom;
