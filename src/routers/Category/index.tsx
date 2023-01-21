@@ -90,14 +90,14 @@ function Category({ params }: PropsParent) {
                   <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
-                    {screenWidth > 1000 ? (
+                    {
+                    screenWidth > 1000 ? (
                       <>
                         <th>Editar</th>
                         <th>Deletar</th>
                       </>
-                    ) : (
-                      <></>
-                    )}
+                    ) : null
+                    }
                   </tr>
                 </thead>
 

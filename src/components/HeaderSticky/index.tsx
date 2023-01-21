@@ -3,6 +3,7 @@ import { useProSidebar } from "react-pro-sidebar";
 import SearchBar from "../SearchBar";
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserDTO } from "../../models/user";
 import * as userService from "../../services/user-services";
 import { ContentProfile, Header, Profile, SideBar } from "./style";
@@ -10,7 +11,6 @@ import { ContentProfile, Header, Profile, SideBar } from "./style";
 function HeaderSticky() {
   const { toggleSidebar } = useProSidebar();
 
-  //dar get no LocalStorage no user que foi salvo
   const [user, setUser] = useState<UserDTO>();
 
   useEffect(() => {
@@ -21,6 +21,8 @@ function HeaderSticky() {
   }, []);
 
   console.log(user);
+
+  const navigate = useNavigate();
 
   return (
     <Header>
@@ -38,7 +40,11 @@ function HeaderSticky() {
       <ContentProfile>
         <SearchBar></SearchBar>
         <Profile>
-          <button>
+          <button
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
             {user?.name}
             <AiOutlineCaretDown></AiOutlineCaretDown>
           </button>

@@ -14,6 +14,8 @@ import Expense from "./routers/Expense";
 import ExpenseFrom from "./routers/Expense/ExpenseFrom";
 import Home from "./routers/Home";
 import Login from "./routers/Login";
+import Profile from "./routers/Profile";
+import ProfileFrom from "./routers/Profile/ProfileFrom";
 import Work from "./routers/Works";
 import WorkDetails from "./routers/Works/WorkDetails";
 import WorkFrom from "./routers/Works/WorkFrom";
@@ -44,6 +46,16 @@ function App() {
                 <Route path="/login" element={<Login></Login>}></Route>
                 <Route path="" element={<Home></Home>}>
                   <Route index element={<Dashboard />} />
+
+                  <Route path="profile" element={<Profile />} />
+                  <Route
+                    path="profile/:userId"
+                    element={
+                      <PrivateRoute roles={["ROLE_ADMIN"]}>
+                        <ProfileFrom />
+                      </PrivateRoute>
+                    }
+                  />
 
                   <Route
                     path="category"

@@ -7,8 +7,6 @@ const media = {
 };
 
 export const Profile = styled.div`
-  margin: 0 0 0 1rem;
-
   button {
     font-size: 22px;
     color: #333;
