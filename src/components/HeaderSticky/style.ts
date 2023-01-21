@@ -8,6 +8,11 @@ const media = {
 
 export const Profile = styled.div`
   margin: 0 0 0 1rem;
+
+  button {
+    font-size: 22px;
+    color: #333;
+  }
 `;
 
 export const Header = styled.div`
@@ -17,7 +22,16 @@ export const Header = styled.div`
   margin: 0 auto;
 
   ${media.mobile} {
-    width: 100%;
+    display: block;
+    max-width: none;
+    margin: none;
+
+    .btn-menu-style {
+      width: 230px;
+    }
+
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -28,10 +42,16 @@ export const ContentProfile = styled.div`
 
   ${media.mobile} {
     display: block;
-    margin-left: 7.5rem;
+    margin-left: 6.5rem;
 
     .btn-menu-style {
       width: 230px;
+    }
+
+    button {
+      margin-top: 0.5rem;
+      margin-left: 2.25rem;
+      text-align: center;
     }
   }
 `;
@@ -69,7 +89,7 @@ export const SideBar = styled.nav`
 
   ${media.mobile} {
     display: block;
-    margin-left: 7.5rem;
+    margin-left: 6rem;
 
     .btn-menu-style {
       width: 230px;

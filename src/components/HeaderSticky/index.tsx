@@ -1,5 +1,5 @@
+import { AiOutlineCaretDown } from "react-icons/ai";
 import { useProSidebar } from "react-pro-sidebar";
-
 import SearchBar from "../SearchBar";
 
 import { useEffect, useState } from "react";
@@ -38,7 +38,10 @@ function HeaderSticky() {
       <ContentProfile>
         <SearchBar></SearchBar>
         <Profile>
-          <button>{user?.name}</button>
+          <button>
+            {user?.name}
+            <AiOutlineCaretDown></AiOutlineCaretDown>
+          </button>
         </Profile>
       </ContentProfile>
     </Header>
