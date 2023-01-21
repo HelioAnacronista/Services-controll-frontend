@@ -2,10 +2,14 @@ import { useProSidebar } from "react-pro-sidebar";
 
 import SearchBar from "../SearchBar";
 
+import { useContext } from "react";
+import { ContextUser } from "../../utils/context-user";
 import { ContentProfile, Header, Profile, SideBar } from "./style";
 
 function HeaderSticky() {
   const { toggleSidebar } = useProSidebar();
+
+  //dar get no LocalStorage no user que foi salvo
 
   return (
     <Header>
@@ -22,7 +26,9 @@ function HeaderSticky() {
 
       <ContentProfile>
         <SearchBar></SearchBar>
-        <Profile>Avatar</Profile>
+        <Profile>
+          <button>avatar</button>
+        </Profile>
       </ContentProfile>
     </Header>
   );

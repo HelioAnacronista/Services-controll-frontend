@@ -1,25 +1,26 @@
-import { CardFrom, ContainerLogin, ContentLogOr, Container } from "./style";
+import { CardFrom, Container, ContainerLogin, ContentLogOr } from "./style";
 
 import { useContext, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { ContextToken } from "../../utils/context-token";
 import * as authServices from "../../services/auth-services";
+import { ContextToken } from "../../utils/context-token";
 
-import { CredentialsDTO } from "../../models/auth";
 import logoImg from "../../assets/logo-color.svg";
 import BackgroudGif from "../../components/BackgroudGif";
+import { CredentialsDTO } from "../../models/auth";
+
+import * as userServices from "../../services/user-services";
 
 function Login() {
-
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -56,6 +57,15 @@ function Login() {
 
     //Atualizar o FromData
     setFromData({ ...fromData, [name]: value });
+  }
+
+  function getUser() {
+    useEffect(() => {
+      userServices.getMe().then((res) => {
+        localStorage.setItem("userKey", JSON.stringify(res));
+        console.log("Dados salvos no localStorage");
+      });
+    }, []);
   }
 
   return (
@@ -127,15 +137,7 @@ function Login() {
             </div>
           </ContentLogOr>
         </ContainerLogin>
-        {
-          screenWidth > 1000 
-          ? 
-          <BackgroudGif />
-          : 
-          null
-        }
-
-
+        {screenWidth > 1000 ? <BackgroudGif /> : null}
       </Container>
     </>
   );
