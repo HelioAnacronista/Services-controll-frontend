@@ -6,29 +6,52 @@ const media = {
   desktop: `@media(min-width: 1280px)`,
 };
 
+export const Profile = styled.div`
+  margin: 0 0 0 1rem;
+`;
+
 export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+
   ${media.mobile} {
     width: 100%;
   }
 `;
 
-export const Nav = styled.nav`
-  width: 100%;
+export const ContentProfile = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-left: auto;
+
+  ${media.mobile} {
+    display: block;
+    margin-left: 7.5rem;
+
+    .btn-menu-style {
+      width: 230px;
+    }
+  }
+`;
+
+export const SideBar = styled.nav`
+  display: flex;
+  align-items: center;
 
   .btn-menu-style {
-    display: flex;
+    padding: 0.5rem 0;
+    background-color: var(--blue);
+    color: var(--white);
+    text-align: center;
+    width: 200px;
     align-items: center;
     font-family: inherit;
     font-weight: 500;
     font-size: 16px;
-    padding: 0.7em 1.4em 0.7em 1.1em;
-    color: white;
-    background: #7380ec;
     border: none;
-    box-shadow: 0 0.7em 1.5em -0.5em #8d98fc(164, 79%, 37%, 0.596);
+    box-shadow: 0 0.7em 1.5em -0.5em #737fecb4 (164, 79%, 37%, 0.596);
     letter-spacing: 0.05em;
     border-radius: 20em;
   }
@@ -45,7 +68,6 @@ export const Nav = styled.nav`
   }
 
   ${media.mobile} {
-
     display: block;
     margin-left: 7.5rem;
 
