@@ -28,12 +28,11 @@ function ModalActions({
           className="dialog-box"
           onClick={(event) => event.stopPropagation()}
         >
-          <h3>{nome}</h3>
+          <h3 className="title">{nome}</h3>
           <div>
             <button
               className="btn-edit"
               onClick={() => {
-                console.log("handle clicke");
                 navigate(`${path.id}`);
               }}
             >
@@ -41,7 +40,10 @@ function ModalActions({
             </button>
             <DeleteButton></DeleteButton>
           </div>
-          <div className="mx-20" onClick={() => onDialogAnswer(false, idObj)}>
+          <div
+            className="btn-exit"
+            onClick={() => onDialogAnswer(false, idObj)}
+          >
             <button>SAIR</button>
           </div>
         </div>

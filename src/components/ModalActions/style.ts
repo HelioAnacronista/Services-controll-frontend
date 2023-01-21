@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  .title {
+    margin: 1rem 0;
+  }
+
+  .btn-exit {
+    margin-top: 0.5rem;
+  }
+
   position: fixed;
   /* para que o elemento fique no lugar mesmo se a página for rolada */
   top: 0;
@@ -15,7 +23,7 @@ export const Container = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     /* outras propriedades, como largura e altura */
-    padding: 2rem;
+    padding: 0.25rem 1rem 0.1rem 1rem;
     width: auto;
     height: auto;
     border-radius: 10px;
@@ -47,4 +55,3 @@ export const Container = styled.div`
     background-color: var(--subcolor);
   }
 `;
-
