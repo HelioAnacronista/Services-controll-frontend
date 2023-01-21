@@ -2,14 +2,25 @@ import { useProSidebar } from "react-pro-sidebar";
 
 import SearchBar from "../SearchBar";
 
-import { useContext } from "react";
-import { ContextUser } from "../../utils/context-user";
+import { useEffect, useState } from "react";
+import { UserDTO } from "../../models/user";
+import * as userService from "../../services/user-services";
 import { ContentProfile, Header, Profile, SideBar } from "./style";
 
 function HeaderSticky() {
   const { toggleSidebar } = useProSidebar();
 
   //dar get no LocalStorage no user que foi salvo
+  const [user, setUser] = useState<UserDTO>();
+
+  useEffect(() => {
+    userService.findMe().then((response) => {
+      setUser(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
+  console.log(user);
 
   return (
     <Header>
@@ -27,7 +38,7 @@ function HeaderSticky() {
       <ContentProfile>
         <SearchBar></SearchBar>
         <Profile>
-          <button>avatar</button>
+          <button>{user?.name}</button>
         </Profile>
       </ContentProfile>
     </Header>

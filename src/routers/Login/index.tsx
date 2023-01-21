@@ -59,15 +59,6 @@ function Login() {
     setFromData({ ...fromData, [name]: value });
   }
 
-  function getUser() {
-    useEffect(() => {
-      userServices.getMe().then((res) => {
-        localStorage.setItem("userKey", JSON.stringify(res));
-        console.log("Dados salvos no localStorage");
-      });
-    }, []);
-  }
-
   return (
     <>
       <Container className="container">

@@ -1,10 +1,11 @@
 import { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
 
-export function getMe() {
+export function findMe() {
+  
   const config: AxiosRequestConfig = {
-    method: "GET",
     url: "/users/me",
+    withCredentials: true,
   };
 
   return requestBackend(config);
