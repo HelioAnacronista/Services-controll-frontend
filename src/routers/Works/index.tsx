@@ -1,16 +1,14 @@
-import { Container, ContentList } from "./style";
-
 import { useEffect, useState } from "react";
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
-
-import LoadingPage from "../../components/LoadingPage/loading";
 import ButtonLayout from "../../components/ButtonLayout";
-import TableRowWorks from "./TableRowWorks";
-
+import LoadingPage from "../../components/LoadingPage/loading";
 import { WorkDTO } from "../../models/work";
 import * as workServices from "../../services/work-services";
+import { Container, ContentList } from "./style";
+import TableRowWorkMobile from "./TableRowWorkMobile";
+import TableRowWorks from "./TableRowWorks";
 
 type PropsParent = {
   params: string;
@@ -56,6 +54,15 @@ function Work({ params }: PropsParent) {
     navigate("/work/create");
   }
 
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <main>
       {loading ? (
@@ -70,40 +77,38 @@ function Work({ params }: PropsParent) {
               ></ButtonLayout>
             </div>
 
-            <ContentList>
-              <div className="table-border">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>Serviço</th>
-                      <th>Valor</th>
-                      <th>Status</th>
-                      <th>Editar</th>
-                      <th>Deletar</th>
-                      <th>Detalhes</th>
-                    </tr>
-                  </thead>
+            <ContentList className="container">
+              <table className="table-border">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Cliente</th>
+                    <th>Valor</th>
 
-                  <tbody>
-                    {params
-                      ? worksList
-                          .filter((x) => x.name.includes(params))
-                          .map((work) => (
-                            <TableRowWorks
-                              key={work.id}
-                              work={work}
-                            ></TableRowWorks>
-                          ))
-                      : worksList.map((work) => (
-                          <TableRowWorks
-                            key={work.id}
-                            work={work}
-                          ></TableRowWorks>
-                        ))}
-                  </tbody>
-                </table>
-              </div>
+                    {screenWidth > 1000 ? (
+                      <>
+                        <th>Status</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                      </>
+                    ) : null}
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {params
+                    ? worksList
+                        .filter((x) => x.name.includes(params))
+                        .map((x) => <TableRowWorks key={x.id} work={x} />)
+                    : worksList.map((obj) =>
+                        screenWidth > 1000 ? (
+                          <TableRowWorks key={obj.id} work={obj} />
+                        ) : (
+                          <TableRowWorkMobile key={obj.id} work={obj} />
+                        )
+                      )}
+                </tbody>
+              </table>
             </ContentList>
             <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
               <ButtonLayout

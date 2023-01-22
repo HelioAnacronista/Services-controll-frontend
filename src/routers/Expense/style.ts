@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .btn-create {
-    margin-left: 20px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     button {
       box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
     }

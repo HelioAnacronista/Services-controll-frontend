@@ -14,18 +14,19 @@ import LoadingPage from "../../components/LoadingPage/loading";
 import TableRowClient from "./TableRowClient";
 
 import * as clientServices from "../../services/client-services";
+import TableRowClientMobile from "./TableRowClientMobile";
+
+type QueryParams = {
+  page: number;
+  name: string;
+};
 
 type PropsParent = {
   params: string;
 };
 
-function Client({ params }: PropsParent) {
+function Category({ params }: PropsParent) {
   const navigate = useNavigate();
-
-  const buttonPropsSave = {
-    name: "Salvar",
-    img: "",
-  };
 
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -35,11 +36,11 @@ function Client({ params }: PropsParent) {
     }, 300);
   }, []);
 
-  const [clientList, setClientList] = useState<ClientDTO[]>([]);
+  const [categoryList, setCategoryList] = useState<ClientDTO[]>([]);
 
   const [isListPage, setisListPage] = useState(false);
 
-  const [queryParams, setQueryParams] = useState<any>({
+  const [queryParams, setQueryParams] = useState<QueryParams>({
     page: 0,
     name: "",
   });
@@ -50,80 +51,85 @@ function Client({ params }: PropsParent) {
       .findPageRequest(queryParams.page, queryParams.name)
       .then((response) => {
         const nextPage = response.data.content;
-        setClientList(clientList.concat(nextPage));
+        setCategoryList(categoryList.concat(nextPage));
         setisListPage(response.data.last);
       });
   }, [queryParams]);
-
   //Proxima pagina
   function handleNextPageClick() {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
   function handleNewClick() {
-    navigate("/client/create");
+    navigate("/category/create");
   }
+
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <>
-      <main>
-        {loading ? (
-          <LoadingPage></LoadingPage>
-        ) : (
-          <>
-            <Container className="container">
-              <div className="btn-create mt-b-40" onClick={handleNewClick}>
-                <ButtonLayout
-                  name="CRIAR"
-                  img={<BsFillArrowRightSquareFill />}
-                ></ButtonLayout>
-              </div>
+    <main>
+      {loading ? (
+        <LoadingPage></LoadingPage>
+      ) : (
+        <>
+          <Container className="container">
+          <div className="btn-create mt-b-40" onClick={handleNewClick}>
+              <ButtonLayout
+                name="CRIAR"
+                img={<BsFillArrowRightSquareFill />}
+              ></ButtonLayout>
+            </div>
 
-              <ContentList>
-                <table className="table-border">
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Endereço</th>
-                      <th>Telefone</th>
-                      <th>Editar</th>
-                      <th>Deletar</th>
-                    </tr>
-                  </thead>
+            <ContentList className="container">
+              <table className="table-border">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+                    {screenWidth > 1000 ? (
+                      <>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                      </>
+                    ) : null}
+                  </tr>
+                </thead>
 
-                  <tbody>
-                    {params
-                      ? clientList
-                          .filter((x) => x.name.includes(params))
-                          .map((x) => (
-                            <TableRowClient
-                              key={x.id}
-                              client={x}
-                            ></TableRowClient>
-                          ))
-                      : clientList.map((obj) => (
-                          <TableRowClient
-                            key={obj.id}
-                            client={obj}
-                          ></TableRowClient>
-                        ))}
-                  </tbody>
-                </table>
-              </ContentList>
-              <div
-                  className="btn-center mt-b-40"
-                  onClick={handleNextPageClick}
-                >
-                  <ButtonLayout
-                    name="MAIS"
-                    img={<BsFillArrowRightSquareFill />}
-                  ></ButtonLayout>
-                </div>
-            </Container>
-          </>
-        )}
-      </main>
-    </>
+                <tbody>
+                  {params
+                    ? categoryList
+                        .filter((x) => x.name.includes(params))
+                        .map((x) => <TableRowClient key={x.id} client={x} />)
+                    : categoryList.map((obj) =>
+                        screenWidth > 1000 ? (
+                          <TableRowClient key={obj.id} client={obj} />
+                        ) : (
+                          <TableRowClientMobile key={obj.id} client={obj} />
+                        )
+                      )}
+                </tbody>
+              </table>
+            </ContentList>
+            <div className="btn-center mt-b-40" onClick={handleNextPageClick}>
+              <ButtonLayout
+                name="MAIS"
+                img={<BsFillArrowRightSquareFill />}
+              ></ButtonLayout>
+            </div>
+          </Container>
+        </>
+      )}
+    </main>
   );
 }
 
-export default Client;
+export default Category;
