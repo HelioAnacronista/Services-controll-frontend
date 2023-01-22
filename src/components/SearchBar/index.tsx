@@ -22,7 +22,7 @@ function SearchBar() {
           <input
             onChange={handleChange}
             name="onSearch"
-            placeholder="Buscar por nome 🔎"
+            placeholder="   Buscar por nome 🔎"
             type="text"
           />
           <button type="submit" className="from-search-bar-btn"></button>
