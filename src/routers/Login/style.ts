@@ -1,14 +1,11 @@
 import styled from "styled-components";
+import { mediaquery } from "../../utils/mediaquery";
 
-const media = {
-  mobile: `@media(min-width: 300px) and (max-width:764px)`,
-  tablet: `@media(min-width: 768px) and (max-width: 1024px)`,
-  desktop: `@media(min-width: 1280px)`,
-};
+const media = mediaquery;
 
 export const Container = styled.div`
-display: flex;
-width: auto;
+  display: flex;
+  width: auto;
 
   .bg-gif {
     display: flex;
@@ -26,7 +23,6 @@ width: auto;
 export const ContainerLogin = styled.div`
   width: 40%;
 
-
   ${media.mobile} {
     width: 100%;
   }
@@ -43,7 +39,6 @@ export const ContainerLogin = styled.div`
   .subtitle {
     padding: 0 1rem;
   }
-
 
   .card-gif {
     display: flex;
