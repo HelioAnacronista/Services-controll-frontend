@@ -68,12 +68,19 @@ function CategoryFrom() {
       navigate("/category");
     });
   }
-
   return (
     <>
       <Container>
         <div className="title">
-          <h3>Workspace de categoria</h3>
+          {isEditing ? (
+            <>
+              <h3>{formData.name.value}</h3>
+            </>
+          ) : (
+            <>
+              <h3>Criar uma nova categoria</h3>
+            </>
+          )}
         </div>
 
         <ContentFrom>
