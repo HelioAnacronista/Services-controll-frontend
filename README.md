@@ -13,7 +13,8 @@
 O aplicativo services-Controll é uma ferramenta poderosa para gerenciamento de dados. Ele permite que você crie, leia, atualize e exclua registros de qualquer tipo de dado, além de ter uma funcionalidade de visualização de detalhes de serviço. Isso é útil para aqueles que precisam acompanhar o progresso de serviços em andamento ou verificar o histórico de serviços já concluídos.</p>
 
 <div align="center">
-<img  src="https://user-images.githubusercontent.com/104803451/212386912-683519ab-66b5-4217-9ec7-a2d55d618e41.gif" />
+
+<img  src="https://user-images.githubusercontent.com/104803451/213936257-e8bc2147-06c0-4adf-8049-0eae22f2ee93.gif" />
 </div>
 
 
@@ -21,7 +22,6 @@ O aplicativo services-Controll é uma ferramenta poderosa para gerenciamento de 
 ### Technologies
 
 <p display="inline-block">
-  <img width="48" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"/>
   <img width="48" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" alt="vs-logo"/>
 </p>
                                                                                                   
