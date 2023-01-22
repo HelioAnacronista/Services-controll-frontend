@@ -1,7 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
+  .btn-edit {
+    padding-top: 0.25rem;
+    border-radius: 0.25rem;
+    transition: 0.3s;
+  }
+  .btn-edit:hover {
+    background-color: var(--yellow);
+    color: var(--white);
+  }
 
   .card {
     margin-top: 2rem;

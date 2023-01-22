@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import profileImg from "../../assets/profile.png";
 import { UserDTO } from "../../models/user";
 import * as userService from "../../services/user-services";
 import { Container } from "./style";
 
+import { MdModeEditOutline } from "react-icons/md";
+
 function Profile() {
+  const navigate = useNavigate();
   const [user, setUser] = useState<UserDTO>();
 
   useEffect(() => {
@@ -20,9 +23,12 @@ function Profile() {
       <Container className="container">
         <div className="card">
           <div>
-            <Link to={`${user?.id}`}>
-              <button>editar</button>
-            </Link>
+            <button
+              onClick={() => navigate(`${user?.id}`)}
+              className="btn-edit"
+            >
+              <MdModeEditOutline size={34} />
+            </button>
           </div>
           <div className="img">
             <img src={profileImg} alt="" />
