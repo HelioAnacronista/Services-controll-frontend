@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { ContextSearch } from "../../utils/context-search";
+import { useContext } from 'react';
 
-import { Container, ContentInputSearch } from "./style";
+import { ContextSearch } from '../../utils/context-search';
+import { Container, ContentInputSearch } from './style';
 
 function SearchBar() {
   const { setContextSearch } = useContext(ContextSearch);

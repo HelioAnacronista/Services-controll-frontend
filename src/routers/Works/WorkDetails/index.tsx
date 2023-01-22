@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+
+import ButtonLayout from "../../../components/ButtonLayout";
+import { WorkDTO } from "../../../models/work";
 import * as workServices from "../../../services/work-services";
 import WorkDetailsCard from "../WorkDetailsCard";
-import { WorkDTO } from "../../../models/work";
-import { useState, useEffect } from "react";
-import ButtonLayout from "../../../components/ButtonLayout";
 import { ActionsBtn } from "./style";
 
 function WorkDetails() {

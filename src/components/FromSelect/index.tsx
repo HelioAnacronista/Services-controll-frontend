@@ -1,12 +1,8 @@
 import Select from "react-select";
 
 function FromSelect(props: any) {
+  const { ...selectProps } = props;
 
-   const { ...
-      selectProps } = props;
-
-   return (
-         <Select {...selectProps} />
-   );
+  return <Select {...selectProps} />;
 }
 export default FromSelect;

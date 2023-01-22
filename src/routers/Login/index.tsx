@@ -1,20 +1,22 @@
-import { CardFrom, Container, ContainerLogin, ContentLogOr } from "./style";
-
 import { useContext, useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
-import * as authServices from "../../services/auth-services";
-import { ContextToken } from "../../utils/context-token";
 
 import logoImg from "../../assets/logo-color.svg";
 import BackgroudGif from "../../components/BackgroudGif";
 import { CredentialsDTO } from "../../models/auth";
-
-import * as userServices from "../../services/user-services";
+import * as authServices from "../../services/auth-services";
+import { ContextToken } from "../../utils/context-token";
+import { CardFrom, Container, ContainerLogin, ContentLogOr } from "./style";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const { setContextTokenPayload } = useContext(ContextToken);
+  const [fromData, setFromData] = useState<CredentialsDTO>({
+    username: "",
+    password: "",
+  });
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -23,15 +25,6 @@ function Login() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const { setContextTokenPayload } = useContext(ContextToken);
-
-  const navigate = useNavigate();
-
-  const [fromData, setFromData] = useState<CredentialsDTO>({
-    username: "",
-    password: "",
-  });
 
   //Faz uma requisiçao para backend para o login e salvando o token
   function handleSubmit(event: any) {

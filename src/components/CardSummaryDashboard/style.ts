@@ -1,13 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const media = {
-  mobile: `@media(min-width: 300px) and (max-width:764px)`,
-  tablet: `@media(min-width: 760px) and (max-width: 1024px)`,
-  desktop: `@media(min-width: 1280px)`,
-};
+import { mediaquery } from '../../utils/mediaquery';
+
+const media = mediaquery;
 
 export const Container = styled.div`
-  
   background-color: white;
   width: 360px;
   padding: 10px;

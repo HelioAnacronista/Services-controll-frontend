@@ -1,22 +1,21 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from "axios";
 
-import { BASE_URL } from '../utils/system';
+import { BASE_URL } from "../utils/system";
 
 export function getRequstVendas() {
-   return axios.get(`${BASE_URL}/work/totalvalue`);
+  return axios.get(`${BASE_URL}/work/totalvalue`);
 }
 
-export function getRequstGastos(nameRequest : string) {
-   return axios.get(`${BASE_URL}/expense/totalvalue`);
+export function getRequstGastos(nameRequest: string) {
+  return axios.get(`${BASE_URL}/expense/totalvalue`);
 }
 
-export function getTotal(nameRequest : string){
-   return axios.get(`${BASE_URL}/accounting/total`)
+export function getTotal(nameRequest: string) {
+  return axios.get(`${BASE_URL}/accounting/total`);
 }
 
-
-export function getAccounting(nameRequest : string) {
-   return axios.get(`${BASE_URL}${nameRequest}`)
+export function getAccounting(nameRequest: string) {
+  return axios.get(`${BASE_URL}${nameRequest}`);
 }
 /*
 export function getVendasData() {
@@ -35,8 +34,3 @@ export function getVendasData() {
    })
 }
 */
-
-
-
-
-

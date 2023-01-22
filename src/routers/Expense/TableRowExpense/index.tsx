@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import ButtonDelete from "../../../components/ButtonDelete";
-import ButtonEdit from "../../../components/ButtonEdit";
-import DialogBoxConfirmation from "../../../components/DialogBoxConfirmation";
-import { ExpenseDTO } from "../../../models/Expense";
-import * as expenseServices from "../../../services/expense-services";
+import ButtonDelete from '../../../components/ButtonDelete';
+import ButtonEdit from '../../../components/ButtonEdit';
+import DialogBoxConfirmation from '../../../components/DialogBoxConfirmation';
+import { ExpenseDTO } from '../../../models/Expense';
+import * as expenseServices from '../../../services/expense-services';
 
 type Props = {
   expense: ExpenseDTO;

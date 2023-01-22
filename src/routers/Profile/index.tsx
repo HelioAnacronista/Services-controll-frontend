@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import profileImg from "../../assets/profile.png";
-import { UserDTO } from "../../models/user";
-import * as userService from "../../services/user-services";
-import { Container } from "./style";
+import { useEffect, useState } from 'react';
+import { MdModeEditOutline } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
-import { MdModeEditOutline } from "react-icons/md";
+import profileImg from '../../assets/profile.png';
+import { UserDTO } from '../../models/user';
+import * as userService from '../../services/user-services';
+import { Container } from './style';
 
 function Profile() {
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ function Profile() {
   useEffect(() => {
     userService.findMe().then((response) => {
       setUser(response.data);
-      console.log(response.data);
     });
   }, []);
 

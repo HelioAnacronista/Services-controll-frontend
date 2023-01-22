@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-const media = {
-  mobile: `@media(min-width: 300px) and (max-width:764px)`,
-  tablet: `@media(min-width: 768px) and (max-width: 1024px)`,
-  desktop: `@media(min-width: 1280px)`,
-};
+import { mediaquery } from "../../utils/mediaquery";
+
+const media = mediaquery;
 
 export const ButtonStyleLayout = styled.button`
   background-color: var(--green);
@@ -18,7 +16,6 @@ export const ButtonStyleLayout = styled.button`
   font-family: inherit;
   font-weight: 500;
   font-size: 16px;
-
 
   border: none;
   box-shadow: 0 0.7em 1.5em -0.5em #5bf1bf (164, 79%, 37%, 0.596);

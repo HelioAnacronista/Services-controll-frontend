@@ -1,9 +1,6 @@
 function FromInput(props: any) {
+  const { ...inputProps } = props;
 
-   const { ...inputProps } = props;
-
-   return (
-         <input {...inputProps} />
-   );
+  return <input {...inputProps} />;
 }
 export default FromInput;

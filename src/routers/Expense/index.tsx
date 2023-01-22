@@ -1,15 +1,13 @@
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
-import { Container, ContentList } from "./style";
+import { useEffect, useState } from 'react';
+import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import ButtonLayout from "../../components/ButtonLayout";
-import LoadingPage from "../../components/LoadingPage/loading";
-import TableRowExpense from "./TableRowExpense";
-
-import { ExpenseDTO } from "../../models/Expense";
-import * as expenseServices from "../../services/expense-services";
+import ButtonLayout from '../../components/ButtonLayout';
+import LoadingPage from '../../components/LoadingPage/loading';
+import { ExpenseDTO } from '../../models/Expense';
+import * as expenseServices from '../../services/expense-services';
+import { Container, ContentList } from './style';
+import TableRowExpense from './TableRowExpense';
 
 type QueryParams = {
   page: number;

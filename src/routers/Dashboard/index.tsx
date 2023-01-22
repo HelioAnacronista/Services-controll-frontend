@@ -36,22 +36,22 @@ function Dashboard() {
                 <h1 className="list-title">Serviços recentes</h1>
               </div>
               <ContentList>
-                  <table className="table-border">
-                    <thead>
-                      <tr>
-                        <th>Serviço</th>
-                        <th>Valor</th>
-                        <th>Status</th>
-                        <th>Cliente</th>
-                        <th>Contato</th>
-                      </tr>
-                    </thead>
-                    <tbody className="">
-                      {worklast.map((obj) => (
-                        <TableRowDash key={obj.id} work={obj}></TableRowDash>
-                      ))}
-                    </tbody>
-                  </table>
+                <table className="table-border">
+                  <thead>
+                    <tr>
+                      <th>Serviço</th>
+                      <th>Valor</th>
+                      <th>Status</th>
+                      <th>Cliente</th>
+                      <th>Contato</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {worklast.map((obj) => (
+                      <TableRowDash key={obj.id} work={obj}></TableRowDash>
+                    ))}
+                  </tbody>
+                </table>
               </ContentList>
             </div>
           </Container>

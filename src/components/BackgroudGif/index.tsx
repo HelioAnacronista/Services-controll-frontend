@@ -1,8 +1,4 @@
-import gif from '../../assets/goal.gif';
-
-interface BackgroudGifProps {
-  nameClass: string;
-}
+import gif from "../../assets/goal.gif";
 
 function BackgroudGif() {
   return (

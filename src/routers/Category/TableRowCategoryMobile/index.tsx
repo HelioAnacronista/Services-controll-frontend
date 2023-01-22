@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { MdDeleteForever } from "react-icons/md";
-import ModalActions from "../../../components/ModalActions";
-import { CategoryDTO } from "../../../models/category";
-import * as categoryServices from "../../../services/category-services";
+import { useState } from 'react';
+import { MdDeleteForever } from 'react-icons/md';
+
+import ModalActions from '../../../components/ModalActions';
+import { CategoryDTO } from '../../../models/category';
+import * as categoryServices from '../../../services/category-services';
 
 type Props = {
   category: CategoryDTO;

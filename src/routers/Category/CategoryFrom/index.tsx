@@ -1,22 +1,15 @@
-import { ActionsBtn, Container, ContentFrom } from "./style";
-
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import ButtonLayout from "../../../components/ButtonLayout";
 import FromInput from "../../../components/FromInput";
 import FromTextArea from "../../../components/FromTextArea";
-
 import * as categoryServices from "../../../services/category-services";
 import * as froms from "../../../utils/from";
+import { ActionsBtn, Container, ContentFrom } from "./style";
 
 function CategoryFrom() {
   const navigate = useNavigate();
-
-  const buttonPropsSave = {
-    name: "Salvar",
-    img: "",
-  };
 
   const params = useParams();
 
@@ -108,9 +101,7 @@ function CategoryFrom() {
               </div>
               <ActionsBtn>
                 <div className="save">
-                  <ButtonLayout {...buttonPropsSave}>
-                    <p>SALVAR</p>
-                  </ButtonLayout>
+                  <ButtonLayout name="SALVAR"></ButtonLayout>
                 </div>
                 <div className="cancel">
                   <Link to={"/category"}>

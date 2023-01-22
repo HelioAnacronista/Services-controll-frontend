@@ -1,6 +1,7 @@
-import { MdChangeCircle } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { Container } from "./style";
+import { MdChangeCircle } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+
+import { Container } from './style';
 
 type Props = {
   idObj: number;

@@ -1,4 +1,4 @@
-import { Container } from "./style";
+import { Container } from './style';
 
 type Props = {
   id: number;
@@ -12,7 +12,10 @@ function DialogBoxConfirmation({ id, msg, onDialogAnswer }: Props) {
       <div className="dialog-box" onClick={(event) => event.stopPropagation()}>
         <h2>{msg}</h2>
         <div className="dialog-card ">
-          <div className="mx-20 box-btn-n" onClick={() => onDialogAnswer(false, id)}>
+          <div
+            className="mx-20 box-btn-n"
+            onClick={() => onDialogAnswer(false, id)}
+          >
             <button>Não</button>
           </div>
           <div

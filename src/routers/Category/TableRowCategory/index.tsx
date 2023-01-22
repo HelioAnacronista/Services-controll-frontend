@@ -1,75 +1,82 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as categoryServices from '../../../services/category-services'
+
 import ButtonDelete from '../../../components/ButtonDelete';
 import ButtonEdit from '../../../components/ButtonEdit';
 import DialogBoxConfirmation from '../../../components/DialogBoxConfirmation';
 import { CategoryDTO } from '../../../models/category';
+import * as categoryServices from '../../../services/category-services';
 
 type Props = {
-   category: CategoryDTO;
-}
+  category: CategoryDTO;
+};
 
 function TableRowCategory({ category }: Props) {
+  const [dialogInfoData, setDialogInfoData] = useState({
+    visible: false,
+    msg: "Operação feita com sucesso!",
+  });
 
+  const [dialogBoxConfirmation, setDialogBoxConfirmation] = useState({
+    id: 0,
+    visible: false,
+    msg: "Tem certeza?",
+  });
 
-   const [dialogInfoData, setDialogInfoData] = useState({
-      visible: false,
-      msg: "Operação feita com sucesso!"
-   })
+  function handleInfoClose() {
+    setDialogInfoData({ ...dialogInfoData, visible: false });
+  }
 
-   const [dialogBoxConfirmation, setDialogBoxConfirmation] = useState({
-      id: 0,
-      visible: false,
-      msg: "Tem certeza?"
-   })
+  function handleDeleteClick(categoryId: any) {
+    setDialogBoxConfirmation({
+      ...dialogBoxConfirmation,
+      id: categoryId,
+      visible: true,
+    });
+  }
 
-   function handleInfoClose() {
-      setDialogInfoData({ ...dialogInfoData, visible: false });
-   }
+  function atualizarPagina() {
+    window.location.reload();
+  }
 
-   function handleDeleteClick(categoryId: any) {
-      setDialogBoxConfirmation({ ...dialogBoxConfirmation, id: categoryId, visible: true })
-
-   }
-
-   function atualizarPagina() {
-      window.location.reload();
+  function handleDialogBoxConfirmationAnswer(
+    answer: boolean,
+    categoryId: number
+  ) {
+    if (answer === true) {
+      categoryServices.deleteById(categoryId).then(() => {
+        atualizarPagina();
+      });
     }
-    
 
-   function handleDialogBoxConfirmationAnswer(answer: boolean, categoryId: number) {
-      if (answer === true) {
-         categoryServices.deleteById(categoryId).then(() => {
+    setDialogBoxConfirmation({ ...dialogBoxConfirmation, visible: false });
+  }
 
-
-            atualizarPagina()
-         })
-      }
-
-      setDialogBoxConfirmation({ ...dialogBoxConfirmation, visible: false })
-   }
-
-   return (
-      <>
-         <tr>
-            <td>{category.name}</td>
-            <td>{category.description}</td>
-            <Link to={`/category/${category.id}`}>
-               <td><ButtonEdit></ButtonEdit></td>
-            </Link>
-            <td><ButtonDelete onClick={() => handleDeleteClick(category.id)}></ButtonDelete></td>
-         </tr>
-         {
-            dialogBoxConfirmation.visible &&
-            <DialogBoxConfirmation
-               id={dialogBoxConfirmation.id}
-               msg={dialogBoxConfirmation.msg}
-               onDialogAnswer={handleDialogBoxConfirmationAnswer}
-            />
-         }
-      </>
-   );
+  return (
+    <>
+      <tr>
+        <td>{category.name}</td>
+        <td>{category.description}</td>
+        <Link to={`/category/${category.id}`}>
+          <td>
+            <ButtonEdit></ButtonEdit>
+          </td>
+        </Link>
+        <td>
+          <ButtonDelete
+            onClick={() => handleDeleteClick(category.id)}
+          ></ButtonDelete>
+        </td>
+      </tr>
+      {dialogBoxConfirmation.visible && (
+        <DialogBoxConfirmation
+          id={dialogBoxConfirmation.id}
+          msg={dialogBoxConfirmation.msg}
+          onDialogAnswer={handleDialogBoxConfirmationAnswer}
+        />
+      )}
+    </>
+  );
 }
 
 export default TableRowCategory;

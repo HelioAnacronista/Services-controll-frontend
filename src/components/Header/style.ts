@@ -1,10 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const media = {
-  mobile: `@media(min-width: 300px) and (max-width:764px)`,
-  tablet: `@media(min-width: 768px) and (max-width: 1024px)`,
-  desktop: `@media(min-width: 1280px)`,
-};
+import { mediaquery } from '../../utils/mediaquery';
+
+const media = mediaquery;
 
 export const Profile = styled.div`
   button {
@@ -13,7 +11,7 @@ export const Profile = styled.div`
   }
 `;
 
-export const Header = styled.div`
+export const ContentHeader = styled.div`
   display: flex;
   align-items: center;
   max-width: 1280px;

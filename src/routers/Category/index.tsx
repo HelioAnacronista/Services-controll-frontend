@@ -1,15 +1,13 @@
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
-import { Container, ContentList } from "./style";
-
 import { useEffect, useState } from "react";
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 import ButtonLayout from "../../components/ButtonLayout";
 import LoadingPage from "../../components/LoadingPage/loading";
-import TableRowCategory from "./TableRowCategory";
-
 import { CategoryDTO } from "../../models/category";
 import * as categoryServices from "../../services/category-services";
+import { Container, ContentList } from "./style";
+import TableRowCategory from "./TableRowCategory";
 import TableRowCategoryMobile from "./TableRowCategoryMobile";
 
 type QueryParams = {
@@ -24,6 +22,14 @@ type PropsParent = {
 function Category({ params }: PropsParent) {
   const navigate = useNavigate();
 
+  const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isListPage, setisListPage] = useState(false);
+
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: "",
+  });
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -31,15 +37,6 @@ function Category({ params }: PropsParent) {
       setLoading(false);
     }, 300);
   }, []);
-
-  const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
-
-  const [isListPage, setisListPage] = useState(false);
-
-  const [queryParams, setQueryParams] = useState<QueryParams>({
-    page: 0,
-    name: "",
-  });
 
   //Fazer a requisição com os params passados
   useEffect(() => {
@@ -59,8 +56,6 @@ function Category({ params }: PropsParent) {
   function handleNewClick() {
     navigate("/category/create");
   }
-
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -90,14 +85,12 @@ function Category({ params }: PropsParent) {
                   <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
-                    {
-                    screenWidth > 1000 ? (
+                    {screenWidth > 1000 ? (
                       <>
                         <th>Editar</th>
                         <th>Deletar</th>
                       </>
-                    ) : null
-                    }
+                    ) : null}
                   </tr>
                 </thead>
 

@@ -1,10 +1,7 @@
-function FromTextArea(props : any) {
-   
-   const { ...textareaPops } = props;
+function FromTextArea(props: any) {
+  const { ...textareaPops } = props;
 
-   return (
-      <textarea {...textareaPops } />
-   );
+  return <textarea {...textareaPops} />;
 }
 
 export default FromTextArea;

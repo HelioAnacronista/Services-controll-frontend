@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
-import ButtonLayout from "../../components/ButtonLayout";
-import LoadingPage from "../../components/LoadingPage/loading";
-import { WorkDTO } from "../../models/work";
-import * as workServices from "../../services/work-services";
-import { Container, ContentList } from "./style";
-import TableRowWorkMobile from "./TableRowWorkMobile";
-import TableRowWorks from "./TableRowWorks";
+import ButtonLayout from '../../components/ButtonLayout';
+import LoadingPage from '../../components/LoadingPage/loading';
+import { WorkDTO } from '../../models/work';
+import * as workServices from '../../services/work-services';
+import { Container, ContentList } from './style';
+import TableRowWorkMobile from './TableRowWorkMobile';
+import TableRowWorks from './TableRowWorks';
 
 type PropsParent = {
   params: string;

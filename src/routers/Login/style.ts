@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { mediaquery } from "../../utils/mediaquery";
+import styled from 'styled-components';
+
+import { mediaquery } from '../../utils/mediaquery';
 
 const media = mediaquery;
 

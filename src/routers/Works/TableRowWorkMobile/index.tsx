@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { MdDeleteForever } from "react-icons/md";
+import { useState } from 'react';
+import { MdDeleteForever } from 'react-icons/md';
 
-import ModalActions from "../../../components/ModalActions";
-import { WorkDTO } from "../../../models/work";
-import * as workServices from "../../../services/work-services";
+import ModalActions from '../../../components/ModalActions';
+import { WorkDTO } from '../../../models/work';
+import * as workServices from '../../../services/work-services';
 
 type Props = {
   work: WorkDTO;

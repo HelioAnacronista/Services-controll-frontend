@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { MdDeleteForever } from "react-icons/md";
-import ModalActions from "../../../components/ModalActions";
-import { ClientDTO } from "../../../models/client";
-import * as clientServices from "../../../services/client-services";
+import { useState } from 'react';
+import { MdDeleteForever } from 'react-icons/md';
+
+import ModalActions from '../../../components/ModalActions';
+import { ClientDTO } from '../../../models/client';
+import * as clientServices from '../../../services/client-services';
 
 type Props = {
   client: ClientDTO;

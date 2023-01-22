@@ -1,8 +1,9 @@
-import { ApexOptions } from "apexcharts";
-import React, { useEffect, useState } from "react";
-import Chart from "react-apexcharts";
-import { dataDTO } from "../../models/data";
-import { Container } from "./style";
+import { ApexOptions } from 'apexcharts';
+import React, { useEffect, useState } from 'react';
+import Chart from 'react-apexcharts';
+
+import { dataDTO } from '../../models/data';
+import { Container } from './style';
 
 type Props = {
   dateCard: dataDTO;

@@ -1,21 +1,9 @@
-import {
-  MdCategory,
-  MdDesignServices,
-  MdDonutSmall,
-  MdHome,
-  MdPeopleAlt,
-} from "react-icons/md";
+import { MdCategory, MdDesignServices, MdDonutSmall, MdHome, MdPeopleAlt } from 'react-icons/md';
+import { Menu, MenuItem, MenuItemStyles, Sidebar, useProSidebar } from 'react-pro-sidebar';
+import { Link } from 'react-router-dom';
 
-import {
-  Menu,
-  MenuItem,
-  MenuItemStyles,
-  Sidebar,
-  useProSidebar,
-} from "react-pro-sidebar";
-import { Link } from "react-router-dom";
-import HeaderSticky from "../HeaderSticky";
-import { Container } from "./style";
+import Header from '../Header';
+import { Container } from './style';
 
 const themes = {
   light: {
@@ -88,7 +76,7 @@ function NavBar() {
             </Menu>
           </Sidebar>
           <main>
-            <HeaderSticky></HeaderSticky>
+            <Header></Header>
           </main>
         </div>
       </Container>

@@ -1,14 +1,16 @@
-import { AiOutlineCaretDown } from "react-icons/ai";
-import { useProSidebar } from "react-pro-sidebar";
-import SearchBar from "../SearchBar";
+import { ContentHeader, ContentProfile, Profile, SideBar } from './style';
 
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserDTO } from "../../models/user";
-import * as userService from "../../services/user-services";
-import { ContentProfile, Header, Profile, SideBar } from "./style";
+import { useEffect, useState } from 'react';
+import { AiOutlineCaretDown } from 'react-icons/ai';
+import { useProSidebar } from 'react-pro-sidebar';
+import { useNavigate } from 'react-router-dom';
 
-function HeaderSticky() {
+import { UserDTO } from '../../models/user';
+import * as userService from '../../services/user-services';
+import SearchBar from '../SearchBar';
+
+
+function Header() {
   const { toggleSidebar } = useProSidebar();
 
   const [user, setUser] = useState<UserDTO>();
@@ -20,12 +22,10 @@ function HeaderSticky() {
     });
   }, []);
 
-  console.log(user);
-
   const navigate = useNavigate();
 
   return (
-    <Header>
+    <ContentHeader>
       <SideBar>
         <div>
           <button
@@ -50,8 +50,8 @@ function HeaderSticky() {
           </button>
         </Profile>
       </ContentProfile>
-    </Header>
+    </ContentHeader>
   );
 }
 
-export default HeaderSticky;
+export default Header;

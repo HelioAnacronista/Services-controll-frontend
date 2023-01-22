@@ -1,5 +1,3 @@
-import { ActionsBtn, ContentFrom, Container } from "./style";
-
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -14,7 +12,7 @@ import * as categoryServices from "../../../services/category-services";
 import * as clientServices from "../../../services/client-services";
 import * as workServices from "../../../services/work-services";
 import * as froms from "../../../utils/from";
-
+import { ActionsBtn, Container, ContentFrom } from "./style";
 
 const statusColors = {
   ABERTO: {
@@ -34,10 +32,9 @@ const statusColors = {
 function WorkFrom() {
   const navigate = useNavigate();
 
-  const buttonPropsSave = {
-    name: "Salvar",
-    img: "",
-  };
+  const [client, setClient] = useState<ClientDTO[]>([]);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams();
 
@@ -55,10 +52,6 @@ function WorkFrom() {
     }
     return 3;
   }
-
-  const [client, setClient] = useState<ClientDTO[]>([]);
-
-  const [isLoading, setIsLoading] = useState(true);
 
   const [formData, setFormData] = useState<any>({
     name: {
@@ -165,114 +158,112 @@ function WorkFrom() {
 
   return (
     <>
-    <Container>
-      <div className="title">
-        <h3>
-          <span>Workspace de Serviços</span>
-        </h3>
-      </div>
-
-      <ContentFrom>
-        <div className="card-from">
-          <form onSubmit={handleSubmit}>
-            <div className="input-from">
-              <div>
-                <h3>Nome: </h3>
-              </div>
-              <FromInput
-                {...formData.name}
-                className="input-c-c"
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="input-from">
-              <div>
-                <h3>Valor: </h3>
-              </div>
-              <FromInput
-                {...formData.valor}
-                className="input-c-c"
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="input-from">
-              <div>
-                <h3>Status: </h3>
-              </div>
-              <Select
-                options={optionsStatus}
-                onChange={(obj) => {
-                  let v;
-                  if (obj?.value === "PAGO") {
-                    v = 1;
-                  }
-                  if (obj?.value === "AGUARDANDO PAGAMENTO") {
-                    v = 2;
-                  }
-                  if (obj?.value === "ABERTO") {
-                    v = 3;
-                  }
-                  setSelectStatus(v);
-                }}
-                isLoading={isLoading}
-                className="basic-single"
-                classNamePrefix="Selecione um Status"
-                name="color"
-                placeholder='Selecione o status do serviço'
-              />
-            </div>
-
-            <div className="input-from">
-              <FromSelect
-                options={category}
-                {...formData.category}
-                onChange={(obj: any) => {
-                  const newFromData = froms.update(formData, "category", obj);
-                  console.log(newFromData);
-                  setFormData(newFromData);
-                }}
-                isLoading={isLoading}
-                className="basic-single"
-                classNamePrefix="select"
-                name="color"
-                getOptionLabel={(obj: any) => obj.name}
-                getOptionValue={(obj: any) => String(obj.id)}
-              />
-            </div>
-            <div className="input-from">
-              <FromSelect
-                options={client}
-                {...formData.client}
-                onChange={(obj: any) => {
-                  const newFromData = froms.update(formData, "client", obj);
-                  console.log(newFromData);
-                  setFormData(newFromData);
-                }}
-                isLoading={isLoading}
-                className="basic-single"
-                classNamePrefix="select"
-                name="color"
-                getOptionLabel={(obj: any) => obj.name}
-                getOptionValue={(obj: any) => String(obj.id)}
-              />
-            </div>
-            <ActionsBtn>
-              <div className="save">
-                <ButtonLayout {...buttonPropsSave}>
-                  <p>SALVAR</p>
-                </ButtonLayout>
-              </div>
-              <div className="cancel">
-                <Link to={"/work"}>
-                  <ButtonLayout name="CANCELAR"></ButtonLayout>
-                </Link>
-              </div>
-            </ActionsBtn>
-          </form>
+      <Container>
+        <div className="title">
+          <h3>
+            <span>Workspace de Serviços</span>
+          </h3>
         </div>
-      </ContentFrom>
+
+        <ContentFrom>
+          <div className="card-from">
+            <form onSubmit={handleSubmit}>
+              <div className="input-from">
+                <div>
+                  <h3>Nome: </h3>
+                </div>
+                <FromInput
+                  {...formData.name}
+                  className="input-c-c"
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className="input-from">
+                <div>
+                  <h3>Valor: </h3>
+                </div>
+                <FromInput
+                  {...formData.valor}
+                  className="input-c-c"
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className="input-from">
+                <div>
+                  <h3>Status: </h3>
+                </div>
+                <Select
+                  options={optionsStatus}
+                  onChange={(obj) => {
+                    let v;
+                    if (obj?.value === "PAGO") {
+                      v = 1;
+                    }
+                    if (obj?.value === "AGUARDANDO PAGAMENTO") {
+                      v = 2;
+                    }
+                    if (obj?.value === "ABERTO") {
+                      v = 3;
+                    }
+                    setSelectStatus(v);
+                  }}
+                  isLoading={isLoading}
+                  className="basic-single"
+                  classNamePrefix="Selecione um Status"
+                  name="color"
+                  placeholder="Selecione o status do serviço"
+                />
+              </div>
+
+              <div className="input-from">
+                <FromSelect
+                  options={category}
+                  {...formData.category}
+                  onChange={(obj: any) => {
+                    const newFromData = froms.update(formData, "category", obj);
+                    console.log(newFromData);
+                    setFormData(newFromData);
+                  }}
+                  isLoading={isLoading}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  name="color"
+                  getOptionLabel={(obj: any) => obj.name}
+                  getOptionValue={(obj: any) => String(obj.id)}
+                />
+              </div>
+              <div className="input-from">
+                <FromSelect
+                  options={client}
+                  {...formData.client}
+                  onChange={(obj: any) => {
+                    const newFromData = froms.update(formData, "client", obj);
+                    console.log(newFromData);
+                    setFormData(newFromData);
+                  }}
+                  isLoading={isLoading}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  name="color"
+                  getOptionLabel={(obj: any) => obj.name}
+                  getOptionValue={(obj: any) => String(obj.id)}
+                />
+              </div>
+              <ActionsBtn>
+                <div className="save">
+                  <ButtonLayout name="SALVAR"></ButtonLayout>
+                </div>
+                <div className="cancel">
+                  <Link to={"/work"}>
+                    <ButtonLayout name="CANCELAR"></ButtonLayout>
+                  </Link>
+                </div>
+              </ActionsBtn>
+            </form>
+          </div>
+        </ContentFrom>
       </Container>
     </>
   );

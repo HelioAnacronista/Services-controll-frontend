@@ -1,20 +1,14 @@
-import { ActionsBtn, Container, ContentFrom } from "./style";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-
-import ButtonLayout from "../../../components/ButtonLayout";
-import FromInput from "../../../components/FromInput";
-import * as cleintServices from "../../../services/client-services";
-import * as froms from "../../../utils/from";
+import ButtonLayout from '../../../components/ButtonLayout';
+import FromInput from '../../../components/FromInput';
+import * as cleintServices from '../../../services/client-services';
+import * as froms from '../../../utils/from';
+import { ActionsBtn, Container, ContentFrom } from './style';
 
 function ClientFrom() {
   const navigate = useNavigate();
-
-  const buttonPropsSave = {
-    name: "Salvar",
-    img: "",
-  };
 
   const params = useParams();
 
@@ -118,17 +112,15 @@ function ClientFrom() {
               </div>
 
               <ActionsBtn>
-              <div className="save">
-                <ButtonLayout {...buttonPropsSave}>
-                  <p>SALVAR</p>
-                </ButtonLayout>
-              </div>
-              <div className="cancel">
-                <Link to={"/work"}>
-                  <ButtonLayout name="CANCELAR"></ButtonLayout>
-                </Link>
-              </div>
-            </ActionsBtn>
+                <div className="save">
+                  <ButtonLayout name="SALVAR"></ButtonLayout>
+                </div>
+                <div className="cancel">
+                  <Link to={"/work"}>
+                    <ButtonLayout name="CANCELAR"></ButtonLayout>
+                  </Link>
+                </div>
+              </ActionsBtn>
             </form>
           </div>
         </ContentFrom>

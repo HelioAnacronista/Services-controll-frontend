@@ -1,19 +1,14 @@
-import { Container, ContentList } from "./style";
-
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
-
 import { useContext, useEffect, useState } from "react";
 import * as React from "react";
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-
-import { ClientDTO } from "../../models/client";
 
 import ButtonLayout from "../../components/ButtonLayout";
 import LoadingPage from "../../components/LoadingPage/loading";
-
-import TableRowClient from "./TableRowClient";
-
+import { ClientDTO } from "../../models/client";
 import * as clientServices from "../../services/client-services";
+import { Container, ContentList } from "./style";
+import TableRowClient from "./TableRowClient";
 import TableRowClientMobile from "./TableRowClientMobile";
 
 type QueryParams = {
@@ -27,7 +22,10 @@ type PropsParent = {
 
 function Category({ params }: PropsParent) {
   const navigate = useNavigate();
+  const [categoryList, setCategoryList] = useState<ClientDTO[]>([]);
 
+  const [isListPage, setisListPage] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -35,11 +33,6 @@ function Category({ params }: PropsParent) {
       setLoading(false);
     }, 300);
   }, []);
-
-  const [categoryList, setCategoryList] = useState<ClientDTO[]>([]);
-
-  const [isListPage, setisListPage] = useState(false);
-
   const [queryParams, setQueryParams] = useState<QueryParams>({
     page: 0,
     name: "",
@@ -64,8 +57,6 @@ function Category({ params }: PropsParent) {
     navigate("/category/create");
   }
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -81,7 +72,7 @@ function Category({ params }: PropsParent) {
       ) : (
         <>
           <Container className="container">
-          <div className="btn-create mt-b-40" onClick={handleNewClick}>
+            <div className="btn-create mt-b-40" onClick={handleNewClick}>
               <ButtonLayout
                 name="CRIAR"
                 img={<BsFillArrowRightSquareFill />}

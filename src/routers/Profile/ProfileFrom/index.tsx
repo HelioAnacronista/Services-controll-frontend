@@ -1,14 +1,11 @@
-import { ActionsBtn, Container, ContentFrom } from "./style";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-
-import ButtonLayout from "../../../components/ButtonLayout";
-import FromInput from "../../../components/FromInput";
-
-import * as froms from "../../../utils/from";
-
-import * as userService from "../../../services/user-services";
+import ButtonLayout from '../../../components/ButtonLayout';
+import FromInput from '../../../components/FromInput';
+import * as userService from '../../../services/user-services';
+import * as froms from '../../../utils/from';
+import { ActionsBtn, Container, ContentFrom } from './style';
 
 function ProfileFrom() {
   const navigate = useNavigate();

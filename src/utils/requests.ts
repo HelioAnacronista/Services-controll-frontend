@@ -1,7 +1,8 @@
-import axios, { AxiosRequestConfig } from "axios";
-import * as authService from "./../services/auth-services";
-import { history } from "./history";
-import { BASE_URL } from "./system";
+import axios, { AxiosRequestConfig } from 'axios';
+
+import * as authService from './../services/auth-services';
+import { history } from './history';
+import { BASE_URL } from './system';
 
 // facilitates request for backend with future token...
 export function requestBackend(config: AxiosRequestConfig) {
