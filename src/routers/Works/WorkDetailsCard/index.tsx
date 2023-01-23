@@ -1,5 +1,5 @@
-import { WorkDTO } from '../../../models/work';
-import { Container, ContentFrom } from './style';
+import { WorkDTO } from "../../../models/work";
+import { Container, ContentFrom } from "./style";
 
 type Props = {
   work: WorkDTO;
@@ -41,58 +41,37 @@ function WorkDetailsCard({ work }: Props) {
           <div className="card-from">
             <div className="details-card-work style-card-details">
               <div>
-                <h4>
-                  {" "}
-                  <span>Nome do serviço:</span> {work.name}
-                </h4>
+                Nome do serviço: <h4>{work.name}</h4>
               </div>
               <div>
+                Status:
                 <h4 style={{ color: retornaStatus(work.status).color }}>
-                  <span>Status: </span>{" "}
                   {retornaStatus(Number(work.status)).name}
                 </h4>
               </div>
               <div>
-                <h4>
-                  {" "}
-                  <span>Valor: </span> R${work.valor?.toFixed(2)}
-                </h4>
+                Valor: <h4>R${work.valor?.toFixed(2)}</h4>
               </div>
             </div>
 
             <div className="details-card-cliet style-card-details">
               <div>
-                <h4>
-                  {" "}
-                  <span>Nome do cliente: </span> {work.client.name}
-                </h4>
+                Nome do cliente: <h4>{work.client.name}</h4>
               </div>
               <div>
-                <h4>
-                  <span>Telefone: </span> {work.client.phone}
-                </h4>
+                Telefone: <h4>{work.client.phone}</h4>
               </div>
               <div>
-                <h4>
-                  {" "}
-                  <span>Endereço: </span> {work.client.address}
-                </h4>
+                Endereço: <h4>{work.client.address}</h4>
               </div>
             </div>
 
             <div className="details-card-category style-card-details">
               <div>
-                <h4>
-                  {" "}
-                  <span>Nome da categoria</span> {work.category.name}
-                </h4>
+                Nome da categoria <h4>{work.category.name}</h4>
               </div>
               <div>
-                <h4>
-                  {" "}
-                  <span>descriçao da categoria: </span>{" "}
-                  {work.category.description}
-                </h4>
+                descriçao da categoria: <h4>{work.category.description}</h4>
               </div>
             </div>
           </div>

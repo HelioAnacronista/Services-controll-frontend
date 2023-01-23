@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import { ContextSearch } from '../../utils/context-search';
-import { Container, ContentInputSearch } from './style';
+import { ContextSearch } from "../../utils/context-search";
+import { Container, ContentInputSearch } from "./style";
 
 function SearchBar() {
   const { setContextSearch } = useContext(ContextSearch);
@@ -22,7 +22,7 @@ function SearchBar() {
           <input
             onChange={handleChange}
             name="onSearch"
-            placeholder="   Buscar por nome 🔎"
+            placeholder="     Buscar pelo nome "
             type="text"
           />
           <button type="submit" className="from-search-bar-btn"></button>

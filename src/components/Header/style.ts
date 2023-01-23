@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { mediaquery } from '../../utils/mediaquery';
+import { mediaquery } from "../../utils/mediaquery";
 
 const media = mediaquery;
 
@@ -67,7 +67,7 @@ export const SideBar = styled.nav`
     font-weight: 500;
     font-size: 16px;
     border: none;
-    box-shadow: 0 0.7em 1.5em -0.5em #737fecb4 (164, 79%, 37%, 0.596);
+    box-shadow: 0 0.7em 0.5em -0.5em #737fecb4 (164, 79%, 37%, 0.596);
     letter-spacing: 0.05em;
     border-radius: 20em;
   }

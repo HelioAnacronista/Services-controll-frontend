@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   main {
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px 10px 6rem #bebebe, -15px -15px 30px #ffffff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     -webkit-transition: all 10ms ease;
     transition: all 10ms ease;
-    padding: 1rem;
   }
 `;

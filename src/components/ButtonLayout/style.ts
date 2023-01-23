@@ -18,7 +18,8 @@ export const ButtonStyleLayout = styled.button`
   font-size: 16px;
 
   border: none;
-  box-shadow: 0 0.7em 1.5em -0.5em #5bf1bf (164, 79%, 37%, 0.596);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   letter-spacing: 0.05em;
   border-radius: 20em;
 

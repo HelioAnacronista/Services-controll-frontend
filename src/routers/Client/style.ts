@@ -6,9 +6,6 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    button {
-      box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
-    }
   }
 `;
 
